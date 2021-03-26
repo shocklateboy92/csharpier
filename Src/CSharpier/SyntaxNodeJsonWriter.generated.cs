@@ -6,877 +6,246 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpier
+namespace CSharpier.Parser
 {
     public partial class SyntaxNodeJsonWriter
     {
-        public static void WriteSyntaxNode(
-            StringBuilder builder,
-            SyntaxNode syntaxNode)
+        public static void WriteSyntaxNode(StringBuilder builder, SyntaxNode syntaxNode)
         {
-            if (syntaxNode is IdentifierNameSyntax)
-                WriteIdentifierNameSyntax(
-                    builder,
-                    syntaxNode as IdentifierNameSyntax);
-            if (syntaxNode is QualifiedNameSyntax)
-                WriteQualifiedNameSyntax(
-                    builder,
-                    syntaxNode as QualifiedNameSyntax);
-            if (syntaxNode is GenericNameSyntax)
-                WriteGenericNameSyntax(builder, syntaxNode as GenericNameSyntax);
-            if (syntaxNode is TypeArgumentListSyntax)
-                WriteTypeArgumentListSyntax(
-                    builder,
-                    syntaxNode as TypeArgumentListSyntax);
-            if (syntaxNode is AliasQualifiedNameSyntax)
-                WriteAliasQualifiedNameSyntax(
-                    builder,
-                    syntaxNode as AliasQualifiedNameSyntax);
-            if (syntaxNode is PredefinedTypeSyntax)
-                WritePredefinedTypeSyntax(
-                    builder,
-                    syntaxNode as PredefinedTypeSyntax);
-            if (syntaxNode is ArrayTypeSyntax)
-                WriteArrayTypeSyntax(builder, syntaxNode as ArrayTypeSyntax);
-            if (syntaxNode is ArrayRankSpecifierSyntax)
-                WriteArrayRankSpecifierSyntax(
-                    builder,
-                    syntaxNode as ArrayRankSpecifierSyntax);
-            if (syntaxNode is PointerTypeSyntax)
-                WritePointerTypeSyntax(builder, syntaxNode as PointerTypeSyntax);
-            if (syntaxNode is FunctionPointerTypeSyntax)
-                WriteFunctionPointerTypeSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerTypeSyntax);
-            if (syntaxNode is FunctionPointerParameterListSyntax)
-                WriteFunctionPointerParameterListSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerParameterListSyntax);
-            if (syntaxNode is FunctionPointerCallingConventionSyntax)
-                WriteFunctionPointerCallingConventionSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerCallingConventionSyntax);
-            if (syntaxNode is FunctionPointerUnmanagedCallingConventionListSyntax)
-                WriteFunctionPointerUnmanagedCallingConventionListSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerUnmanagedCallingConventionListSyntax);
-            if (syntaxNode is FunctionPointerUnmanagedCallingConventionSyntax)
-                WriteFunctionPointerUnmanagedCallingConventionSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerUnmanagedCallingConventionSyntax);
-            if (syntaxNode is NullableTypeSyntax)
-                WriteNullableTypeSyntax(
-                    builder,
-                    syntaxNode as NullableTypeSyntax);
-            if (syntaxNode is TupleTypeSyntax)
-                WriteTupleTypeSyntax(builder, syntaxNode as TupleTypeSyntax);
-            if (syntaxNode is TupleElementSyntax)
-                WriteTupleElementSyntax(
-                    builder,
-                    syntaxNode as TupleElementSyntax);
-            if (syntaxNode is OmittedTypeArgumentSyntax)
-                WriteOmittedTypeArgumentSyntax(
-                    builder,
-                    syntaxNode as OmittedTypeArgumentSyntax);
-            if (syntaxNode is RefTypeSyntax)
-                WriteRefTypeSyntax(builder, syntaxNode as RefTypeSyntax);
-            if (syntaxNode is ParenthesizedExpressionSyntax)
-                WriteParenthesizedExpressionSyntax(
-                    builder,
-                    syntaxNode as ParenthesizedExpressionSyntax);
-            if (syntaxNode is TupleExpressionSyntax)
-                WriteTupleExpressionSyntax(
-                    builder,
-                    syntaxNode as TupleExpressionSyntax);
-            if (syntaxNode is PrefixUnaryExpressionSyntax)
-                WritePrefixUnaryExpressionSyntax(
-                    builder,
-                    syntaxNode as PrefixUnaryExpressionSyntax);
-            if (syntaxNode is AwaitExpressionSyntax)
-                WriteAwaitExpressionSyntax(
-                    builder,
-                    syntaxNode as AwaitExpressionSyntax);
-            if (syntaxNode is PostfixUnaryExpressionSyntax)
-                WritePostfixUnaryExpressionSyntax(
-                    builder,
-                    syntaxNode as PostfixUnaryExpressionSyntax);
-            if (syntaxNode is MemberAccessExpressionSyntax)
-                WriteMemberAccessExpressionSyntax(
-                    builder,
-                    syntaxNode as MemberAccessExpressionSyntax);
-            if (syntaxNode is ConditionalAccessExpressionSyntax)
-                WriteConditionalAccessExpressionSyntax(
-                    builder,
-                    syntaxNode as ConditionalAccessExpressionSyntax);
-            if (syntaxNode is MemberBindingExpressionSyntax)
-                WriteMemberBindingExpressionSyntax(
-                    builder,
-                    syntaxNode as MemberBindingExpressionSyntax);
-            if (syntaxNode is ElementBindingExpressionSyntax)
-                WriteElementBindingExpressionSyntax(
-                    builder,
-                    syntaxNode as ElementBindingExpressionSyntax);
-            if (syntaxNode is RangeExpressionSyntax)
-                WriteRangeExpressionSyntax(
-                    builder,
-                    syntaxNode as RangeExpressionSyntax);
-            if (syntaxNode is ImplicitElementAccessSyntax)
-                WriteImplicitElementAccessSyntax(
-                    builder,
-                    syntaxNode as ImplicitElementAccessSyntax);
-            if (syntaxNode is BinaryExpressionSyntax)
-                WriteBinaryExpressionSyntax(
-                    builder,
-                    syntaxNode as BinaryExpressionSyntax);
-            if (syntaxNode is AssignmentExpressionSyntax)
-                WriteAssignmentExpressionSyntax(
-                    builder,
-                    syntaxNode as AssignmentExpressionSyntax);
-            if (syntaxNode is ConditionalExpressionSyntax)
-                WriteConditionalExpressionSyntax(
-                    builder,
-                    syntaxNode as ConditionalExpressionSyntax);
-            if (syntaxNode is ThisExpressionSyntax)
-                WriteThisExpressionSyntax(
-                    builder,
-                    syntaxNode as ThisExpressionSyntax);
-            if (syntaxNode is BaseExpressionSyntax)
-                WriteBaseExpressionSyntax(
-                    builder,
-                    syntaxNode as BaseExpressionSyntax);
-            if (syntaxNode is LiteralExpressionSyntax)
-                WriteLiteralExpressionSyntax(
-                    builder,
-                    syntaxNode as LiteralExpressionSyntax);
-            if (syntaxNode is MakeRefExpressionSyntax)
-                WriteMakeRefExpressionSyntax(
-                    builder,
-                    syntaxNode as MakeRefExpressionSyntax);
-            if (syntaxNode is RefTypeExpressionSyntax)
-                WriteRefTypeExpressionSyntax(
-                    builder,
-                    syntaxNode as RefTypeExpressionSyntax);
-            if (syntaxNode is RefValueExpressionSyntax)
-                WriteRefValueExpressionSyntax(
-                    builder,
-                    syntaxNode as RefValueExpressionSyntax);
-            if (syntaxNode is CheckedExpressionSyntax)
-                WriteCheckedExpressionSyntax(
-                    builder,
-                    syntaxNode as CheckedExpressionSyntax);
-            if (syntaxNode is DefaultExpressionSyntax)
-                WriteDefaultExpressionSyntax(
-                    builder,
-                    syntaxNode as DefaultExpressionSyntax);
-            if (syntaxNode is TypeOfExpressionSyntax)
-                WriteTypeOfExpressionSyntax(
-                    builder,
-                    syntaxNode as TypeOfExpressionSyntax);
-            if (syntaxNode is SizeOfExpressionSyntax)
-                WriteSizeOfExpressionSyntax(
-                    builder,
-                    syntaxNode as SizeOfExpressionSyntax);
-            if (syntaxNode is InvocationExpressionSyntax)
-                WriteInvocationExpressionSyntax(
-                    builder,
-                    syntaxNode as InvocationExpressionSyntax);
-            if (syntaxNode is ElementAccessExpressionSyntax)
-                WriteElementAccessExpressionSyntax(
-                    builder,
-                    syntaxNode as ElementAccessExpressionSyntax);
-            if (syntaxNode is ArgumentListSyntax)
-                WriteArgumentListSyntax(
-                    builder,
-                    syntaxNode as ArgumentListSyntax);
-            if (syntaxNode is BracketedArgumentListSyntax)
-                WriteBracketedArgumentListSyntax(
-                    builder,
-                    syntaxNode as BracketedArgumentListSyntax);
-            if (syntaxNode is ArgumentSyntax)
-                WriteArgumentSyntax(builder, syntaxNode as ArgumentSyntax);
-            if (syntaxNode is NameColonSyntax)
-                WriteNameColonSyntax(builder, syntaxNode as NameColonSyntax);
-            if (syntaxNode is DeclarationExpressionSyntax)
-                WriteDeclarationExpressionSyntax(
-                    builder,
-                    syntaxNode as DeclarationExpressionSyntax);
-            if (syntaxNode is CastExpressionSyntax)
-                WriteCastExpressionSyntax(
-                    builder,
-                    syntaxNode as CastExpressionSyntax);
-            if (syntaxNode is AnonymousMethodExpressionSyntax)
-                WriteAnonymousMethodExpressionSyntax(
-                    builder,
-                    syntaxNode as AnonymousMethodExpressionSyntax);
-            if (syntaxNode is SimpleLambdaExpressionSyntax)
-                WriteSimpleLambdaExpressionSyntax(
-                    builder,
-                    syntaxNode as SimpleLambdaExpressionSyntax);
-            if (syntaxNode is RefExpressionSyntax)
-                WriteRefExpressionSyntax(
-                    builder,
-                    syntaxNode as RefExpressionSyntax);
-            if (syntaxNode is ParenthesizedLambdaExpressionSyntax)
-                WriteParenthesizedLambdaExpressionSyntax(
-                    builder,
-                    syntaxNode as ParenthesizedLambdaExpressionSyntax);
-            if (syntaxNode is InitializerExpressionSyntax)
-                WriteInitializerExpressionSyntax(
-                    builder,
-                    syntaxNode as InitializerExpressionSyntax);
-            if (syntaxNode is ImplicitObjectCreationExpressionSyntax)
-                WriteImplicitObjectCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as ImplicitObjectCreationExpressionSyntax);
-            if (syntaxNode is ObjectCreationExpressionSyntax)
-                WriteObjectCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as ObjectCreationExpressionSyntax);
-            if (syntaxNode is WithExpressionSyntax)
-                WriteWithExpressionSyntax(
-                    builder,
-                    syntaxNode as WithExpressionSyntax);
-            if (syntaxNode is AnonymousObjectMemberDeclaratorSyntax)
-                WriteAnonymousObjectMemberDeclaratorSyntax(
-                    builder,
-                    syntaxNode as AnonymousObjectMemberDeclaratorSyntax);
-            if (syntaxNode is AnonymousObjectCreationExpressionSyntax)
-                WriteAnonymousObjectCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as AnonymousObjectCreationExpressionSyntax);
-            if (syntaxNode is ArrayCreationExpressionSyntax)
-                WriteArrayCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as ArrayCreationExpressionSyntax);
-            if (syntaxNode is ImplicitArrayCreationExpressionSyntax)
-                WriteImplicitArrayCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as ImplicitArrayCreationExpressionSyntax);
-            if (syntaxNode is StackAllocArrayCreationExpressionSyntax)
-                WriteStackAllocArrayCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as StackAllocArrayCreationExpressionSyntax);
-            if (syntaxNode is ImplicitStackAllocArrayCreationExpressionSyntax)
-                WriteImplicitStackAllocArrayCreationExpressionSyntax(
-                    builder,
-                    syntaxNode as ImplicitStackAllocArrayCreationExpressionSyntax);
-            if (syntaxNode is QueryExpressionSyntax)
-                WriteQueryExpressionSyntax(
-                    builder,
-                    syntaxNode as QueryExpressionSyntax);
-            if (syntaxNode is QueryBodySyntax)
-                WriteQueryBodySyntax(builder, syntaxNode as QueryBodySyntax);
-            if (syntaxNode is FromClauseSyntax)
-                WriteFromClauseSyntax(builder, syntaxNode as FromClauseSyntax);
-            if (syntaxNode is LetClauseSyntax)
-                WriteLetClauseSyntax(builder, syntaxNode as LetClauseSyntax);
-            if (syntaxNode is JoinClauseSyntax)
-                WriteJoinClauseSyntax(builder, syntaxNode as JoinClauseSyntax);
-            if (syntaxNode is JoinIntoClauseSyntax)
-                WriteJoinIntoClauseSyntax(
-                    builder,
-                    syntaxNode as JoinIntoClauseSyntax);
-            if (syntaxNode is WhereClauseSyntax)
-                WriteWhereClauseSyntax(builder, syntaxNode as WhereClauseSyntax);
-            if (syntaxNode is OrderByClauseSyntax)
-                WriteOrderByClauseSyntax(
-                    builder,
-                    syntaxNode as OrderByClauseSyntax);
-            if (syntaxNode is OrderingSyntax)
-                WriteOrderingSyntax(builder, syntaxNode as OrderingSyntax);
-            if (syntaxNode is SelectClauseSyntax)
-                WriteSelectClauseSyntax(
-                    builder,
-                    syntaxNode as SelectClauseSyntax);
-            if (syntaxNode is GroupClauseSyntax)
-                WriteGroupClauseSyntax(builder, syntaxNode as GroupClauseSyntax);
-            if (syntaxNode is QueryContinuationSyntax)
-                WriteQueryContinuationSyntax(
-                    builder,
-                    syntaxNode as QueryContinuationSyntax);
-            if (syntaxNode is OmittedArraySizeExpressionSyntax)
-                WriteOmittedArraySizeExpressionSyntax(
-                    builder,
-                    syntaxNode as OmittedArraySizeExpressionSyntax);
-            if (syntaxNode is InterpolatedStringExpressionSyntax)
-                WriteInterpolatedStringExpressionSyntax(
-                    builder,
-                    syntaxNode as InterpolatedStringExpressionSyntax);
-            if (syntaxNode is IsPatternExpressionSyntax)
-                WriteIsPatternExpressionSyntax(
-                    builder,
-                    syntaxNode as IsPatternExpressionSyntax);
-            if (syntaxNode is ThrowExpressionSyntax)
-                WriteThrowExpressionSyntax(
-                    builder,
-                    syntaxNode as ThrowExpressionSyntax);
-            if (syntaxNode is WhenClauseSyntax)
-                WriteWhenClauseSyntax(builder, syntaxNode as WhenClauseSyntax);
-            if (syntaxNode is DiscardPatternSyntax)
-                WriteDiscardPatternSyntax(
-                    builder,
-                    syntaxNode as DiscardPatternSyntax);
-            if (syntaxNode is DeclarationPatternSyntax)
-                WriteDeclarationPatternSyntax(
-                    builder,
-                    syntaxNode as DeclarationPatternSyntax);
-            if (syntaxNode is VarPatternSyntax)
-                WriteVarPatternSyntax(builder, syntaxNode as VarPatternSyntax);
-            if (syntaxNode is RecursivePatternSyntax)
-                WriteRecursivePatternSyntax(
-                    builder,
-                    syntaxNode as RecursivePatternSyntax);
-            if (syntaxNode is PositionalPatternClauseSyntax)
-                WritePositionalPatternClauseSyntax(
-                    builder,
-                    syntaxNode as PositionalPatternClauseSyntax);
-            if (syntaxNode is PropertyPatternClauseSyntax)
-                WritePropertyPatternClauseSyntax(
-                    builder,
-                    syntaxNode as PropertyPatternClauseSyntax);
-            if (syntaxNode is SubpatternSyntax)
-                WriteSubpatternSyntax(builder, syntaxNode as SubpatternSyntax);
-            if (syntaxNode is ConstantPatternSyntax)
-                WriteConstantPatternSyntax(
-                    builder,
-                    syntaxNode as ConstantPatternSyntax);
-            if (syntaxNode is ParenthesizedPatternSyntax)
-                WriteParenthesizedPatternSyntax(
-                    builder,
-                    syntaxNode as ParenthesizedPatternSyntax);
-            if (syntaxNode is RelationalPatternSyntax)
-                WriteRelationalPatternSyntax(
-                    builder,
-                    syntaxNode as RelationalPatternSyntax);
-            if (syntaxNode is TypePatternSyntax)
-                WriteTypePatternSyntax(builder, syntaxNode as TypePatternSyntax);
-            if (syntaxNode is BinaryPatternSyntax)
-                WriteBinaryPatternSyntax(
-                    builder,
-                    syntaxNode as BinaryPatternSyntax);
-            if (syntaxNode is UnaryPatternSyntax)
-                WriteUnaryPatternSyntax(
-                    builder,
-                    syntaxNode as UnaryPatternSyntax);
-            if (syntaxNode is InterpolatedStringTextSyntax)
-                WriteInterpolatedStringTextSyntax(
-                    builder,
-                    syntaxNode as InterpolatedStringTextSyntax);
-            if (syntaxNode is InterpolationSyntax)
-                WriteInterpolationSyntax(
-                    builder,
-                    syntaxNode as InterpolationSyntax);
-            if (syntaxNode is InterpolationAlignmentClauseSyntax)
-                WriteInterpolationAlignmentClauseSyntax(
-                    builder,
-                    syntaxNode as InterpolationAlignmentClauseSyntax);
-            if (syntaxNode is InterpolationFormatClauseSyntax)
-                WriteInterpolationFormatClauseSyntax(
-                    builder,
-                    syntaxNode as InterpolationFormatClauseSyntax);
-            if (syntaxNode is GlobalStatementSyntax)
-                WriteGlobalStatementSyntax(
-                    builder,
-                    syntaxNode as GlobalStatementSyntax);
-            if (syntaxNode is BlockSyntax)
-                WriteBlockSyntax(builder, syntaxNode as BlockSyntax);
-            if (syntaxNode is LocalFunctionStatementSyntax)
-                WriteLocalFunctionStatementSyntax(
-                    builder,
-                    syntaxNode as LocalFunctionStatementSyntax);
-            if (syntaxNode is LocalDeclarationStatementSyntax)
-                WriteLocalDeclarationStatementSyntax(
-                    builder,
-                    syntaxNode as LocalDeclarationStatementSyntax);
-            if (syntaxNode is VariableDeclarationSyntax)
-                WriteVariableDeclarationSyntax(
-                    builder,
-                    syntaxNode as VariableDeclarationSyntax);
-            if (syntaxNode is VariableDeclaratorSyntax)
-                WriteVariableDeclaratorSyntax(
-                    builder,
-                    syntaxNode as VariableDeclaratorSyntax);
-            if (syntaxNode is EqualsValueClauseSyntax)
-                WriteEqualsValueClauseSyntax(
-                    builder,
-                    syntaxNode as EqualsValueClauseSyntax);
-            if (syntaxNode is SingleVariableDesignationSyntax)
-                WriteSingleVariableDesignationSyntax(
-                    builder,
-                    syntaxNode as SingleVariableDesignationSyntax);
-            if (syntaxNode is DiscardDesignationSyntax)
-                WriteDiscardDesignationSyntax(
-                    builder,
-                    syntaxNode as DiscardDesignationSyntax);
-            if (syntaxNode is ParenthesizedVariableDesignationSyntax)
-                WriteParenthesizedVariableDesignationSyntax(
-                    builder,
-                    syntaxNode as ParenthesizedVariableDesignationSyntax);
-            if (syntaxNode is ExpressionStatementSyntax)
-                WriteExpressionStatementSyntax(
-                    builder,
-                    syntaxNode as ExpressionStatementSyntax);
-            if (syntaxNode is EmptyStatementSyntax)
-                WriteEmptyStatementSyntax(
-                    builder,
-                    syntaxNode as EmptyStatementSyntax);
-            if (syntaxNode is LabeledStatementSyntax)
-                WriteLabeledStatementSyntax(
-                    builder,
-                    syntaxNode as LabeledStatementSyntax);
-            if (syntaxNode is GotoStatementSyntax)
-                WriteGotoStatementSyntax(
-                    builder,
-                    syntaxNode as GotoStatementSyntax);
-            if (syntaxNode is BreakStatementSyntax)
-                WriteBreakStatementSyntax(
-                    builder,
-                    syntaxNode as BreakStatementSyntax);
-            if (syntaxNode is ContinueStatementSyntax)
-                WriteContinueStatementSyntax(
-                    builder,
-                    syntaxNode as ContinueStatementSyntax);
-            if (syntaxNode is ReturnStatementSyntax)
-                WriteReturnStatementSyntax(
-                    builder,
-                    syntaxNode as ReturnStatementSyntax);
-            if (syntaxNode is ThrowStatementSyntax)
-                WriteThrowStatementSyntax(
-                    builder,
-                    syntaxNode as ThrowStatementSyntax);
-            if (syntaxNode is YieldStatementSyntax)
-                WriteYieldStatementSyntax(
-                    builder,
-                    syntaxNode as YieldStatementSyntax);
-            if (syntaxNode is WhileStatementSyntax)
-                WriteWhileStatementSyntax(
-                    builder,
-                    syntaxNode as WhileStatementSyntax);
-            if (syntaxNode is DoStatementSyntax)
-                WriteDoStatementSyntax(builder, syntaxNode as DoStatementSyntax);
-            if (syntaxNode is ForStatementSyntax)
-                WriteForStatementSyntax(
-                    builder,
-                    syntaxNode as ForStatementSyntax);
-            if (syntaxNode is ForEachStatementSyntax)
-                WriteForEachStatementSyntax(
-                    builder,
-                    syntaxNode as ForEachStatementSyntax);
-            if (syntaxNode is ForEachVariableStatementSyntax)
-                WriteForEachVariableStatementSyntax(
-                    builder,
-                    syntaxNode as ForEachVariableStatementSyntax);
-            if (syntaxNode is UsingStatementSyntax)
-                WriteUsingStatementSyntax(
-                    builder,
-                    syntaxNode as UsingStatementSyntax);
-            if (syntaxNode is FixedStatementSyntax)
-                WriteFixedStatementSyntax(
-                    builder,
-                    syntaxNode as FixedStatementSyntax);
-            if (syntaxNode is CheckedStatementSyntax)
-                WriteCheckedStatementSyntax(
-                    builder,
-                    syntaxNode as CheckedStatementSyntax);
-            if (syntaxNode is UnsafeStatementSyntax)
-                WriteUnsafeStatementSyntax(
-                    builder,
-                    syntaxNode as UnsafeStatementSyntax);
-            if (syntaxNode is LockStatementSyntax)
-                WriteLockStatementSyntax(
-                    builder,
-                    syntaxNode as LockStatementSyntax);
-            if (syntaxNode is IfStatementSyntax)
-                WriteIfStatementSyntax(builder, syntaxNode as IfStatementSyntax);
-            if (syntaxNode is ElseClauseSyntax)
-                WriteElseClauseSyntax(builder, syntaxNode as ElseClauseSyntax);
-            if (syntaxNode is SwitchStatementSyntax)
-                WriteSwitchStatementSyntax(
-                    builder,
-                    syntaxNode as SwitchStatementSyntax);
-            if (syntaxNode is SwitchSectionSyntax)
-                WriteSwitchSectionSyntax(
-                    builder,
-                    syntaxNode as SwitchSectionSyntax);
-            if (syntaxNode is CasePatternSwitchLabelSyntax)
-                WriteCasePatternSwitchLabelSyntax(
-                    builder,
-                    syntaxNode as CasePatternSwitchLabelSyntax);
-            if (syntaxNode is CaseSwitchLabelSyntax)
-                WriteCaseSwitchLabelSyntax(
-                    builder,
-                    syntaxNode as CaseSwitchLabelSyntax);
-            if (syntaxNode is DefaultSwitchLabelSyntax)
-                WriteDefaultSwitchLabelSyntax(
-                    builder,
-                    syntaxNode as DefaultSwitchLabelSyntax);
-            if (syntaxNode is SwitchExpressionSyntax)
-                WriteSwitchExpressionSyntax(
-                    builder,
-                    syntaxNode as SwitchExpressionSyntax);
-            if (syntaxNode is SwitchExpressionArmSyntax)
-                WriteSwitchExpressionArmSyntax(
-                    builder,
-                    syntaxNode as SwitchExpressionArmSyntax);
-            if (syntaxNode is TryStatementSyntax)
-                WriteTryStatementSyntax(
-                    builder,
-                    syntaxNode as TryStatementSyntax);
-            if (syntaxNode is CatchClauseSyntax)
-                WriteCatchClauseSyntax(builder, syntaxNode as CatchClauseSyntax);
-            if (syntaxNode is CatchDeclarationSyntax)
-                WriteCatchDeclarationSyntax(
-                    builder,
-                    syntaxNode as CatchDeclarationSyntax);
-            if (syntaxNode is CatchFilterClauseSyntax)
-                WriteCatchFilterClauseSyntax(
-                    builder,
-                    syntaxNode as CatchFilterClauseSyntax);
-            if (syntaxNode is FinallyClauseSyntax)
-                WriteFinallyClauseSyntax(
-                    builder,
-                    syntaxNode as FinallyClauseSyntax);
-            if (syntaxNode is CompilationUnitSyntax)
-                WriteCompilationUnitSyntax(
-                    builder,
-                    syntaxNode as CompilationUnitSyntax);
-            if (syntaxNode is ExternAliasDirectiveSyntax)
-                WriteExternAliasDirectiveSyntax(
-                    builder,
-                    syntaxNode as ExternAliasDirectiveSyntax);
-            if (syntaxNode is UsingDirectiveSyntax)
-                WriteUsingDirectiveSyntax(
-                    builder,
-                    syntaxNode as UsingDirectiveSyntax);
-            if (syntaxNode is NamespaceDeclarationSyntax)
-                WriteNamespaceDeclarationSyntax(
-                    builder,
-                    syntaxNode as NamespaceDeclarationSyntax);
-            if (syntaxNode is AttributeListSyntax)
-                WriteAttributeListSyntax(
-                    builder,
-                    syntaxNode as AttributeListSyntax);
-            if (syntaxNode is AttributeTargetSpecifierSyntax)
-                WriteAttributeTargetSpecifierSyntax(
-                    builder,
-                    syntaxNode as AttributeTargetSpecifierSyntax);
-            if (syntaxNode is AttributeSyntax)
-                WriteAttributeSyntax(builder, syntaxNode as AttributeSyntax);
-            if (syntaxNode is AttributeArgumentListSyntax)
-                WriteAttributeArgumentListSyntax(
-                    builder,
-                    syntaxNode as AttributeArgumentListSyntax);
-            if (syntaxNode is AttributeArgumentSyntax)
-                WriteAttributeArgumentSyntax(
-                    builder,
-                    syntaxNode as AttributeArgumentSyntax);
-            if (syntaxNode is NameEqualsSyntax)
-                WriteNameEqualsSyntax(builder, syntaxNode as NameEqualsSyntax);
-            if (syntaxNode is TypeParameterListSyntax)
-                WriteTypeParameterListSyntax(
-                    builder,
-                    syntaxNode as TypeParameterListSyntax);
-            if (syntaxNode is TypeParameterSyntax)
-                WriteTypeParameterSyntax(
-                    builder,
-                    syntaxNode as TypeParameterSyntax);
-            if (syntaxNode is ClassDeclarationSyntax)
-                WriteClassDeclarationSyntax(
-                    builder,
-                    syntaxNode as ClassDeclarationSyntax);
-            if (syntaxNode is StructDeclarationSyntax)
-                WriteStructDeclarationSyntax(
-                    builder,
-                    syntaxNode as StructDeclarationSyntax);
-            if (syntaxNode is InterfaceDeclarationSyntax)
-                WriteInterfaceDeclarationSyntax(
-                    builder,
-                    syntaxNode as InterfaceDeclarationSyntax);
-            if (syntaxNode is RecordDeclarationSyntax)
-                WriteRecordDeclarationSyntax(
-                    builder,
-                    syntaxNode as RecordDeclarationSyntax);
-            if (syntaxNode is EnumDeclarationSyntax)
-                WriteEnumDeclarationSyntax(
-                    builder,
-                    syntaxNode as EnumDeclarationSyntax);
-            if (syntaxNode is DelegateDeclarationSyntax)
-                WriteDelegateDeclarationSyntax(
-                    builder,
-                    syntaxNode as DelegateDeclarationSyntax);
-            if (syntaxNode is EnumMemberDeclarationSyntax)
-                WriteEnumMemberDeclarationSyntax(
-                    builder,
-                    syntaxNode as EnumMemberDeclarationSyntax);
-            if (syntaxNode is BaseListSyntax)
-                WriteBaseListSyntax(builder, syntaxNode as BaseListSyntax);
-            if (syntaxNode is SimpleBaseTypeSyntax)
-                WriteSimpleBaseTypeSyntax(
-                    builder,
-                    syntaxNode as SimpleBaseTypeSyntax);
-            if (syntaxNode is PrimaryConstructorBaseTypeSyntax)
-                WritePrimaryConstructorBaseTypeSyntax(
-                    builder,
-                    syntaxNode as PrimaryConstructorBaseTypeSyntax);
-            if (syntaxNode is TypeParameterConstraintClauseSyntax)
-                WriteTypeParameterConstraintClauseSyntax(
-                    builder,
-                    syntaxNode as TypeParameterConstraintClauseSyntax);
-            if (syntaxNode is ConstructorConstraintSyntax)
-                WriteConstructorConstraintSyntax(
-                    builder,
-                    syntaxNode as ConstructorConstraintSyntax);
-            if (syntaxNode is ClassOrStructConstraintSyntax)
-                WriteClassOrStructConstraintSyntax(
-                    builder,
-                    syntaxNode as ClassOrStructConstraintSyntax);
-            if (syntaxNode is TypeConstraintSyntax)
-                WriteTypeConstraintSyntax(
-                    builder,
-                    syntaxNode as TypeConstraintSyntax);
-            if (syntaxNode is DefaultConstraintSyntax)
-                WriteDefaultConstraintSyntax(
-                    builder,
-                    syntaxNode as DefaultConstraintSyntax);
-            if (syntaxNode is FieldDeclarationSyntax)
-                WriteFieldDeclarationSyntax(
-                    builder,
-                    syntaxNode as FieldDeclarationSyntax);
-            if (syntaxNode is EventFieldDeclarationSyntax)
-                WriteEventFieldDeclarationSyntax(
-                    builder,
-                    syntaxNode as EventFieldDeclarationSyntax);
-            if (syntaxNode is ExplicitInterfaceSpecifierSyntax)
-                WriteExplicitInterfaceSpecifierSyntax(
-                    builder,
-                    syntaxNode as ExplicitInterfaceSpecifierSyntax);
-            if (syntaxNode is MethodDeclarationSyntax)
-                WriteMethodDeclarationSyntax(
-                    builder,
-                    syntaxNode as MethodDeclarationSyntax);
-            if (syntaxNode is OperatorDeclarationSyntax)
-                WriteOperatorDeclarationSyntax(
-                    builder,
-                    syntaxNode as OperatorDeclarationSyntax);
-            if (syntaxNode is ConversionOperatorDeclarationSyntax)
-                WriteConversionOperatorDeclarationSyntax(
-                    builder,
-                    syntaxNode as ConversionOperatorDeclarationSyntax);
-            if (syntaxNode is ConstructorDeclarationSyntax)
-                WriteConstructorDeclarationSyntax(
-                    builder,
-                    syntaxNode as ConstructorDeclarationSyntax);
-            if (syntaxNode is ConstructorInitializerSyntax)
-                WriteConstructorInitializerSyntax(
-                    builder,
-                    syntaxNode as ConstructorInitializerSyntax);
-            if (syntaxNode is DestructorDeclarationSyntax)
-                WriteDestructorDeclarationSyntax(
-                    builder,
-                    syntaxNode as DestructorDeclarationSyntax);
-            if (syntaxNode is PropertyDeclarationSyntax)
-                WritePropertyDeclarationSyntax(
-                    builder,
-                    syntaxNode as PropertyDeclarationSyntax);
-            if (syntaxNode is ArrowExpressionClauseSyntax)
-                WriteArrowExpressionClauseSyntax(
-                    builder,
-                    syntaxNode as ArrowExpressionClauseSyntax);
-            if (syntaxNode is EventDeclarationSyntax)
-                WriteEventDeclarationSyntax(
-                    builder,
-                    syntaxNode as EventDeclarationSyntax);
-            if (syntaxNode is IndexerDeclarationSyntax)
-                WriteIndexerDeclarationSyntax(
-                    builder,
-                    syntaxNode as IndexerDeclarationSyntax);
-            if (syntaxNode is AccessorListSyntax)
-                WriteAccessorListSyntax(
-                    builder,
-                    syntaxNode as AccessorListSyntax);
-            if (syntaxNode is AccessorDeclarationSyntax)
-                WriteAccessorDeclarationSyntax(
-                    builder,
-                    syntaxNode as AccessorDeclarationSyntax);
-            if (syntaxNode is ParameterListSyntax)
-                WriteParameterListSyntax(
-                    builder,
-                    syntaxNode as ParameterListSyntax);
-            if (syntaxNode is BracketedParameterListSyntax)
-                WriteBracketedParameterListSyntax(
-                    builder,
-                    syntaxNode as BracketedParameterListSyntax);
-            if (syntaxNode is ParameterSyntax)
-                WriteParameterSyntax(builder, syntaxNode as ParameterSyntax);
-            if (syntaxNode is FunctionPointerParameterSyntax)
-                WriteFunctionPointerParameterSyntax(
-                    builder,
-                    syntaxNode as FunctionPointerParameterSyntax);
-            if (syntaxNode is IncompleteMemberSyntax)
-                WriteIncompleteMemberSyntax(
-                    builder,
-                    syntaxNode as IncompleteMemberSyntax);
-            if (syntaxNode is SkippedTokensTriviaSyntax)
-                WriteSkippedTokensTriviaSyntax(
-                    builder,
-                    syntaxNode as SkippedTokensTriviaSyntax);
-            if (syntaxNode is DocumentationCommentTriviaSyntax)
-                WriteDocumentationCommentTriviaSyntax(
-                    builder,
-                    syntaxNode as DocumentationCommentTriviaSyntax);
-            if (syntaxNode is TypeCrefSyntax)
-                WriteTypeCrefSyntax(builder, syntaxNode as TypeCrefSyntax);
-            if (syntaxNode is QualifiedCrefSyntax)
-                WriteQualifiedCrefSyntax(
-                    builder,
-                    syntaxNode as QualifiedCrefSyntax);
-            if (syntaxNode is NameMemberCrefSyntax)
-                WriteNameMemberCrefSyntax(
-                    builder,
-                    syntaxNode as NameMemberCrefSyntax);
-            if (syntaxNode is IndexerMemberCrefSyntax)
-                WriteIndexerMemberCrefSyntax(
-                    builder,
-                    syntaxNode as IndexerMemberCrefSyntax);
-            if (syntaxNode is OperatorMemberCrefSyntax)
-                WriteOperatorMemberCrefSyntax(
-                    builder,
-                    syntaxNode as OperatorMemberCrefSyntax);
-            if (syntaxNode is ConversionOperatorMemberCrefSyntax)
-                WriteConversionOperatorMemberCrefSyntax(
-                    builder,
-                    syntaxNode as ConversionOperatorMemberCrefSyntax);
-            if (syntaxNode is CrefParameterListSyntax)
-                WriteCrefParameterListSyntax(
-                    builder,
-                    syntaxNode as CrefParameterListSyntax);
-            if (syntaxNode is CrefBracketedParameterListSyntax)
-                WriteCrefBracketedParameterListSyntax(
-                    builder,
-                    syntaxNode as CrefBracketedParameterListSyntax);
-            if (syntaxNode is CrefParameterSyntax)
-                WriteCrefParameterSyntax(
-                    builder,
-                    syntaxNode as CrefParameterSyntax);
-            if (syntaxNode is XmlElementSyntax)
-                WriteXmlElementSyntax(builder, syntaxNode as XmlElementSyntax);
-            if (syntaxNode is XmlElementStartTagSyntax)
-                WriteXmlElementStartTagSyntax(
-                    builder,
-                    syntaxNode as XmlElementStartTagSyntax);
-            if (syntaxNode is XmlElementEndTagSyntax)
-                WriteXmlElementEndTagSyntax(
-                    builder,
-                    syntaxNode as XmlElementEndTagSyntax);
-            if (syntaxNode is XmlEmptyElementSyntax)
-                WriteXmlEmptyElementSyntax(
-                    builder,
-                    syntaxNode as XmlEmptyElementSyntax);
-            if (syntaxNode is XmlNameSyntax)
-                WriteXmlNameSyntax(builder, syntaxNode as XmlNameSyntax);
-            if (syntaxNode is XmlPrefixSyntax)
-                WriteXmlPrefixSyntax(builder, syntaxNode as XmlPrefixSyntax);
-            if (syntaxNode is XmlTextAttributeSyntax)
-                WriteXmlTextAttributeSyntax(
-                    builder,
-                    syntaxNode as XmlTextAttributeSyntax);
-            if (syntaxNode is XmlCrefAttributeSyntax)
-                WriteXmlCrefAttributeSyntax(
-                    builder,
-                    syntaxNode as XmlCrefAttributeSyntax);
-            if (syntaxNode is XmlNameAttributeSyntax)
-                WriteXmlNameAttributeSyntax(
-                    builder,
-                    syntaxNode as XmlNameAttributeSyntax);
-            if (syntaxNode is XmlTextSyntax)
-                WriteXmlTextSyntax(builder, syntaxNode as XmlTextSyntax);
-            if (syntaxNode is XmlCDataSectionSyntax)
-                WriteXmlCDataSectionSyntax(
-                    builder,
-                    syntaxNode as XmlCDataSectionSyntax);
-            if (syntaxNode is XmlProcessingInstructionSyntax)
-                WriteXmlProcessingInstructionSyntax(
-                    builder,
-                    syntaxNode as XmlProcessingInstructionSyntax);
-            if (syntaxNode is XmlCommentSyntax)
-                WriteXmlCommentSyntax(builder, syntaxNode as XmlCommentSyntax);
-            if (syntaxNode is IfDirectiveTriviaSyntax)
-                WriteIfDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as IfDirectiveTriviaSyntax);
-            if (syntaxNode is ElifDirectiveTriviaSyntax)
-                WriteElifDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as ElifDirectiveTriviaSyntax);
-            if (syntaxNode is ElseDirectiveTriviaSyntax)
-                WriteElseDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as ElseDirectiveTriviaSyntax);
-            if (syntaxNode is EndIfDirectiveTriviaSyntax)
-                WriteEndIfDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as EndIfDirectiveTriviaSyntax);
-            if (syntaxNode is RegionDirectiveTriviaSyntax)
-                WriteRegionDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as RegionDirectiveTriviaSyntax);
-            if (syntaxNode is EndRegionDirectiveTriviaSyntax)
-                WriteEndRegionDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as EndRegionDirectiveTriviaSyntax);
-            if (syntaxNode is ErrorDirectiveTriviaSyntax)
-                WriteErrorDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as ErrorDirectiveTriviaSyntax);
-            if (syntaxNode is WarningDirectiveTriviaSyntax)
-                WriteWarningDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as WarningDirectiveTriviaSyntax);
-            if (syntaxNode is BadDirectiveTriviaSyntax)
-                WriteBadDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as BadDirectiveTriviaSyntax);
-            if (syntaxNode is DefineDirectiveTriviaSyntax)
-                WriteDefineDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as DefineDirectiveTriviaSyntax);
-            if (syntaxNode is UndefDirectiveTriviaSyntax)
-                WriteUndefDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as UndefDirectiveTriviaSyntax);
-            if (syntaxNode is LineDirectiveTriviaSyntax)
-                WriteLineDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as LineDirectiveTriviaSyntax);
-            if (syntaxNode is PragmaWarningDirectiveTriviaSyntax)
-                WritePragmaWarningDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as PragmaWarningDirectiveTriviaSyntax);
-            if (syntaxNode is PragmaChecksumDirectiveTriviaSyntax)
-                WritePragmaChecksumDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as PragmaChecksumDirectiveTriviaSyntax);
-            if (syntaxNode is ReferenceDirectiveTriviaSyntax)
-                WriteReferenceDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as ReferenceDirectiveTriviaSyntax);
-            if (syntaxNode is LoadDirectiveTriviaSyntax)
-                WriteLoadDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as LoadDirectiveTriviaSyntax);
-            if (syntaxNode is ShebangDirectiveTriviaSyntax)
-                WriteShebangDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as ShebangDirectiveTriviaSyntax);
-            if (syntaxNode is NullableDirectiveTriviaSyntax)
-                WriteNullableDirectiveTriviaSyntax(
-                    builder,
-                    syntaxNode as NullableDirectiveTriviaSyntax);
+            if (syntaxNode is IdentifierNameSyntax) WriteIdentifierNameSyntax(builder, syntaxNode as IdentifierNameSyntax);
+            if (syntaxNode is QualifiedNameSyntax) WriteQualifiedNameSyntax(builder, syntaxNode as QualifiedNameSyntax);
+            if (syntaxNode is GenericNameSyntax) WriteGenericNameSyntax(builder, syntaxNode as GenericNameSyntax);
+            if (syntaxNode is TypeArgumentListSyntax) WriteTypeArgumentListSyntax(builder, syntaxNode as TypeArgumentListSyntax);
+            if (syntaxNode is AliasQualifiedNameSyntax) WriteAliasQualifiedNameSyntax(builder, syntaxNode as AliasQualifiedNameSyntax);
+            if (syntaxNode is PredefinedTypeSyntax) WritePredefinedTypeSyntax(builder, syntaxNode as PredefinedTypeSyntax);
+            if (syntaxNode is ArrayTypeSyntax) WriteArrayTypeSyntax(builder, syntaxNode as ArrayTypeSyntax);
+            if (syntaxNode is ArrayRankSpecifierSyntax) WriteArrayRankSpecifierSyntax(builder, syntaxNode as ArrayRankSpecifierSyntax);
+            if (syntaxNode is PointerTypeSyntax) WritePointerTypeSyntax(builder, syntaxNode as PointerTypeSyntax);
+            if (syntaxNode is FunctionPointerTypeSyntax) WriteFunctionPointerTypeSyntax(builder, syntaxNode as FunctionPointerTypeSyntax);
+            if (syntaxNode is FunctionPointerParameterListSyntax) WriteFunctionPointerParameterListSyntax(builder, syntaxNode as FunctionPointerParameterListSyntax);
+            if (syntaxNode is FunctionPointerCallingConventionSyntax) WriteFunctionPointerCallingConventionSyntax(builder, syntaxNode as FunctionPointerCallingConventionSyntax);
+            if (syntaxNode is FunctionPointerUnmanagedCallingConventionListSyntax) WriteFunctionPointerUnmanagedCallingConventionListSyntax(builder, syntaxNode as FunctionPointerUnmanagedCallingConventionListSyntax);
+            if (syntaxNode is FunctionPointerUnmanagedCallingConventionSyntax) WriteFunctionPointerUnmanagedCallingConventionSyntax(builder, syntaxNode as FunctionPointerUnmanagedCallingConventionSyntax);
+            if (syntaxNode is NullableTypeSyntax) WriteNullableTypeSyntax(builder, syntaxNode as NullableTypeSyntax);
+            if (syntaxNode is TupleTypeSyntax) WriteTupleTypeSyntax(builder, syntaxNode as TupleTypeSyntax);
+            if (syntaxNode is TupleElementSyntax) WriteTupleElementSyntax(builder, syntaxNode as TupleElementSyntax);
+            if (syntaxNode is OmittedTypeArgumentSyntax) WriteOmittedTypeArgumentSyntax(builder, syntaxNode as OmittedTypeArgumentSyntax);
+            if (syntaxNode is RefTypeSyntax) WriteRefTypeSyntax(builder, syntaxNode as RefTypeSyntax);
+            if (syntaxNode is ParenthesizedExpressionSyntax) WriteParenthesizedExpressionSyntax(builder, syntaxNode as ParenthesizedExpressionSyntax);
+            if (syntaxNode is TupleExpressionSyntax) WriteTupleExpressionSyntax(builder, syntaxNode as TupleExpressionSyntax);
+            if (syntaxNode is PrefixUnaryExpressionSyntax) WritePrefixUnaryExpressionSyntax(builder, syntaxNode as PrefixUnaryExpressionSyntax);
+            if (syntaxNode is AwaitExpressionSyntax) WriteAwaitExpressionSyntax(builder, syntaxNode as AwaitExpressionSyntax);
+            if (syntaxNode is PostfixUnaryExpressionSyntax) WritePostfixUnaryExpressionSyntax(builder, syntaxNode as PostfixUnaryExpressionSyntax);
+            if (syntaxNode is MemberAccessExpressionSyntax) WriteMemberAccessExpressionSyntax(builder, syntaxNode as MemberAccessExpressionSyntax);
+            if (syntaxNode is ConditionalAccessExpressionSyntax) WriteConditionalAccessExpressionSyntax(builder, syntaxNode as ConditionalAccessExpressionSyntax);
+            if (syntaxNode is MemberBindingExpressionSyntax) WriteMemberBindingExpressionSyntax(builder, syntaxNode as MemberBindingExpressionSyntax);
+            if (syntaxNode is ElementBindingExpressionSyntax) WriteElementBindingExpressionSyntax(builder, syntaxNode as ElementBindingExpressionSyntax);
+            if (syntaxNode is RangeExpressionSyntax) WriteRangeExpressionSyntax(builder, syntaxNode as RangeExpressionSyntax);
+            if (syntaxNode is ImplicitElementAccessSyntax) WriteImplicitElementAccessSyntax(builder, syntaxNode as ImplicitElementAccessSyntax);
+            if (syntaxNode is BinaryExpressionSyntax) WriteBinaryExpressionSyntax(builder, syntaxNode as BinaryExpressionSyntax);
+            if (syntaxNode is AssignmentExpressionSyntax) WriteAssignmentExpressionSyntax(builder, syntaxNode as AssignmentExpressionSyntax);
+            if (syntaxNode is ConditionalExpressionSyntax) WriteConditionalExpressionSyntax(builder, syntaxNode as ConditionalExpressionSyntax);
+            if (syntaxNode is ThisExpressionSyntax) WriteThisExpressionSyntax(builder, syntaxNode as ThisExpressionSyntax);
+            if (syntaxNode is BaseExpressionSyntax) WriteBaseExpressionSyntax(builder, syntaxNode as BaseExpressionSyntax);
+            if (syntaxNode is LiteralExpressionSyntax) WriteLiteralExpressionSyntax(builder, syntaxNode as LiteralExpressionSyntax);
+            if (syntaxNode is MakeRefExpressionSyntax) WriteMakeRefExpressionSyntax(builder, syntaxNode as MakeRefExpressionSyntax);
+            if (syntaxNode is RefTypeExpressionSyntax) WriteRefTypeExpressionSyntax(builder, syntaxNode as RefTypeExpressionSyntax);
+            if (syntaxNode is RefValueExpressionSyntax) WriteRefValueExpressionSyntax(builder, syntaxNode as RefValueExpressionSyntax);
+            if (syntaxNode is CheckedExpressionSyntax) WriteCheckedExpressionSyntax(builder, syntaxNode as CheckedExpressionSyntax);
+            if (syntaxNode is DefaultExpressionSyntax) WriteDefaultExpressionSyntax(builder, syntaxNode as DefaultExpressionSyntax);
+            if (syntaxNode is TypeOfExpressionSyntax) WriteTypeOfExpressionSyntax(builder, syntaxNode as TypeOfExpressionSyntax);
+            if (syntaxNode is SizeOfExpressionSyntax) WriteSizeOfExpressionSyntax(builder, syntaxNode as SizeOfExpressionSyntax);
+            if (syntaxNode is InvocationExpressionSyntax) WriteInvocationExpressionSyntax(builder, syntaxNode as InvocationExpressionSyntax);
+            if (syntaxNode is ElementAccessExpressionSyntax) WriteElementAccessExpressionSyntax(builder, syntaxNode as ElementAccessExpressionSyntax);
+            if (syntaxNode is ArgumentListSyntax) WriteArgumentListSyntax(builder, syntaxNode as ArgumentListSyntax);
+            if (syntaxNode is BracketedArgumentListSyntax) WriteBracketedArgumentListSyntax(builder, syntaxNode as BracketedArgumentListSyntax);
+            if (syntaxNode is ArgumentSyntax) WriteArgumentSyntax(builder, syntaxNode as ArgumentSyntax);
+            if (syntaxNode is NameColonSyntax) WriteNameColonSyntax(builder, syntaxNode as NameColonSyntax);
+            if (syntaxNode is DeclarationExpressionSyntax) WriteDeclarationExpressionSyntax(builder, syntaxNode as DeclarationExpressionSyntax);
+            if (syntaxNode is CastExpressionSyntax) WriteCastExpressionSyntax(builder, syntaxNode as CastExpressionSyntax);
+            if (syntaxNode is AnonymousMethodExpressionSyntax) WriteAnonymousMethodExpressionSyntax(builder, syntaxNode as AnonymousMethodExpressionSyntax);
+            if (syntaxNode is SimpleLambdaExpressionSyntax) WriteSimpleLambdaExpressionSyntax(builder, syntaxNode as SimpleLambdaExpressionSyntax);
+            if (syntaxNode is RefExpressionSyntax) WriteRefExpressionSyntax(builder, syntaxNode as RefExpressionSyntax);
+            if (syntaxNode is ParenthesizedLambdaExpressionSyntax) WriteParenthesizedLambdaExpressionSyntax(builder, syntaxNode as ParenthesizedLambdaExpressionSyntax);
+            if (syntaxNode is InitializerExpressionSyntax) WriteInitializerExpressionSyntax(builder, syntaxNode as InitializerExpressionSyntax);
+            if (syntaxNode is ImplicitObjectCreationExpressionSyntax) WriteImplicitObjectCreationExpressionSyntax(builder, syntaxNode as ImplicitObjectCreationExpressionSyntax);
+            if (syntaxNode is ObjectCreationExpressionSyntax) WriteObjectCreationExpressionSyntax(builder, syntaxNode as ObjectCreationExpressionSyntax);
+            if (syntaxNode is WithExpressionSyntax) WriteWithExpressionSyntax(builder, syntaxNode as WithExpressionSyntax);
+            if (syntaxNode is AnonymousObjectMemberDeclaratorSyntax) WriteAnonymousObjectMemberDeclaratorSyntax(builder, syntaxNode as AnonymousObjectMemberDeclaratorSyntax);
+            if (syntaxNode is AnonymousObjectCreationExpressionSyntax) WriteAnonymousObjectCreationExpressionSyntax(builder, syntaxNode as AnonymousObjectCreationExpressionSyntax);
+            if (syntaxNode is ArrayCreationExpressionSyntax) WriteArrayCreationExpressionSyntax(builder, syntaxNode as ArrayCreationExpressionSyntax);
+            if (syntaxNode is ImplicitArrayCreationExpressionSyntax) WriteImplicitArrayCreationExpressionSyntax(builder, syntaxNode as ImplicitArrayCreationExpressionSyntax);
+            if (syntaxNode is StackAllocArrayCreationExpressionSyntax) WriteStackAllocArrayCreationExpressionSyntax(builder, syntaxNode as StackAllocArrayCreationExpressionSyntax);
+            if (syntaxNode is ImplicitStackAllocArrayCreationExpressionSyntax) WriteImplicitStackAllocArrayCreationExpressionSyntax(builder, syntaxNode as ImplicitStackAllocArrayCreationExpressionSyntax);
+            if (syntaxNode is QueryExpressionSyntax) WriteQueryExpressionSyntax(builder, syntaxNode as QueryExpressionSyntax);
+            if (syntaxNode is QueryBodySyntax) WriteQueryBodySyntax(builder, syntaxNode as QueryBodySyntax);
+            if (syntaxNode is FromClauseSyntax) WriteFromClauseSyntax(builder, syntaxNode as FromClauseSyntax);
+            if (syntaxNode is LetClauseSyntax) WriteLetClauseSyntax(builder, syntaxNode as LetClauseSyntax);
+            if (syntaxNode is JoinClauseSyntax) WriteJoinClauseSyntax(builder, syntaxNode as JoinClauseSyntax);
+            if (syntaxNode is JoinIntoClauseSyntax) WriteJoinIntoClauseSyntax(builder, syntaxNode as JoinIntoClauseSyntax);
+            if (syntaxNode is WhereClauseSyntax) WriteWhereClauseSyntax(builder, syntaxNode as WhereClauseSyntax);
+            if (syntaxNode is OrderByClauseSyntax) WriteOrderByClauseSyntax(builder, syntaxNode as OrderByClauseSyntax);
+            if (syntaxNode is OrderingSyntax) WriteOrderingSyntax(builder, syntaxNode as OrderingSyntax);
+            if (syntaxNode is SelectClauseSyntax) WriteSelectClauseSyntax(builder, syntaxNode as SelectClauseSyntax);
+            if (syntaxNode is GroupClauseSyntax) WriteGroupClauseSyntax(builder, syntaxNode as GroupClauseSyntax);
+            if (syntaxNode is QueryContinuationSyntax) WriteQueryContinuationSyntax(builder, syntaxNode as QueryContinuationSyntax);
+            if (syntaxNode is OmittedArraySizeExpressionSyntax) WriteOmittedArraySizeExpressionSyntax(builder, syntaxNode as OmittedArraySizeExpressionSyntax);
+            if (syntaxNode is InterpolatedStringExpressionSyntax) WriteInterpolatedStringExpressionSyntax(builder, syntaxNode as InterpolatedStringExpressionSyntax);
+            if (syntaxNode is IsPatternExpressionSyntax) WriteIsPatternExpressionSyntax(builder, syntaxNode as IsPatternExpressionSyntax);
+            if (syntaxNode is ThrowExpressionSyntax) WriteThrowExpressionSyntax(builder, syntaxNode as ThrowExpressionSyntax);
+            if (syntaxNode is WhenClauseSyntax) WriteWhenClauseSyntax(builder, syntaxNode as WhenClauseSyntax);
+            if (syntaxNode is DiscardPatternSyntax) WriteDiscardPatternSyntax(builder, syntaxNode as DiscardPatternSyntax);
+            if (syntaxNode is DeclarationPatternSyntax) WriteDeclarationPatternSyntax(builder, syntaxNode as DeclarationPatternSyntax);
+            if (syntaxNode is VarPatternSyntax) WriteVarPatternSyntax(builder, syntaxNode as VarPatternSyntax);
+            if (syntaxNode is RecursivePatternSyntax) WriteRecursivePatternSyntax(builder, syntaxNode as RecursivePatternSyntax);
+            if (syntaxNode is PositionalPatternClauseSyntax) WritePositionalPatternClauseSyntax(builder, syntaxNode as PositionalPatternClauseSyntax);
+            if (syntaxNode is PropertyPatternClauseSyntax) WritePropertyPatternClauseSyntax(builder, syntaxNode as PropertyPatternClauseSyntax);
+            if (syntaxNode is SubpatternSyntax) WriteSubpatternSyntax(builder, syntaxNode as SubpatternSyntax);
+            if (syntaxNode is ConstantPatternSyntax) WriteConstantPatternSyntax(builder, syntaxNode as ConstantPatternSyntax);
+            if (syntaxNode is ParenthesizedPatternSyntax) WriteParenthesizedPatternSyntax(builder, syntaxNode as ParenthesizedPatternSyntax);
+            if (syntaxNode is RelationalPatternSyntax) WriteRelationalPatternSyntax(builder, syntaxNode as RelationalPatternSyntax);
+            if (syntaxNode is TypePatternSyntax) WriteTypePatternSyntax(builder, syntaxNode as TypePatternSyntax);
+            if (syntaxNode is BinaryPatternSyntax) WriteBinaryPatternSyntax(builder, syntaxNode as BinaryPatternSyntax);
+            if (syntaxNode is UnaryPatternSyntax) WriteUnaryPatternSyntax(builder, syntaxNode as UnaryPatternSyntax);
+            if (syntaxNode is InterpolatedStringTextSyntax) WriteInterpolatedStringTextSyntax(builder, syntaxNode as InterpolatedStringTextSyntax);
+            if (syntaxNode is InterpolationSyntax) WriteInterpolationSyntax(builder, syntaxNode as InterpolationSyntax);
+            if (syntaxNode is InterpolationAlignmentClauseSyntax) WriteInterpolationAlignmentClauseSyntax(builder, syntaxNode as InterpolationAlignmentClauseSyntax);
+            if (syntaxNode is InterpolationFormatClauseSyntax) WriteInterpolationFormatClauseSyntax(builder, syntaxNode as InterpolationFormatClauseSyntax);
+            if (syntaxNode is GlobalStatementSyntax) WriteGlobalStatementSyntax(builder, syntaxNode as GlobalStatementSyntax);
+            if (syntaxNode is BlockSyntax) WriteBlockSyntax(builder, syntaxNode as BlockSyntax);
+            if (syntaxNode is LocalFunctionStatementSyntax) WriteLocalFunctionStatementSyntax(builder, syntaxNode as LocalFunctionStatementSyntax);
+            if (syntaxNode is LocalDeclarationStatementSyntax) WriteLocalDeclarationStatementSyntax(builder, syntaxNode as LocalDeclarationStatementSyntax);
+            if (syntaxNode is VariableDeclarationSyntax) WriteVariableDeclarationSyntax(builder, syntaxNode as VariableDeclarationSyntax);
+            if (syntaxNode is VariableDeclaratorSyntax) WriteVariableDeclaratorSyntax(builder, syntaxNode as VariableDeclaratorSyntax);
+            if (syntaxNode is EqualsValueClauseSyntax) WriteEqualsValueClauseSyntax(builder, syntaxNode as EqualsValueClauseSyntax);
+            if (syntaxNode is SingleVariableDesignationSyntax) WriteSingleVariableDesignationSyntax(builder, syntaxNode as SingleVariableDesignationSyntax);
+            if (syntaxNode is DiscardDesignationSyntax) WriteDiscardDesignationSyntax(builder, syntaxNode as DiscardDesignationSyntax);
+            if (syntaxNode is ParenthesizedVariableDesignationSyntax) WriteParenthesizedVariableDesignationSyntax(builder, syntaxNode as ParenthesizedVariableDesignationSyntax);
+            if (syntaxNode is ExpressionStatementSyntax) WriteExpressionStatementSyntax(builder, syntaxNode as ExpressionStatementSyntax);
+            if (syntaxNode is EmptyStatementSyntax) WriteEmptyStatementSyntax(builder, syntaxNode as EmptyStatementSyntax);
+            if (syntaxNode is LabeledStatementSyntax) WriteLabeledStatementSyntax(builder, syntaxNode as LabeledStatementSyntax);
+            if (syntaxNode is GotoStatementSyntax) WriteGotoStatementSyntax(builder, syntaxNode as GotoStatementSyntax);
+            if (syntaxNode is BreakStatementSyntax) WriteBreakStatementSyntax(builder, syntaxNode as BreakStatementSyntax);
+            if (syntaxNode is ContinueStatementSyntax) WriteContinueStatementSyntax(builder, syntaxNode as ContinueStatementSyntax);
+            if (syntaxNode is ReturnStatementSyntax) WriteReturnStatementSyntax(builder, syntaxNode as ReturnStatementSyntax);
+            if (syntaxNode is ThrowStatementSyntax) WriteThrowStatementSyntax(builder, syntaxNode as ThrowStatementSyntax);
+            if (syntaxNode is YieldStatementSyntax) WriteYieldStatementSyntax(builder, syntaxNode as YieldStatementSyntax);
+            if (syntaxNode is WhileStatementSyntax) WriteWhileStatementSyntax(builder, syntaxNode as WhileStatementSyntax);
+            if (syntaxNode is DoStatementSyntax) WriteDoStatementSyntax(builder, syntaxNode as DoStatementSyntax);
+            if (syntaxNode is ForStatementSyntax) WriteForStatementSyntax(builder, syntaxNode as ForStatementSyntax);
+            if (syntaxNode is ForEachStatementSyntax) WriteForEachStatementSyntax(builder, syntaxNode as ForEachStatementSyntax);
+            if (syntaxNode is ForEachVariableStatementSyntax) WriteForEachVariableStatementSyntax(builder, syntaxNode as ForEachVariableStatementSyntax);
+            if (syntaxNode is UsingStatementSyntax) WriteUsingStatementSyntax(builder, syntaxNode as UsingStatementSyntax);
+            if (syntaxNode is FixedStatementSyntax) WriteFixedStatementSyntax(builder, syntaxNode as FixedStatementSyntax);
+            if (syntaxNode is CheckedStatementSyntax) WriteCheckedStatementSyntax(builder, syntaxNode as CheckedStatementSyntax);
+            if (syntaxNode is UnsafeStatementSyntax) WriteUnsafeStatementSyntax(builder, syntaxNode as UnsafeStatementSyntax);
+            if (syntaxNode is LockStatementSyntax) WriteLockStatementSyntax(builder, syntaxNode as LockStatementSyntax);
+            if (syntaxNode is IfStatementSyntax) WriteIfStatementSyntax(builder, syntaxNode as IfStatementSyntax);
+            if (syntaxNode is ElseClauseSyntax) WriteElseClauseSyntax(builder, syntaxNode as ElseClauseSyntax);
+            if (syntaxNode is SwitchStatementSyntax) WriteSwitchStatementSyntax(builder, syntaxNode as SwitchStatementSyntax);
+            if (syntaxNode is SwitchSectionSyntax) WriteSwitchSectionSyntax(builder, syntaxNode as SwitchSectionSyntax);
+            if (syntaxNode is CasePatternSwitchLabelSyntax) WriteCasePatternSwitchLabelSyntax(builder, syntaxNode as CasePatternSwitchLabelSyntax);
+            if (syntaxNode is CaseSwitchLabelSyntax) WriteCaseSwitchLabelSyntax(builder, syntaxNode as CaseSwitchLabelSyntax);
+            if (syntaxNode is DefaultSwitchLabelSyntax) WriteDefaultSwitchLabelSyntax(builder, syntaxNode as DefaultSwitchLabelSyntax);
+            if (syntaxNode is SwitchExpressionSyntax) WriteSwitchExpressionSyntax(builder, syntaxNode as SwitchExpressionSyntax);
+            if (syntaxNode is SwitchExpressionArmSyntax) WriteSwitchExpressionArmSyntax(builder, syntaxNode as SwitchExpressionArmSyntax);
+            if (syntaxNode is TryStatementSyntax) WriteTryStatementSyntax(builder, syntaxNode as TryStatementSyntax);
+            if (syntaxNode is CatchClauseSyntax) WriteCatchClauseSyntax(builder, syntaxNode as CatchClauseSyntax);
+            if (syntaxNode is CatchDeclarationSyntax) WriteCatchDeclarationSyntax(builder, syntaxNode as CatchDeclarationSyntax);
+            if (syntaxNode is CatchFilterClauseSyntax) WriteCatchFilterClauseSyntax(builder, syntaxNode as CatchFilterClauseSyntax);
+            if (syntaxNode is FinallyClauseSyntax) WriteFinallyClauseSyntax(builder, syntaxNode as FinallyClauseSyntax);
+            if (syntaxNode is CompilationUnitSyntax) WriteCompilationUnitSyntax(builder, syntaxNode as CompilationUnitSyntax);
+            if (syntaxNode is ExternAliasDirectiveSyntax) WriteExternAliasDirectiveSyntax(builder, syntaxNode as ExternAliasDirectiveSyntax);
+            if (syntaxNode is UsingDirectiveSyntax) WriteUsingDirectiveSyntax(builder, syntaxNode as UsingDirectiveSyntax);
+            if (syntaxNode is NamespaceDeclarationSyntax) WriteNamespaceDeclarationSyntax(builder, syntaxNode as NamespaceDeclarationSyntax);
+            if (syntaxNode is AttributeListSyntax) WriteAttributeListSyntax(builder, syntaxNode as AttributeListSyntax);
+            if (syntaxNode is AttributeTargetSpecifierSyntax) WriteAttributeTargetSpecifierSyntax(builder, syntaxNode as AttributeTargetSpecifierSyntax);
+            if (syntaxNode is AttributeSyntax) WriteAttributeSyntax(builder, syntaxNode as AttributeSyntax);
+            if (syntaxNode is AttributeArgumentListSyntax) WriteAttributeArgumentListSyntax(builder, syntaxNode as AttributeArgumentListSyntax);
+            if (syntaxNode is AttributeArgumentSyntax) WriteAttributeArgumentSyntax(builder, syntaxNode as AttributeArgumentSyntax);
+            if (syntaxNode is NameEqualsSyntax) WriteNameEqualsSyntax(builder, syntaxNode as NameEqualsSyntax);
+            if (syntaxNode is TypeParameterListSyntax) WriteTypeParameterListSyntax(builder, syntaxNode as TypeParameterListSyntax);
+            if (syntaxNode is TypeParameterSyntax) WriteTypeParameterSyntax(builder, syntaxNode as TypeParameterSyntax);
+            if (syntaxNode is ClassDeclarationSyntax) WriteClassDeclarationSyntax(builder, syntaxNode as ClassDeclarationSyntax);
+            if (syntaxNode is StructDeclarationSyntax) WriteStructDeclarationSyntax(builder, syntaxNode as StructDeclarationSyntax);
+            if (syntaxNode is InterfaceDeclarationSyntax) WriteInterfaceDeclarationSyntax(builder, syntaxNode as InterfaceDeclarationSyntax);
+            if (syntaxNode is RecordDeclarationSyntax) WriteRecordDeclarationSyntax(builder, syntaxNode as RecordDeclarationSyntax);
+            if (syntaxNode is EnumDeclarationSyntax) WriteEnumDeclarationSyntax(builder, syntaxNode as EnumDeclarationSyntax);
+            if (syntaxNode is DelegateDeclarationSyntax) WriteDelegateDeclarationSyntax(builder, syntaxNode as DelegateDeclarationSyntax);
+            if (syntaxNode is EnumMemberDeclarationSyntax) WriteEnumMemberDeclarationSyntax(builder, syntaxNode as EnumMemberDeclarationSyntax);
+            if (syntaxNode is BaseListSyntax) WriteBaseListSyntax(builder, syntaxNode as BaseListSyntax);
+            if (syntaxNode is SimpleBaseTypeSyntax) WriteSimpleBaseTypeSyntax(builder, syntaxNode as SimpleBaseTypeSyntax);
+            if (syntaxNode is PrimaryConstructorBaseTypeSyntax) WritePrimaryConstructorBaseTypeSyntax(builder, syntaxNode as PrimaryConstructorBaseTypeSyntax);
+            if (syntaxNode is TypeParameterConstraintClauseSyntax) WriteTypeParameterConstraintClauseSyntax(builder, syntaxNode as TypeParameterConstraintClauseSyntax);
+            if (syntaxNode is ConstructorConstraintSyntax) WriteConstructorConstraintSyntax(builder, syntaxNode as ConstructorConstraintSyntax);
+            if (syntaxNode is ClassOrStructConstraintSyntax) WriteClassOrStructConstraintSyntax(builder, syntaxNode as ClassOrStructConstraintSyntax);
+            if (syntaxNode is TypeConstraintSyntax) WriteTypeConstraintSyntax(builder, syntaxNode as TypeConstraintSyntax);
+            if (syntaxNode is DefaultConstraintSyntax) WriteDefaultConstraintSyntax(builder, syntaxNode as DefaultConstraintSyntax);
+            if (syntaxNode is FieldDeclarationSyntax) WriteFieldDeclarationSyntax(builder, syntaxNode as FieldDeclarationSyntax);
+            if (syntaxNode is EventFieldDeclarationSyntax) WriteEventFieldDeclarationSyntax(builder, syntaxNode as EventFieldDeclarationSyntax);
+            if (syntaxNode is ExplicitInterfaceSpecifierSyntax) WriteExplicitInterfaceSpecifierSyntax(builder, syntaxNode as ExplicitInterfaceSpecifierSyntax);
+            if (syntaxNode is MethodDeclarationSyntax) WriteMethodDeclarationSyntax(builder, syntaxNode as MethodDeclarationSyntax);
+            if (syntaxNode is OperatorDeclarationSyntax) WriteOperatorDeclarationSyntax(builder, syntaxNode as OperatorDeclarationSyntax);
+            if (syntaxNode is ConversionOperatorDeclarationSyntax) WriteConversionOperatorDeclarationSyntax(builder, syntaxNode as ConversionOperatorDeclarationSyntax);
+            if (syntaxNode is ConstructorDeclarationSyntax) WriteConstructorDeclarationSyntax(builder, syntaxNode as ConstructorDeclarationSyntax);
+            if (syntaxNode is ConstructorInitializerSyntax) WriteConstructorInitializerSyntax(builder, syntaxNode as ConstructorInitializerSyntax);
+            if (syntaxNode is DestructorDeclarationSyntax) WriteDestructorDeclarationSyntax(builder, syntaxNode as DestructorDeclarationSyntax);
+            if (syntaxNode is PropertyDeclarationSyntax) WritePropertyDeclarationSyntax(builder, syntaxNode as PropertyDeclarationSyntax);
+            if (syntaxNode is ArrowExpressionClauseSyntax) WriteArrowExpressionClauseSyntax(builder, syntaxNode as ArrowExpressionClauseSyntax);
+            if (syntaxNode is EventDeclarationSyntax) WriteEventDeclarationSyntax(builder, syntaxNode as EventDeclarationSyntax);
+            if (syntaxNode is IndexerDeclarationSyntax) WriteIndexerDeclarationSyntax(builder, syntaxNode as IndexerDeclarationSyntax);
+            if (syntaxNode is AccessorListSyntax) WriteAccessorListSyntax(builder, syntaxNode as AccessorListSyntax);
+            if (syntaxNode is AccessorDeclarationSyntax) WriteAccessorDeclarationSyntax(builder, syntaxNode as AccessorDeclarationSyntax);
+            if (syntaxNode is ParameterListSyntax) WriteParameterListSyntax(builder, syntaxNode as ParameterListSyntax);
+            if (syntaxNode is BracketedParameterListSyntax) WriteBracketedParameterListSyntax(builder, syntaxNode as BracketedParameterListSyntax);
+            if (syntaxNode is ParameterSyntax) WriteParameterSyntax(builder, syntaxNode as ParameterSyntax);
+            if (syntaxNode is FunctionPointerParameterSyntax) WriteFunctionPointerParameterSyntax(builder, syntaxNode as FunctionPointerParameterSyntax);
+            if (syntaxNode is IncompleteMemberSyntax) WriteIncompleteMemberSyntax(builder, syntaxNode as IncompleteMemberSyntax);
+            if (syntaxNode is SkippedTokensTriviaSyntax) WriteSkippedTokensTriviaSyntax(builder, syntaxNode as SkippedTokensTriviaSyntax);
+            if (syntaxNode is DocumentationCommentTriviaSyntax) WriteDocumentationCommentTriviaSyntax(builder, syntaxNode as DocumentationCommentTriviaSyntax);
+            if (syntaxNode is TypeCrefSyntax) WriteTypeCrefSyntax(builder, syntaxNode as TypeCrefSyntax);
+            if (syntaxNode is QualifiedCrefSyntax) WriteQualifiedCrefSyntax(builder, syntaxNode as QualifiedCrefSyntax);
+            if (syntaxNode is NameMemberCrefSyntax) WriteNameMemberCrefSyntax(builder, syntaxNode as NameMemberCrefSyntax);
+            if (syntaxNode is IndexerMemberCrefSyntax) WriteIndexerMemberCrefSyntax(builder, syntaxNode as IndexerMemberCrefSyntax);
+            if (syntaxNode is OperatorMemberCrefSyntax) WriteOperatorMemberCrefSyntax(builder, syntaxNode as OperatorMemberCrefSyntax);
+            if (syntaxNode is ConversionOperatorMemberCrefSyntax) WriteConversionOperatorMemberCrefSyntax(builder, syntaxNode as ConversionOperatorMemberCrefSyntax);
+            if (syntaxNode is CrefParameterListSyntax) WriteCrefParameterListSyntax(builder, syntaxNode as CrefParameterListSyntax);
+            if (syntaxNode is CrefBracketedParameterListSyntax) WriteCrefBracketedParameterListSyntax(builder, syntaxNode as CrefBracketedParameterListSyntax);
+            if (syntaxNode is CrefParameterSyntax) WriteCrefParameterSyntax(builder, syntaxNode as CrefParameterSyntax);
+            if (syntaxNode is XmlElementSyntax) WriteXmlElementSyntax(builder, syntaxNode as XmlElementSyntax);
+            if (syntaxNode is XmlElementStartTagSyntax) WriteXmlElementStartTagSyntax(builder, syntaxNode as XmlElementStartTagSyntax);
+            if (syntaxNode is XmlElementEndTagSyntax) WriteXmlElementEndTagSyntax(builder, syntaxNode as XmlElementEndTagSyntax);
+            if (syntaxNode is XmlEmptyElementSyntax) WriteXmlEmptyElementSyntax(builder, syntaxNode as XmlEmptyElementSyntax);
+            if (syntaxNode is XmlNameSyntax) WriteXmlNameSyntax(builder, syntaxNode as XmlNameSyntax);
+            if (syntaxNode is XmlPrefixSyntax) WriteXmlPrefixSyntax(builder, syntaxNode as XmlPrefixSyntax);
+            if (syntaxNode is XmlTextAttributeSyntax) WriteXmlTextAttributeSyntax(builder, syntaxNode as XmlTextAttributeSyntax);
+            if (syntaxNode is XmlCrefAttributeSyntax) WriteXmlCrefAttributeSyntax(builder, syntaxNode as XmlCrefAttributeSyntax);
+            if (syntaxNode is XmlNameAttributeSyntax) WriteXmlNameAttributeSyntax(builder, syntaxNode as XmlNameAttributeSyntax);
+            if (syntaxNode is XmlTextSyntax) WriteXmlTextSyntax(builder, syntaxNode as XmlTextSyntax);
+            if (syntaxNode is XmlCDataSectionSyntax) WriteXmlCDataSectionSyntax(builder, syntaxNode as XmlCDataSectionSyntax);
+            if (syntaxNode is XmlProcessingInstructionSyntax) WriteXmlProcessingInstructionSyntax(builder, syntaxNode as XmlProcessingInstructionSyntax);
+            if (syntaxNode is XmlCommentSyntax) WriteXmlCommentSyntax(builder, syntaxNode as XmlCommentSyntax);
+            if (syntaxNode is IfDirectiveTriviaSyntax) WriteIfDirectiveTriviaSyntax(builder, syntaxNode as IfDirectiveTriviaSyntax);
+            if (syntaxNode is ElifDirectiveTriviaSyntax) WriteElifDirectiveTriviaSyntax(builder, syntaxNode as ElifDirectiveTriviaSyntax);
+            if (syntaxNode is ElseDirectiveTriviaSyntax) WriteElseDirectiveTriviaSyntax(builder, syntaxNode as ElseDirectiveTriviaSyntax);
+            if (syntaxNode is EndIfDirectiveTriviaSyntax) WriteEndIfDirectiveTriviaSyntax(builder, syntaxNode as EndIfDirectiveTriviaSyntax);
+            if (syntaxNode is RegionDirectiveTriviaSyntax) WriteRegionDirectiveTriviaSyntax(builder, syntaxNode as RegionDirectiveTriviaSyntax);
+            if (syntaxNode is EndRegionDirectiveTriviaSyntax) WriteEndRegionDirectiveTriviaSyntax(builder, syntaxNode as EndRegionDirectiveTriviaSyntax);
+            if (syntaxNode is ErrorDirectiveTriviaSyntax) WriteErrorDirectiveTriviaSyntax(builder, syntaxNode as ErrorDirectiveTriviaSyntax);
+            if (syntaxNode is WarningDirectiveTriviaSyntax) WriteWarningDirectiveTriviaSyntax(builder, syntaxNode as WarningDirectiveTriviaSyntax);
+            if (syntaxNode is BadDirectiveTriviaSyntax) WriteBadDirectiveTriviaSyntax(builder, syntaxNode as BadDirectiveTriviaSyntax);
+            if (syntaxNode is DefineDirectiveTriviaSyntax) WriteDefineDirectiveTriviaSyntax(builder, syntaxNode as DefineDirectiveTriviaSyntax);
+            if (syntaxNode is UndefDirectiveTriviaSyntax) WriteUndefDirectiveTriviaSyntax(builder, syntaxNode as UndefDirectiveTriviaSyntax);
+            if (syntaxNode is LineDirectiveTriviaSyntax) WriteLineDirectiveTriviaSyntax(builder, syntaxNode as LineDirectiveTriviaSyntax);
+            if (syntaxNode is PragmaWarningDirectiveTriviaSyntax) WritePragmaWarningDirectiveTriviaSyntax(builder, syntaxNode as PragmaWarningDirectiveTriviaSyntax);
+            if (syntaxNode is PragmaChecksumDirectiveTriviaSyntax) WritePragmaChecksumDirectiveTriviaSyntax(builder, syntaxNode as PragmaChecksumDirectiveTriviaSyntax);
+            if (syntaxNode is ReferenceDirectiveTriviaSyntax) WriteReferenceDirectiveTriviaSyntax(builder, syntaxNode as ReferenceDirectiveTriviaSyntax);
+            if (syntaxNode is LoadDirectiveTriviaSyntax) WriteLoadDirectiveTriviaSyntax(builder, syntaxNode as LoadDirectiveTriviaSyntax);
+            if (syntaxNode is ShebangDirectiveTriviaSyntax) WriteShebangDirectiveTriviaSyntax(builder, syntaxNode as ShebangDirectiveTriviaSyntax);
+            if (syntaxNode is NullableDirectiveTriviaSyntax) WriteNullableDirectiveTriviaSyntax(builder, syntaxNode as NullableDirectiveTriviaSyntax);
         }
 
-        public static void WriteIdentifierNameSyntax(
-            StringBuilder builder,
-            IdentifierNameSyntax syntaxNode)
+        public static void WriteIdentifierNameSyntax(StringBuilder builder, IdentifierNameSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -896,40 +265,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteQualifiedNameSyntax(
-            StringBuilder builder,
-            QualifiedNameSyntax syntaxNode)
+        public static void WriteQualifiedNameSyntax(StringBuilder builder, QualifiedNameSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -961,40 +308,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteGenericNameSyntax(
-            StringBuilder builder,
-            GenericNameSyntax syntaxNode)
+        public static void WriteGenericNameSyntax(StringBuilder builder, GenericNameSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1009,15 +334,10 @@ namespace CSharpier
             if (syntaxNode.TypeArgumentList != default(TypeArgumentListSyntax))
             {
                 var typeArgumentListBuilder = new StringBuilder();
-                WriteTypeArgumentListSyntax(
-                    typeArgumentListBuilder,
-                    syntaxNode.TypeArgumentList);
+                WriteTypeArgumentListSyntax(typeArgumentListBuilder, syntaxNode.TypeArgumentList);
                 properties.Add($"\"typeArgumentList\":{typeArgumentListBuilder.ToString()}");
             }
-            properties.Add(
-                WriteBoolean(
-                    "isUnboundGenericName",
-                    syntaxNode.IsUnboundGenericName));
+            properties.Add(WriteBoolean("isUnboundGenericName", syntaxNode.IsUnboundGenericName));
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
             properties.Add(WriteBoolean("isUnmanaged", syntaxNode.IsUnmanaged));
@@ -1026,40 +346,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeArgumentListSyntax(
-            StringBuilder builder,
-            TypeArgumentListSyntax syntaxNode)
+        public static void WriteTypeArgumentListSyntax(StringBuilder builder, TypeArgumentListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1068,13 +366,11 @@ namespace CSharpier
             if (syntaxNode.LessThanToken != default(SyntaxToken))
             {
                 var lessThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanTokenBuilder,
-                    syntaxNode.LessThanToken);
+                WriteSyntaxToken(lessThanTokenBuilder, syntaxNode.LessThanToken);
                 properties.Add($"\"lessThanToken\":{lessThanTokenBuilder.ToString()}");
             }
             var arguments = new List<string>();
-            foreach (var node in syntaxNode.Arguments)
+            foreach(var node in syntaxNode.Arguments)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -1084,47 +380,23 @@ namespace CSharpier
             if (syntaxNode.GreaterThanToken != default(SyntaxToken))
             {
                 var greaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    greaterThanTokenBuilder,
-                    syntaxNode.GreaterThanToken);
+                WriteSyntaxToken(greaterThanTokenBuilder, syntaxNode.GreaterThanToken);
                 properties.Add($"\"greaterThanToken\":{greaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAliasQualifiedNameSyntax(
-            StringBuilder builder,
-            AliasQualifiedNameSyntax syntaxNode)
+        public static void WriteAliasQualifiedNameSyntax(StringBuilder builder, AliasQualifiedNameSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1139,9 +411,7 @@ namespace CSharpier
             if (syntaxNode.ColonColonToken != default(SyntaxToken))
             {
                 var colonColonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    colonColonTokenBuilder,
-                    syntaxNode.ColonColonToken);
+                WriteSyntaxToken(colonColonTokenBuilder, syntaxNode.ColonColonToken);
                 properties.Add($"\"colonColonToken\":{colonColonTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(SimpleNameSyntax))
@@ -1158,40 +428,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePredefinedTypeSyntax(
-            StringBuilder builder,
-            PredefinedTypeSyntax syntaxNode)
+        public static void WritePredefinedTypeSyntax(StringBuilder builder, PredefinedTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1210,40 +458,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArrayTypeSyntax(
-            StringBuilder builder,
-            ArrayTypeSyntax syntaxNode)
+        public static void WriteArrayTypeSyntax(StringBuilder builder, ArrayTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1256,7 +482,7 @@ namespace CSharpier
                 properties.Add($"\"elementType\":{elementTypeBuilder.ToString()}");
             }
             var rankSpecifiers = new List<string>();
-            foreach (var node in syntaxNode.RankSpecifiers)
+            foreach(var node in syntaxNode.RankSpecifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteArrayRankSpecifierSyntax(innerBuilder, node);
@@ -1270,40 +496,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArrayRankSpecifierSyntax(
-            StringBuilder builder,
-            ArrayRankSpecifierSyntax syntaxNode)
+        public static void WriteArrayRankSpecifierSyntax(StringBuilder builder, ArrayRankSpecifierSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1312,13 +516,11 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var sizes = new List<string>();
-            foreach (var node in syntaxNode.Sizes)
+            foreach(var node in syntaxNode.Sizes)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -1328,48 +530,24 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rank", syntaxNode.Rank));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePointerTypeSyntax(
-            StringBuilder builder,
-            PointerTypeSyntax syntaxNode)
+        public static void WritePointerTypeSyntax(StringBuilder builder, PointerTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1384,9 +562,7 @@ namespace CSharpier
             if (syntaxNode.AsteriskToken != default(SyntaxToken))
             {
                 var asteriskTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    asteriskTokenBuilder,
-                    syntaxNode.AsteriskToken);
+                WriteSyntaxToken(asteriskTokenBuilder, syntaxNode.AsteriskToken);
                 properties.Add($"\"asteriskToken\":{asteriskTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
@@ -1396,40 +572,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerTypeSyntax(
-            StringBuilder builder,
-            FunctionPointerTypeSyntax syntaxNode)
+        public static void WriteFunctionPointerTypeSyntax(StringBuilder builder, FunctionPointerTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1438,37 +592,25 @@ namespace CSharpier
             if (syntaxNode.DelegateKeyword != default(SyntaxToken))
             {
                 var delegateKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    delegateKeywordBuilder,
-                    syntaxNode.DelegateKeyword);
+                WriteSyntaxToken(delegateKeywordBuilder, syntaxNode.DelegateKeyword);
                 properties.Add($"\"delegateKeyword\":{delegateKeywordBuilder.ToString()}");
             }
             if (syntaxNode.AsteriskToken != default(SyntaxToken))
             {
                 var asteriskTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    asteriskTokenBuilder,
-                    syntaxNode.AsteriskToken);
+                WriteSyntaxToken(asteriskTokenBuilder, syntaxNode.AsteriskToken);
                 properties.Add($"\"asteriskToken\":{asteriskTokenBuilder.ToString()}");
             }
-            if (
-                syntaxNode.CallingConvention != default(FunctionPointerCallingConventionSyntax)
-            )
+            if (syntaxNode.CallingConvention != default(FunctionPointerCallingConventionSyntax))
             {
                 var callingConventionBuilder = new StringBuilder();
-                WriteFunctionPointerCallingConventionSyntax(
-                    callingConventionBuilder,
-                    syntaxNode.CallingConvention);
+                WriteFunctionPointerCallingConventionSyntax(callingConventionBuilder, syntaxNode.CallingConvention);
                 properties.Add($"\"callingConvention\":{callingConventionBuilder.ToString()}");
             }
-            if (
-                syntaxNode.ParameterList != default(FunctionPointerParameterListSyntax)
-            )
+            if (syntaxNode.ParameterList != default(FunctionPointerParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteFunctionPointerParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteFunctionPointerParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
@@ -1478,40 +620,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerParameterListSyntax(
-            StringBuilder builder,
-            FunctionPointerParameterListSyntax syntaxNode)
+        public static void WriteFunctionPointerParameterListSyntax(StringBuilder builder, FunctionPointerParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1520,13 +640,11 @@ namespace CSharpier
             if (syntaxNode.LessThanToken != default(SyntaxToken))
             {
                 var lessThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanTokenBuilder,
-                    syntaxNode.LessThanToken);
+                WriteSyntaxToken(lessThanTokenBuilder, syntaxNode.LessThanToken);
                 properties.Add($"\"lessThanToken\":{lessThanTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteFunctionPointerParameterSyntax(innerBuilder, node);
@@ -1536,47 +654,23 @@ namespace CSharpier
             if (syntaxNode.GreaterThanToken != default(SyntaxToken))
             {
                 var greaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    greaterThanTokenBuilder,
-                    syntaxNode.GreaterThanToken);
+                WriteSyntaxToken(greaterThanTokenBuilder, syntaxNode.GreaterThanToken);
                 properties.Add($"\"greaterThanToken\":{greaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerCallingConventionSyntax(
-            StringBuilder builder,
-            FunctionPointerCallingConventionSyntax syntaxNode)
+        public static void WriteFunctionPointerCallingConventionSyntax(StringBuilder builder, FunctionPointerCallingConventionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1585,57 +679,29 @@ namespace CSharpier
             if (syntaxNode.ManagedOrUnmanagedKeyword != default(SyntaxToken))
             {
                 var managedOrUnmanagedKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    managedOrUnmanagedKeywordBuilder,
-                    syntaxNode.ManagedOrUnmanagedKeyword);
+                WriteSyntaxToken(managedOrUnmanagedKeywordBuilder, syntaxNode.ManagedOrUnmanagedKeyword);
                 properties.Add($"\"managedOrUnmanagedKeyword\":{managedOrUnmanagedKeywordBuilder.ToString()}");
             }
-            if (
-                syntaxNode.UnmanagedCallingConventionList != default(FunctionPointerUnmanagedCallingConventionListSyntax)
-            )
+            if (syntaxNode.UnmanagedCallingConventionList != default(FunctionPointerUnmanagedCallingConventionListSyntax))
             {
                 var unmanagedCallingConventionListBuilder = new StringBuilder();
-                WriteFunctionPointerUnmanagedCallingConventionListSyntax(
-                    unmanagedCallingConventionListBuilder,
-                    syntaxNode.UnmanagedCallingConventionList);
+                WriteFunctionPointerUnmanagedCallingConventionListSyntax(unmanagedCallingConventionListBuilder, syntaxNode.UnmanagedCallingConventionList);
                 properties.Add($"\"unmanagedCallingConventionList\":{unmanagedCallingConventionListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerUnmanagedCallingConventionListSyntax(
-            StringBuilder builder,
-            FunctionPointerUnmanagedCallingConventionListSyntax syntaxNode)
+        public static void WriteFunctionPointerUnmanagedCallingConventionListSyntax(StringBuilder builder, FunctionPointerUnmanagedCallingConventionListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1644,65 +710,37 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var callingConventions = new List<string>();
-            foreach (var node in syntaxNode.CallingConventions)
+            foreach(var node in syntaxNode.CallingConventions)
             {
                 var innerBuilder = new StringBuilder();
-                WriteFunctionPointerUnmanagedCallingConventionSyntax(
-                    innerBuilder,
-                    node);
+                WriteFunctionPointerUnmanagedCallingConventionSyntax(innerBuilder, node);
                 callingConventions.Add(innerBuilder.ToString());
             }
             properties.Add($"\"callingConventions\":[{string.Join(",", callingConventions)}]");
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerUnmanagedCallingConventionSyntax(
-            StringBuilder builder,
-            FunctionPointerUnmanagedCallingConventionSyntax syntaxNode)
+        public static void WriteFunctionPointerUnmanagedCallingConventionSyntax(StringBuilder builder, FunctionPointerUnmanagedCallingConventionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1716,40 +754,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNullableTypeSyntax(
-            StringBuilder builder,
-            NullableTypeSyntax syntaxNode)
+        public static void WriteNullableTypeSyntax(StringBuilder builder, NullableTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1764,9 +780,7 @@ namespace CSharpier
             if (syntaxNode.QuestionToken != default(SyntaxToken))
             {
                 var questionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    questionTokenBuilder,
-                    syntaxNode.QuestionToken);
+                WriteSyntaxToken(questionTokenBuilder, syntaxNode.QuestionToken);
                 properties.Add($"\"questionToken\":{questionTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
@@ -1776,40 +790,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTupleTypeSyntax(
-            StringBuilder builder,
-            TupleTypeSyntax syntaxNode)
+        public static void WriteTupleTypeSyntax(StringBuilder builder, TupleTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1818,13 +810,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var elements = new List<string>();
-            foreach (var node in syntaxNode.Elements)
+            foreach(var node in syntaxNode.Elements)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTupleElementSyntax(innerBuilder, node);
@@ -1834,9 +824,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
@@ -1846,40 +834,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTupleElementSyntax(
-            StringBuilder builder,
-            TupleElementSyntax syntaxNode)
+        public static void WriteTupleElementSyntax(StringBuilder builder, TupleElementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1899,40 +865,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOmittedTypeArgumentSyntax(
-            StringBuilder builder,
-            OmittedTypeArgumentSyntax syntaxNode)
+        public static void WriteOmittedTypeArgumentSyntax(StringBuilder builder, OmittedTypeArgumentSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -1941,9 +885,7 @@ namespace CSharpier
             if (syntaxNode.OmittedTypeArgumentToken != default(SyntaxToken))
             {
                 var omittedTypeArgumentTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    omittedTypeArgumentTokenBuilder,
-                    syntaxNode.OmittedTypeArgumentToken);
+                WriteSyntaxToken(omittedTypeArgumentTokenBuilder, syntaxNode.OmittedTypeArgumentToken);
                 properties.Add($"\"omittedTypeArgumentToken\":{omittedTypeArgumentTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isVar", syntaxNode.IsVar));
@@ -1953,40 +895,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRefTypeSyntax(
-            StringBuilder builder,
-            RefTypeSyntax syntaxNode)
+        public static void WriteRefTypeSyntax(StringBuilder builder, RefTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2001,9 +921,7 @@ namespace CSharpier
             if (syntaxNode.ReadOnlyKeyword != default(SyntaxToken))
             {
                 var readOnlyKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    readOnlyKeywordBuilder,
-                    syntaxNode.ReadOnlyKeyword);
+                WriteSyntaxToken(readOnlyKeywordBuilder, syntaxNode.ReadOnlyKeyword);
                 properties.Add($"\"readOnlyKeyword\":{readOnlyKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -2019,40 +937,18 @@ namespace CSharpier
             properties.Add(WriteBoolean("isNuint", syntaxNode.IsNuint));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParenthesizedExpressionSyntax(
-            StringBuilder builder,
-            ParenthesizedExpressionSyntax syntaxNode)
+        public static void WriteParenthesizedExpressionSyntax(StringBuilder builder, ParenthesizedExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2061,9 +957,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -2075,47 +969,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTupleExpressionSyntax(
-            StringBuilder builder,
-            TupleExpressionSyntax syntaxNode)
+        public static void WriteTupleExpressionSyntax(StringBuilder builder, TupleExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2124,13 +994,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var arguments = new List<string>();
-            foreach (var node in syntaxNode.Arguments)
+            foreach(var node in syntaxNode.Arguments)
             {
                 var innerBuilder = new StringBuilder();
                 WriteArgumentSyntax(innerBuilder, node);
@@ -2140,47 +1008,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePrefixUnaryExpressionSyntax(
-            StringBuilder builder,
-            PrefixUnaryExpressionSyntax syntaxNode)
+        public static void WritePrefixUnaryExpressionSyntax(StringBuilder builder, PrefixUnaryExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2189,9 +1033,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Operand != default(ExpressionSyntax))
@@ -2202,40 +1044,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAwaitExpressionSyntax(
-            StringBuilder builder,
-            AwaitExpressionSyntax syntaxNode)
+        public static void WriteAwaitExpressionSyntax(StringBuilder builder, AwaitExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2255,40 +1075,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePostfixUnaryExpressionSyntax(
-            StringBuilder builder,
-            PostfixUnaryExpressionSyntax syntaxNode)
+        public static void WritePostfixUnaryExpressionSyntax(StringBuilder builder, PostfixUnaryExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2303,47 +1101,23 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteMemberAccessExpressionSyntax(
-            StringBuilder builder,
-            MemberAccessExpressionSyntax syntaxNode)
+        public static void WriteMemberAccessExpressionSyntax(StringBuilder builder, MemberAccessExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2358,9 +1132,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(SimpleNameSyntax))
@@ -2371,40 +1143,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConditionalAccessExpressionSyntax(
-            StringBuilder builder,
-            ConditionalAccessExpressionSyntax syntaxNode)
+        public static void WriteConditionalAccessExpressionSyntax(StringBuilder builder, ConditionalAccessExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2419,9 +1169,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.WhenNotNull != default(ExpressionSyntax))
@@ -2432,40 +1180,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteMemberBindingExpressionSyntax(
-            StringBuilder builder,
-            MemberBindingExpressionSyntax syntaxNode)
+        public static void WriteMemberBindingExpressionSyntax(StringBuilder builder, MemberBindingExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2474,9 +1200,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(SimpleNameSyntax))
@@ -2487,40 +1211,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteElementBindingExpressionSyntax(
-            StringBuilder builder,
-            ElementBindingExpressionSyntax syntaxNode)
+        public static void WriteElementBindingExpressionSyntax(StringBuilder builder, ElementBindingExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2529,47 +1231,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(BracketedArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteBracketedArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteBracketedArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRangeExpressionSyntax(
-            StringBuilder builder,
-            RangeExpressionSyntax syntaxNode)
+        public static void WriteRangeExpressionSyntax(StringBuilder builder, RangeExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2584,9 +1262,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.RightOperand != default(ExpressionSyntax))
@@ -2597,40 +1273,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteImplicitElementAccessSyntax(
-            StringBuilder builder,
-            ImplicitElementAccessSyntax syntaxNode)
+        public static void WriteImplicitElementAccessSyntax(StringBuilder builder, ImplicitElementAccessSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2639,47 +1293,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(BracketedArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteBracketedArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteBracketedArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBinaryExpressionSyntax(
-            StringBuilder builder,
-            BinaryExpressionSyntax syntaxNode)
+        public static void WriteBinaryExpressionSyntax(StringBuilder builder, BinaryExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2694,9 +1324,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Right != default(ExpressionSyntax))
@@ -2707,40 +1335,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAssignmentExpressionSyntax(
-            StringBuilder builder,
-            AssignmentExpressionSyntax syntaxNode)
+        public static void WriteAssignmentExpressionSyntax(StringBuilder builder, AssignmentExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2755,9 +1361,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Right != default(ExpressionSyntax))
@@ -2768,40 +1372,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConditionalExpressionSyntax(
-            StringBuilder builder,
-            ConditionalExpressionSyntax syntaxNode)
+        public static void WriteConditionalExpressionSyntax(StringBuilder builder, ConditionalExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2816,9 +1398,7 @@ namespace CSharpier
             if (syntaxNode.QuestionToken != default(SyntaxToken))
             {
                 var questionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    questionTokenBuilder,
-                    syntaxNode.QuestionToken);
+                WriteSyntaxToken(questionTokenBuilder, syntaxNode.QuestionToken);
                 properties.Add($"\"questionToken\":{questionTokenBuilder.ToString()}");
             }
             if (syntaxNode.WhenTrue != default(ExpressionSyntax))
@@ -2841,40 +1421,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteThisExpressionSyntax(
-            StringBuilder builder,
-            ThisExpressionSyntax syntaxNode)
+        public static void WriteThisExpressionSyntax(StringBuilder builder, ThisExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2888,40 +1446,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBaseExpressionSyntax(
-            StringBuilder builder,
-            BaseExpressionSyntax syntaxNode)
+        public static void WriteBaseExpressionSyntax(StringBuilder builder, BaseExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2935,40 +1471,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLiteralExpressionSyntax(
-            StringBuilder builder,
-            LiteralExpressionSyntax syntaxNode)
+        public static void WriteLiteralExpressionSyntax(StringBuilder builder, LiteralExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -2982,40 +1496,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteMakeRefExpressionSyntax(
-            StringBuilder builder,
-            MakeRefExpressionSyntax syntaxNode)
+        public static void WriteMakeRefExpressionSyntax(StringBuilder builder, MakeRefExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3030,9 +1522,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3044,47 +1534,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRefTypeExpressionSyntax(
-            StringBuilder builder,
-            RefTypeExpressionSyntax syntaxNode)
+        public static void WriteRefTypeExpressionSyntax(StringBuilder builder, RefTypeExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3099,9 +1565,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3113,47 +1577,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRefValueExpressionSyntax(
-            StringBuilder builder,
-            RefValueExpressionSyntax syntaxNode)
+        public static void WriteRefValueExpressionSyntax(StringBuilder builder, RefValueExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3168,9 +1608,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3194,47 +1632,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCheckedExpressionSyntax(
-            StringBuilder builder,
-            CheckedExpressionSyntax syntaxNode)
+        public static void WriteCheckedExpressionSyntax(StringBuilder builder, CheckedExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3249,9 +1663,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3263,47 +1675,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDefaultExpressionSyntax(
-            StringBuilder builder,
-            DefaultExpressionSyntax syntaxNode)
+        public static void WriteDefaultExpressionSyntax(StringBuilder builder, DefaultExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3318,9 +1706,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -3332,47 +1718,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeOfExpressionSyntax(
-            StringBuilder builder,
-            TypeOfExpressionSyntax syntaxNode)
+        public static void WriteTypeOfExpressionSyntax(StringBuilder builder, TypeOfExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3387,9 +1749,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -3401,47 +1761,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSizeOfExpressionSyntax(
-            StringBuilder builder,
-            SizeOfExpressionSyntax syntaxNode)
+        public static void WriteSizeOfExpressionSyntax(StringBuilder builder, SizeOfExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3456,9 +1792,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -3470,47 +1804,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInvocationExpressionSyntax(
-            StringBuilder builder,
-            InvocationExpressionSyntax syntaxNode)
+        public static void WriteInvocationExpressionSyntax(StringBuilder builder, InvocationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3525,47 +1835,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(ArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteElementAccessExpressionSyntax(
-            StringBuilder builder,
-            ElementAccessExpressionSyntax syntaxNode)
+        public static void WriteElementAccessExpressionSyntax(StringBuilder builder, ElementAccessExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3580,47 +1866,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(BracketedArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteBracketedArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteBracketedArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArgumentListSyntax(
-            StringBuilder builder,
-            ArgumentListSyntax syntaxNode)
+        public static void WriteArgumentListSyntax(StringBuilder builder, ArgumentListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3629,13 +1891,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var arguments = new List<string>();
-            foreach (var node in syntaxNode.Arguments)
+            foreach(var node in syntaxNode.Arguments)
             {
                 var innerBuilder = new StringBuilder();
                 WriteArgumentSyntax(innerBuilder, node);
@@ -3645,47 +1905,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBracketedArgumentListSyntax(
-            StringBuilder builder,
-            BracketedArgumentListSyntax syntaxNode)
+        public static void WriteBracketedArgumentListSyntax(StringBuilder builder, BracketedArgumentListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3694,13 +1930,11 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var arguments = new List<string>();
-            foreach (var node in syntaxNode.Arguments)
+            foreach(var node in syntaxNode.Arguments)
             {
                 var innerBuilder = new StringBuilder();
                 WriteArgumentSyntax(innerBuilder, node);
@@ -3710,47 +1944,23 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArgumentSyntax(
-            StringBuilder builder,
-            ArgumentSyntax syntaxNode)
+        public static void WriteArgumentSyntax(StringBuilder builder, ArgumentSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3765,9 +1975,7 @@ namespace CSharpier
             if (syntaxNode.RefKindKeyword != default(SyntaxToken))
             {
                 var refKindKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    refKindKeywordBuilder,
-                    syntaxNode.RefKindKeyword);
+                WriteSyntaxToken(refKindKeywordBuilder, syntaxNode.RefKindKeyword);
                 properties.Add($"\"refKindKeyword\":{refKindKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3779,47 +1987,23 @@ namespace CSharpier
             if (syntaxNode.RefOrOutKeyword != default(SyntaxToken))
             {
                 var refOrOutKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    refOrOutKeywordBuilder,
-                    syntaxNode.RefOrOutKeyword);
+                WriteSyntaxToken(refOrOutKeywordBuilder, syntaxNode.RefOrOutKeyword);
                 properties.Add($"\"refOrOutKeyword\":{refOrOutKeywordBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNameColonSyntax(
-            StringBuilder builder,
-            NameColonSyntax syntaxNode)
+        public static void WriteNameColonSyntax(StringBuilder builder, NameColonSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3839,40 +2023,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDeclarationExpressionSyntax(
-            StringBuilder builder,
-            DeclarationExpressionSyntax syntaxNode)
+        public static void WriteDeclarationExpressionSyntax(StringBuilder builder, DeclarationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3892,40 +2054,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCastExpressionSyntax(
-            StringBuilder builder,
-            CastExpressionSyntax syntaxNode)
+        public static void WriteCastExpressionSyntax(StringBuilder builder, CastExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -3934,9 +2074,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -3948,9 +2086,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -3961,47 +2097,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAnonymousMethodExpressionSyntax(
-            StringBuilder builder,
-            AnonymousMethodExpressionSyntax syntaxNode)
+        public static void WriteAnonymousMethodExpressionSyntax(StringBuilder builder, AnonymousMethodExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -4011,17 +2125,13 @@ namespace CSharpier
             if (syntaxNode.DelegateKeyword != default(SyntaxToken))
             {
                 var delegateKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    delegateKeywordBuilder,
-                    syntaxNode.DelegateKeyword);
+                WriteSyntaxToken(delegateKeywordBuilder, syntaxNode.DelegateKeyword);
                 properties.Add($"\"delegateKeyword\":{delegateKeywordBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.Block != default(BlockSyntax))
@@ -4033,9 +2143,7 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ExpressionSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteSyntaxNode(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.AsyncKeyword != default(SyntaxToken))
@@ -4052,47 +2160,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSimpleLambdaExpressionSyntax(
-            StringBuilder builder,
-            SimpleLambdaExpressionSyntax syntaxNode)
+        public static void WriteSimpleLambdaExpressionSyntax(StringBuilder builder, SimpleLambdaExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -4120,9 +2206,7 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ExpressionSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteSyntaxNode(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.AsyncKeyword != default(SyntaxToken))
@@ -4139,40 +2223,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRefExpressionSyntax(
-            StringBuilder builder,
-            RefExpressionSyntax syntaxNode)
+        public static void WriteRefExpressionSyntax(StringBuilder builder, RefExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4192,47 +2254,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParenthesizedLambdaExpressionSyntax(
-            StringBuilder builder,
-            ParenthesizedLambdaExpressionSyntax syntaxNode)
+        public static void WriteParenthesizedLambdaExpressionSyntax(StringBuilder builder, ParenthesizedLambdaExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -4242,9 +2282,7 @@ namespace CSharpier
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.ArrowToken != default(SyntaxToken))
@@ -4262,9 +2300,7 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ExpressionSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteSyntaxNode(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.AsyncKeyword != default(SyntaxToken))
@@ -4281,40 +2317,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInitializerExpressionSyntax(
-            StringBuilder builder,
-            InitializerExpressionSyntax syntaxNode)
+        public static void WriteInitializerExpressionSyntax(StringBuilder builder, InitializerExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4323,13 +2337,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var expressions = new List<string>();
-            foreach (var node in syntaxNode.Expressions)
+            foreach(var node in syntaxNode.Expressions)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -4339,47 +2351,23 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteImplicitObjectCreationExpressionSyntax(
-            StringBuilder builder,
-            ImplicitObjectCreationExpressionSyntax syntaxNode)
+        public static void WriteImplicitObjectCreationExpressionSyntax(StringBuilder builder, ImplicitObjectCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4394,55 +2382,29 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(ArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteObjectCreationExpressionSyntax(
-            StringBuilder builder,
-            ObjectCreationExpressionSyntax syntaxNode)
+        public static void WriteObjectCreationExpressionSyntax(StringBuilder builder, ObjectCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4463,55 +2425,29 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(ArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteWithExpressionSyntax(
-            StringBuilder builder,
-            WithExpressionSyntax syntaxNode)
+        public static void WriteWithExpressionSyntax(StringBuilder builder, WithExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4532,47 +2468,23 @@ namespace CSharpier
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAnonymousObjectMemberDeclaratorSyntax(
-            StringBuilder builder,
-            AnonymousObjectMemberDeclaratorSyntax syntaxNode)
+        public static void WriteAnonymousObjectMemberDeclaratorSyntax(StringBuilder builder, AnonymousObjectMemberDeclaratorSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4592,40 +2504,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAnonymousObjectCreationExpressionSyntax(
-            StringBuilder builder,
-            AnonymousObjectCreationExpressionSyntax syntaxNode)
+        public static void WriteAnonymousObjectCreationExpressionSyntax(StringBuilder builder, AnonymousObjectCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4640,13 +2530,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var initializers = new List<string>();
-            foreach (var node in syntaxNode.Initializers)
+            foreach(var node in syntaxNode.Initializers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAnonymousObjectMemberDeclaratorSyntax(innerBuilder, node);
@@ -4656,47 +2544,23 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArrayCreationExpressionSyntax(
-            StringBuilder builder,
-            ArrayCreationExpressionSyntax syntaxNode)
+        public static void WriteArrayCreationExpressionSyntax(StringBuilder builder, ArrayCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4717,47 +2581,23 @@ namespace CSharpier
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteImplicitArrayCreationExpressionSyntax(
-            StringBuilder builder,
-            ImplicitArrayCreationExpressionSyntax syntaxNode)
+        public static void WriteImplicitArrayCreationExpressionSyntax(StringBuilder builder, ImplicitArrayCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4772,13 +2612,11 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var commas = new List<string>();
-            foreach (var node in syntaxNode.Commas)
+            foreach(var node in syntaxNode.Commas)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -4788,55 +2626,29 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteStackAllocArrayCreationExpressionSyntax(
-            StringBuilder builder,
-            StackAllocArrayCreationExpressionSyntax syntaxNode)
+        public static void WriteStackAllocArrayCreationExpressionSyntax(StringBuilder builder, StackAllocArrayCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4845,9 +2657,7 @@ namespace CSharpier
             if (syntaxNode.StackAllocKeyword != default(SyntaxToken))
             {
                 var stackAllocKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    stackAllocKeywordBuilder,
-                    syntaxNode.StackAllocKeyword);
+                WriteSyntaxToken(stackAllocKeywordBuilder, syntaxNode.StackAllocKeyword);
                 properties.Add($"\"stackAllocKeyword\":{stackAllocKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -4859,47 +2669,23 @@ namespace CSharpier
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteImplicitStackAllocArrayCreationExpressionSyntax(
-            StringBuilder builder,
-            ImplicitStackAllocArrayCreationExpressionSyntax syntaxNode)
+        public static void WriteImplicitStackAllocArrayCreationExpressionSyntax(StringBuilder builder, ImplicitStackAllocArrayCreationExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4908,71 +2694,41 @@ namespace CSharpier
             if (syntaxNode.StackAllocKeyword != default(SyntaxToken))
             {
                 var stackAllocKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    stackAllocKeywordBuilder,
-                    syntaxNode.StackAllocKeyword);
+                WriteSyntaxToken(stackAllocKeywordBuilder, syntaxNode.StackAllocKeyword);
                 properties.Add($"\"stackAllocKeyword\":{stackAllocKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(InitializerExpressionSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteInitializerExpressionSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteInitializerExpressionSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteQueryExpressionSyntax(
-            StringBuilder builder,
-            QueryExpressionSyntax syntaxNode)
+        public static void WriteQueryExpressionSyntax(StringBuilder builder, QueryExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -4992,47 +2748,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteQueryBodySyntax(
-            StringBuilder builder,
-            QueryBodySyntax syntaxNode)
+        public static void WriteQueryBodySyntax(StringBuilder builder, QueryBodySyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var clauses = new List<string>();
-            foreach (var node in syntaxNode.Clauses)
+            foreach(var node in syntaxNode.Clauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -5048,47 +2782,23 @@ namespace CSharpier
             if (syntaxNode.Continuation != default(QueryContinuationSyntax))
             {
                 var continuationBuilder = new StringBuilder();
-                WriteQueryContinuationSyntax(
-                    continuationBuilder,
-                    syntaxNode.Continuation);
+                WriteQueryContinuationSyntax(continuationBuilder, syntaxNode.Continuation);
                 properties.Add($"\"continuation\":{continuationBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFromClauseSyntax(
-            StringBuilder builder,
-            FromClauseSyntax syntaxNode)
+        public static void WriteFromClauseSyntax(StringBuilder builder, FromClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5126,40 +2836,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLetClauseSyntax(
-            StringBuilder builder,
-            LetClauseSyntax syntaxNode)
+        public static void WriteLetClauseSyntax(StringBuilder builder, LetClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5191,40 +2879,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteJoinClauseSyntax(
-            StringBuilder builder,
-            JoinClauseSyntax syntaxNode)
+        public static void WriteJoinClauseSyntax(StringBuilder builder, JoinClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5269,25 +2935,19 @@ namespace CSharpier
             if (syntaxNode.LeftExpression != default(ExpressionSyntax))
             {
                 var leftExpressionBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    leftExpressionBuilder,
-                    syntaxNode.LeftExpression);
+                WriteSyntaxNode(leftExpressionBuilder, syntaxNode.LeftExpression);
                 properties.Add($"\"leftExpression\":{leftExpressionBuilder.ToString()}");
             }
             if (syntaxNode.EqualsKeyword != default(SyntaxToken))
             {
                 var equalsKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    equalsKeywordBuilder,
-                    syntaxNode.EqualsKeyword);
+                WriteSyntaxToken(equalsKeywordBuilder, syntaxNode.EqualsKeyword);
                 properties.Add($"\"equalsKeyword\":{equalsKeywordBuilder.ToString()}");
             }
             if (syntaxNode.RightExpression != default(ExpressionSyntax))
             {
                 var rightExpressionBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    rightExpressionBuilder,
-                    syntaxNode.RightExpression);
+                WriteSyntaxNode(rightExpressionBuilder, syntaxNode.RightExpression);
                 properties.Add($"\"rightExpression\":{rightExpressionBuilder.ToString()}");
             }
             if (syntaxNode.Into != default(JoinIntoClauseSyntax))
@@ -5298,40 +2958,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteJoinIntoClauseSyntax(
-            StringBuilder builder,
-            JoinIntoClauseSyntax syntaxNode)
+        public static void WriteJoinIntoClauseSyntax(StringBuilder builder, JoinIntoClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5351,40 +2989,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteWhereClauseSyntax(
-            StringBuilder builder,
-            WhereClauseSyntax syntaxNode)
+        public static void WriteWhereClauseSyntax(StringBuilder builder, WhereClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5404,40 +3020,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOrderByClauseSyntax(
-            StringBuilder builder,
-            OrderByClauseSyntax syntaxNode)
+        public static void WriteOrderByClauseSyntax(StringBuilder builder, OrderByClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5446,13 +3040,11 @@ namespace CSharpier
             if (syntaxNode.OrderByKeyword != default(SyntaxToken))
             {
                 var orderByKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    orderByKeywordBuilder,
-                    syntaxNode.OrderByKeyword);
+                WriteSyntaxToken(orderByKeywordBuilder, syntaxNode.OrderByKeyword);
                 properties.Add($"\"orderByKeyword\":{orderByKeywordBuilder.ToString()}");
             }
             var orderings = new List<string>();
-            foreach (var node in syntaxNode.Orderings)
+            foreach(var node in syntaxNode.Orderings)
             {
                 var innerBuilder = new StringBuilder();
                 WriteOrderingSyntax(innerBuilder, node);
@@ -5461,40 +3053,18 @@ namespace CSharpier
             properties.Add($"\"orderings\":[{string.Join(",", orderings)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOrderingSyntax(
-            StringBuilder builder,
-            OrderingSyntax syntaxNode)
+        public static void WriteOrderingSyntax(StringBuilder builder, OrderingSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5509,47 +3079,23 @@ namespace CSharpier
             if (syntaxNode.AscendingOrDescendingKeyword != default(SyntaxToken))
             {
                 var ascendingOrDescendingKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    ascendingOrDescendingKeywordBuilder,
-                    syntaxNode.AscendingOrDescendingKeyword);
+                WriteSyntaxToken(ascendingOrDescendingKeywordBuilder, syntaxNode.AscendingOrDescendingKeyword);
                 properties.Add($"\"ascendingOrDescendingKeyword\":{ascendingOrDescendingKeywordBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSelectClauseSyntax(
-            StringBuilder builder,
-            SelectClauseSyntax syntaxNode)
+        public static void WriteSelectClauseSyntax(StringBuilder builder, SelectClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5558,9 +3104,7 @@ namespace CSharpier
             if (syntaxNode.SelectKeyword != default(SyntaxToken))
             {
                 var selectKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    selectKeywordBuilder,
-                    syntaxNode.SelectKeyword);
+                WriteSyntaxToken(selectKeywordBuilder, syntaxNode.SelectKeyword);
                 properties.Add($"\"selectKeyword\":{selectKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -5571,40 +3115,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteGroupClauseSyntax(
-            StringBuilder builder,
-            GroupClauseSyntax syntaxNode)
+        public static void WriteGroupClauseSyntax(StringBuilder builder, GroupClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5619,9 +3141,7 @@ namespace CSharpier
             if (syntaxNode.GroupExpression != default(ExpressionSyntax))
             {
                 var groupExpressionBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    groupExpressionBuilder,
-                    syntaxNode.GroupExpression);
+                WriteSyntaxNode(groupExpressionBuilder, syntaxNode.GroupExpression);
                 properties.Add($"\"groupExpression\":{groupExpressionBuilder.ToString()}");
             }
             if (syntaxNode.ByKeyword != default(SyntaxToken))
@@ -5638,40 +3158,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteQueryContinuationSyntax(
-            StringBuilder builder,
-            QueryContinuationSyntax syntaxNode)
+        public static void WriteQueryContinuationSyntax(StringBuilder builder, QueryContinuationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5697,91 +3195,43 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOmittedArraySizeExpressionSyntax(
-            StringBuilder builder,
-            OmittedArraySizeExpressionSyntax syntaxNode)
+        public static void WriteOmittedArraySizeExpressionSyntax(StringBuilder builder, OmittedArraySizeExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
-            if (
-                syntaxNode.OmittedArraySizeExpressionToken != default(SyntaxToken)
-            )
+            if (syntaxNode.OmittedArraySizeExpressionToken != default(SyntaxToken))
             {
                 var omittedArraySizeExpressionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    omittedArraySizeExpressionTokenBuilder,
-                    syntaxNode.OmittedArraySizeExpressionToken);
+                WriteSyntaxToken(omittedArraySizeExpressionTokenBuilder, syntaxNode.OmittedArraySizeExpressionToken);
                 properties.Add($"\"omittedArraySizeExpressionToken\":{omittedArraySizeExpressionTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterpolatedStringExpressionSyntax(
-            StringBuilder builder,
-            InterpolatedStringExpressionSyntax syntaxNode)
+        public static void WriteInterpolatedStringExpressionSyntax(StringBuilder builder, InterpolatedStringExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5790,13 +3240,11 @@ namespace CSharpier
             if (syntaxNode.StringStartToken != default(SyntaxToken))
             {
                 var stringStartTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    stringStartTokenBuilder,
-                    syntaxNode.StringStartToken);
+                WriteSyntaxToken(stringStartTokenBuilder, syntaxNode.StringStartToken);
                 properties.Add($"\"stringStartToken\":{stringStartTokenBuilder.ToString()}");
             }
             var contents = new List<string>();
-            foreach (var node in syntaxNode.Contents)
+            foreach(var node in syntaxNode.Contents)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -5806,47 +3254,23 @@ namespace CSharpier
             if (syntaxNode.StringEndToken != default(SyntaxToken))
             {
                 var stringEndTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    stringEndTokenBuilder,
-                    syntaxNode.StringEndToken);
+                WriteSyntaxToken(stringEndTokenBuilder, syntaxNode.StringEndToken);
                 properties.Add($"\"stringEndToken\":{stringEndTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIsPatternExpressionSyntax(
-            StringBuilder builder,
-            IsPatternExpressionSyntax syntaxNode)
+        public static void WriteIsPatternExpressionSyntax(StringBuilder builder, IsPatternExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5872,40 +3296,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteThrowExpressionSyntax(
-            StringBuilder builder,
-            ThrowExpressionSyntax syntaxNode)
+        public static void WriteThrowExpressionSyntax(StringBuilder builder, ThrowExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5925,40 +3327,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteWhenClauseSyntax(
-            StringBuilder builder,
-            WhenClauseSyntax syntaxNode)
+        public static void WriteWhenClauseSyntax(StringBuilder builder, WhenClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -5978,40 +3358,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDiscardPatternSyntax(
-            StringBuilder builder,
-            DiscardPatternSyntax syntaxNode)
+        public static void WriteDiscardPatternSyntax(StringBuilder builder, DiscardPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6020,47 +3378,23 @@ namespace CSharpier
             if (syntaxNode.UnderscoreToken != default(SyntaxToken))
             {
                 var underscoreTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    underscoreTokenBuilder,
-                    syntaxNode.UnderscoreToken);
+                WriteSyntaxToken(underscoreTokenBuilder, syntaxNode.UnderscoreToken);
                 properties.Add($"\"underscoreToken\":{underscoreTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDeclarationPatternSyntax(
-            StringBuilder builder,
-            DeclarationPatternSyntax syntaxNode)
+        public static void WriteDeclarationPatternSyntax(StringBuilder builder, DeclarationPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6080,40 +3414,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteVarPatternSyntax(
-            StringBuilder builder,
-            VarPatternSyntax syntaxNode)
+        public static void WriteVarPatternSyntax(StringBuilder builder, VarPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6133,40 +3445,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRecursivePatternSyntax(
-            StringBuilder builder,
-            RecursivePatternSyntax syntaxNode)
+        public static void WriteRecursivePatternSyntax(StringBuilder builder, RecursivePatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6178,24 +3468,16 @@ namespace CSharpier
                 WriteSyntaxNode(typeBuilder, syntaxNode.Type);
                 properties.Add($"\"type\":{typeBuilder.ToString()}");
             }
-            if (
-                syntaxNode.PositionalPatternClause != default(PositionalPatternClauseSyntax)
-            )
+            if (syntaxNode.PositionalPatternClause != default(PositionalPatternClauseSyntax))
             {
                 var positionalPatternClauseBuilder = new StringBuilder();
-                WritePositionalPatternClauseSyntax(
-                    positionalPatternClauseBuilder,
-                    syntaxNode.PositionalPatternClause);
+                WritePositionalPatternClauseSyntax(positionalPatternClauseBuilder, syntaxNode.PositionalPatternClause);
                 properties.Add($"\"positionalPatternClause\":{positionalPatternClauseBuilder.ToString()}");
             }
-            if (
-                syntaxNode.PropertyPatternClause != default(PropertyPatternClauseSyntax)
-            )
+            if (syntaxNode.PropertyPatternClause != default(PropertyPatternClauseSyntax))
             {
                 var propertyPatternClauseBuilder = new StringBuilder();
-                WritePropertyPatternClauseSyntax(
-                    propertyPatternClauseBuilder,
-                    syntaxNode.PropertyPatternClause);
+                WritePropertyPatternClauseSyntax(propertyPatternClauseBuilder, syntaxNode.PropertyPatternClause);
                 properties.Add($"\"propertyPatternClause\":{propertyPatternClauseBuilder.ToString()}");
             }
             if (syntaxNode.Designation != default(VariableDesignationSyntax))
@@ -6206,40 +3488,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePositionalPatternClauseSyntax(
-            StringBuilder builder,
-            PositionalPatternClauseSyntax syntaxNode)
+        public static void WritePositionalPatternClauseSyntax(StringBuilder builder, PositionalPatternClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6248,13 +3508,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var subpatterns = new List<string>();
-            foreach (var node in syntaxNode.Subpatterns)
+            foreach(var node in syntaxNode.Subpatterns)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSubpatternSyntax(innerBuilder, node);
@@ -6264,47 +3522,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePropertyPatternClauseSyntax(
-            StringBuilder builder,
-            PropertyPatternClauseSyntax syntaxNode)
+        public static void WritePropertyPatternClauseSyntax(StringBuilder builder, PropertyPatternClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6313,13 +3547,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var subpatterns = new List<string>();
-            foreach (var node in syntaxNode.Subpatterns)
+            foreach(var node in syntaxNode.Subpatterns)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSubpatternSyntax(innerBuilder, node);
@@ -6329,47 +3561,23 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSubpatternSyntax(
-            StringBuilder builder,
-            SubpatternSyntax syntaxNode)
+        public static void WriteSubpatternSyntax(StringBuilder builder, SubpatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6389,40 +3597,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConstantPatternSyntax(
-            StringBuilder builder,
-            ConstantPatternSyntax syntaxNode)
+        public static void WriteConstantPatternSyntax(StringBuilder builder, ConstantPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6436,40 +3622,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParenthesizedPatternSyntax(
-            StringBuilder builder,
-            ParenthesizedPatternSyntax syntaxNode)
+        public static void WriteParenthesizedPatternSyntax(StringBuilder builder, ParenthesizedPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6478,9 +3642,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Pattern != default(PatternSyntax))
@@ -6492,47 +3654,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRelationalPatternSyntax(
-            StringBuilder builder,
-            RelationalPatternSyntax syntaxNode)
+        public static void WriteRelationalPatternSyntax(StringBuilder builder, RelationalPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6541,9 +3679,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -6554,40 +3690,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypePatternSyntax(
-            StringBuilder builder,
-            TypePatternSyntax syntaxNode)
+        public static void WriteTypePatternSyntax(StringBuilder builder, TypePatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6601,40 +3715,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBinaryPatternSyntax(
-            StringBuilder builder,
-            BinaryPatternSyntax syntaxNode)
+        public static void WriteBinaryPatternSyntax(StringBuilder builder, BinaryPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6649,9 +3741,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Right != default(PatternSyntax))
@@ -6662,40 +3752,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteUnaryPatternSyntax(
-            StringBuilder builder,
-            UnaryPatternSyntax syntaxNode)
+        public static void WriteUnaryPatternSyntax(StringBuilder builder, UnaryPatternSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6704,9 +3772,7 @@ namespace CSharpier
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Pattern != default(PatternSyntax))
@@ -6717,40 +3783,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterpolatedStringTextSyntax(
-            StringBuilder builder,
-            InterpolatedStringTextSyntax syntaxNode)
+        public static void WriteInterpolatedStringTextSyntax(StringBuilder builder, InterpolatedStringTextSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6764,40 +3808,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterpolationSyntax(
-            StringBuilder builder,
-            InterpolationSyntax syntaxNode)
+        public static void WriteInterpolationSyntax(StringBuilder builder, InterpolationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6806,9 +3828,7 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -6817,70 +3837,38 @@ namespace CSharpier
                 WriteSyntaxNode(expressionBuilder, syntaxNode.Expression);
                 properties.Add($"\"expression\":{expressionBuilder.ToString()}");
             }
-            if (
-                syntaxNode.AlignmentClause != default(InterpolationAlignmentClauseSyntax)
-            )
+            if (syntaxNode.AlignmentClause != default(InterpolationAlignmentClauseSyntax))
             {
                 var alignmentClauseBuilder = new StringBuilder();
-                WriteInterpolationAlignmentClauseSyntax(
-                    alignmentClauseBuilder,
-                    syntaxNode.AlignmentClause);
+                WriteInterpolationAlignmentClauseSyntax(alignmentClauseBuilder, syntaxNode.AlignmentClause);
                 properties.Add($"\"alignmentClause\":{alignmentClauseBuilder.ToString()}");
             }
-            if (
-                syntaxNode.FormatClause != default(InterpolationFormatClauseSyntax)
-            )
+            if (syntaxNode.FormatClause != default(InterpolationFormatClauseSyntax))
             {
                 var formatClauseBuilder = new StringBuilder();
-                WriteInterpolationFormatClauseSyntax(
-                    formatClauseBuilder,
-                    syntaxNode.FormatClause);
+                WriteInterpolationFormatClauseSyntax(formatClauseBuilder, syntaxNode.FormatClause);
                 properties.Add($"\"formatClause\":{formatClauseBuilder.ToString()}");
             }
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterpolationAlignmentClauseSyntax(
-            StringBuilder builder,
-            InterpolationAlignmentClauseSyntax syntaxNode)
+        public static void WriteInterpolationAlignmentClauseSyntax(StringBuilder builder, InterpolationAlignmentClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6900,40 +3888,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterpolationFormatClauseSyntax(
-            StringBuilder builder,
-            InterpolationFormatClauseSyntax syntaxNode)
+        public static void WriteInterpolationFormatClauseSyntax(StringBuilder builder, InterpolationFormatClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -6948,54 +3914,30 @@ namespace CSharpier
             if (syntaxNode.FormatStringToken != default(SyntaxToken))
             {
                 var formatStringTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    formatStringTokenBuilder,
-                    syntaxNode.FormatStringToken);
+                WriteSyntaxToken(formatStringTokenBuilder, syntaxNode.FormatStringToken);
                 properties.Add($"\"formatStringToken\":{formatStringTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteGlobalStatementSyntax(
-            StringBuilder builder,
-            GlobalStatementSyntax syntaxNode)
+        public static void WriteGlobalStatementSyntax(StringBuilder builder, GlobalStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7003,7 +3945,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -7018,47 +3960,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBlockSyntax(
-            StringBuilder builder,
-            BlockSyntax syntaxNode)
+        public static void WriteBlockSyntax(StringBuilder builder, BlockSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7068,13 +3988,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var statements = new List<string>();
-            foreach (var node in syntaxNode.Statements)
+            foreach(var node in syntaxNode.Statements)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -7084,54 +4002,30 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLocalFunctionStatementSyntax(
-            StringBuilder builder,
-            LocalFunctionStatementSyntax syntaxNode)
+        public static void WriteLocalFunctionStatementSyntax(StringBuilder builder, LocalFunctionStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7139,7 +4033,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -7161,21 +4055,17 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -7191,62 +4081,36 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLocalDeclarationStatementSyntax(
-            StringBuilder builder,
-            LocalDeclarationStatementSyntax syntaxNode)
+        public static void WriteLocalDeclarationStatementSyntax(StringBuilder builder, LocalDeclarationStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7266,7 +4130,7 @@ namespace CSharpier
                 properties.Add($"\"usingKeyword\":{usingKeywordBuilder.ToString()}");
             }
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -7276,56 +4140,30 @@ namespace CSharpier
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isConst", syntaxNode.IsConst));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteVariableDeclarationSyntax(
-            StringBuilder builder,
-            VariableDeclarationSyntax syntaxNode)
+        public static void WriteVariableDeclarationSyntax(StringBuilder builder, VariableDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7338,7 +4176,7 @@ namespace CSharpier
                 properties.Add($"\"type\":{typeBuilder.ToString()}");
             }
             var variables = new List<string>();
-            foreach (var node in syntaxNode.Variables)
+            foreach(var node in syntaxNode.Variables)
             {
                 var innerBuilder = new StringBuilder();
                 WriteVariableDeclaratorSyntax(innerBuilder, node);
@@ -7347,40 +4185,18 @@ namespace CSharpier
             properties.Add($"\"variables\":[{string.Join(",", variables)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteVariableDeclaratorSyntax(
-            StringBuilder builder,
-            VariableDeclaratorSyntax syntaxNode)
+        public static void WriteVariableDeclaratorSyntax(StringBuilder builder, VariableDeclaratorSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7395,55 +4211,29 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(BracketedArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteBracketedArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteBracketedArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(EqualsValueClauseSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteEqualsValueClauseSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteEqualsValueClauseSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEqualsValueClauseSyntax(
-            StringBuilder builder,
-            EqualsValueClauseSyntax syntaxNode)
+        public static void WriteEqualsValueClauseSyntax(StringBuilder builder, EqualsValueClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7463,40 +4253,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSingleVariableDesignationSyntax(
-            StringBuilder builder,
-            SingleVariableDesignationSyntax syntaxNode)
+        public static void WriteSingleVariableDesignationSyntax(StringBuilder builder, SingleVariableDesignationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7510,40 +4278,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDiscardDesignationSyntax(
-            StringBuilder builder,
-            DiscardDesignationSyntax syntaxNode)
+        public static void WriteDiscardDesignationSyntax(StringBuilder builder, DiscardDesignationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7552,47 +4298,23 @@ namespace CSharpier
             if (syntaxNode.UnderscoreToken != default(SyntaxToken))
             {
                 var underscoreTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    underscoreTokenBuilder,
-                    syntaxNode.UnderscoreToken);
+                WriteSyntaxToken(underscoreTokenBuilder, syntaxNode.UnderscoreToken);
                 properties.Add($"\"underscoreToken\":{underscoreTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParenthesizedVariableDesignationSyntax(
-            StringBuilder builder,
-            ParenthesizedVariableDesignationSyntax syntaxNode)
+        public static void WriteParenthesizedVariableDesignationSyntax(StringBuilder builder, ParenthesizedVariableDesignationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -7601,13 +4323,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var variables = new List<string>();
-            foreach (var node in syntaxNode.Variables)
+            foreach(var node in syntaxNode.Variables)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -7617,54 +4337,30 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteExpressionStatementSyntax(
-            StringBuilder builder,
-            ExpressionStatementSyntax syntaxNode)
+        public static void WriteExpressionStatementSyntax(StringBuilder builder, ExpressionStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7680,58 +4376,31 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
-            properties.Add(
-                WriteBoolean(
-                    "allowsAnyExpression",
-                    syntaxNode.AllowsAnyExpression));
+            properties.Add(WriteBoolean("allowsAnyExpression", syntaxNode.AllowsAnyExpression));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEmptyStatementSyntax(
-            StringBuilder builder,
-            EmptyStatementSyntax syntaxNode)
+        public static void WriteEmptyStatementSyntax(StringBuilder builder, EmptyStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7741,54 +4410,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLabeledStatementSyntax(
-            StringBuilder builder,
-            LabeledStatementSyntax syntaxNode)
+        public static void WriteLabeledStatementSyntax(StringBuilder builder, LabeledStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7815,47 +4460,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteGotoStatementSyntax(
-            StringBuilder builder,
-            GotoStatementSyntax syntaxNode)
+        public static void WriteGotoStatementSyntax(StringBuilder builder, GotoStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7871,9 +4494,7 @@ namespace CSharpier
             if (syntaxNode.CaseOrDefaultKeyword != default(SyntaxToken))
             {
                 var caseOrDefaultKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    caseOrDefaultKeywordBuilder,
-                    syntaxNode.CaseOrDefaultKeyword);
+                WriteSyntaxToken(caseOrDefaultKeywordBuilder, syntaxNode.CaseOrDefaultKeyword);
                 properties.Add($"\"caseOrDefaultKeyword\":{caseOrDefaultKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -7885,54 +4506,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBreakStatementSyntax(
-            StringBuilder builder,
-            BreakStatementSyntax syntaxNode)
+        public static void WriteBreakStatementSyntax(StringBuilder builder, BreakStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -7948,54 +4545,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteContinueStatementSyntax(
-            StringBuilder builder,
-            ContinueStatementSyntax syntaxNode)
+        public static void WriteContinueStatementSyntax(StringBuilder builder, ContinueStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8005,62 +4578,36 @@ namespace CSharpier
             if (syntaxNode.ContinueKeyword != default(SyntaxToken))
             {
                 var continueKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    continueKeywordBuilder,
-                    syntaxNode.ContinueKeyword);
+                WriteSyntaxToken(continueKeywordBuilder, syntaxNode.ContinueKeyword);
                 properties.Add($"\"continueKeyword\":{continueKeywordBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteReturnStatementSyntax(
-            StringBuilder builder,
-            ReturnStatementSyntax syntaxNode)
+        public static void WriteReturnStatementSyntax(StringBuilder builder, ReturnStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8070,9 +4617,7 @@ namespace CSharpier
             if (syntaxNode.ReturnKeyword != default(SyntaxToken))
             {
                 var returnKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    returnKeywordBuilder,
-                    syntaxNode.ReturnKeyword);
+                WriteSyntaxToken(returnKeywordBuilder, syntaxNode.ReturnKeyword);
                 properties.Add($"\"returnKeyword\":{returnKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -8084,54 +4629,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteThrowStatementSyntax(
-            StringBuilder builder,
-            ThrowStatementSyntax syntaxNode)
+        public static void WriteThrowStatementSyntax(StringBuilder builder, ThrowStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8153,54 +4674,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteYieldStatementSyntax(
-            StringBuilder builder,
-            YieldStatementSyntax syntaxNode)
+        public static void WriteYieldStatementSyntax(StringBuilder builder, YieldStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8216,9 +4713,7 @@ namespace CSharpier
             if (syntaxNode.ReturnOrBreakKeyword != default(SyntaxToken))
             {
                 var returnOrBreakKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    returnOrBreakKeywordBuilder,
-                    syntaxNode.ReturnOrBreakKeyword);
+                WriteSyntaxToken(returnOrBreakKeywordBuilder, syntaxNode.ReturnOrBreakKeyword);
                 properties.Add($"\"returnOrBreakKeyword\":{returnOrBreakKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -8230,54 +4725,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteWhileStatementSyntax(
-            StringBuilder builder,
-            WhileStatementSyntax syntaxNode)
+        public static void WriteWhileStatementSyntax(StringBuilder builder, WhileStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8293,9 +4764,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Condition != default(ExpressionSyntax))
@@ -8307,9 +4776,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8320,47 +4787,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDoStatementSyntax(
-            StringBuilder builder,
-            DoStatementSyntax syntaxNode)
+        public static void WriteDoStatementSyntax(StringBuilder builder, DoStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8388,9 +4833,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Condition != default(ExpressionSyntax))
@@ -8402,62 +4845,36 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteForStatementSyntax(
-            StringBuilder builder,
-            ForStatementSyntax syntaxNode)
+        public static void WriteForStatementSyntax(StringBuilder builder, ForStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8473,21 +4890,17 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             var initializers = new List<string>();
-            foreach (var node in syntaxNode.Initializers)
+            foreach(var node in syntaxNode.Initializers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -8497,9 +4910,7 @@ namespace CSharpier
             if (syntaxNode.FirstSemicolonToken != default(SyntaxToken))
             {
                 var firstSemicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    firstSemicolonTokenBuilder,
-                    syntaxNode.FirstSemicolonToken);
+                WriteSyntaxToken(firstSemicolonTokenBuilder, syntaxNode.FirstSemicolonToken);
                 properties.Add($"\"firstSemicolonToken\":{firstSemicolonTokenBuilder.ToString()}");
             }
             if (syntaxNode.Condition != default(ExpressionSyntax))
@@ -8511,13 +4922,11 @@ namespace CSharpier
             if (syntaxNode.SecondSemicolonToken != default(SyntaxToken))
             {
                 var secondSemicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    secondSemicolonTokenBuilder,
-                    syntaxNode.SecondSemicolonToken);
+                WriteSyntaxToken(secondSemicolonTokenBuilder, syntaxNode.SecondSemicolonToken);
                 properties.Add($"\"secondSemicolonToken\":{secondSemicolonTokenBuilder.ToString()}");
             }
             var incrementors = new List<string>();
-            foreach (var node in syntaxNode.Incrementors)
+            foreach(var node in syntaxNode.Incrementors)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -8527,9 +4936,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8540,47 +4947,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteForEachStatementSyntax(
-            StringBuilder builder,
-            ForEachStatementSyntax syntaxNode)
+        public static void WriteForEachStatementSyntax(StringBuilder builder, ForEachStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8596,17 +4981,13 @@ namespace CSharpier
             if (syntaxNode.ForEachKeyword != default(SyntaxToken))
             {
                 var forEachKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    forEachKeywordBuilder,
-                    syntaxNode.ForEachKeyword);
+                WriteSyntaxToken(forEachKeywordBuilder, syntaxNode.ForEachKeyword);
                 properties.Add($"\"forEachKeyword\":{forEachKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -8636,9 +5017,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8649,47 +5028,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteForEachVariableStatementSyntax(
-            StringBuilder builder,
-            ForEachVariableStatementSyntax syntaxNode)
+        public static void WriteForEachVariableStatementSyntax(StringBuilder builder, ForEachVariableStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8705,17 +5062,13 @@ namespace CSharpier
             if (syntaxNode.ForEachKeyword != default(SyntaxToken))
             {
                 var forEachKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    forEachKeywordBuilder,
-                    syntaxNode.ForEachKeyword);
+                WriteSyntaxToken(forEachKeywordBuilder, syntaxNode.ForEachKeyword);
                 properties.Add($"\"forEachKeyword\":{forEachKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Variable != default(ExpressionSyntax))
@@ -8739,9 +5092,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8752,47 +5103,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteUsingStatementSyntax(
-            StringBuilder builder,
-            UsingStatementSyntax syntaxNode)
+        public static void WriteUsingStatementSyntax(StringBuilder builder, UsingStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8814,17 +5143,13 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -8836,9 +5161,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8849,47 +5172,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFixedStatementSyntax(
-            StringBuilder builder,
-            FixedStatementSyntax syntaxNode)
+        public static void WriteFixedStatementSyntax(StringBuilder builder, FixedStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8905,25 +5206,19 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -8934,47 +5229,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCheckedStatementSyntax(
-            StringBuilder builder,
-            CheckedStatementSyntax syntaxNode)
+        public static void WriteCheckedStatementSyntax(StringBuilder builder, CheckedStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -8995,47 +5268,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteUnsafeStatementSyntax(
-            StringBuilder builder,
-            UnsafeStatementSyntax syntaxNode)
+        public static void WriteUnsafeStatementSyntax(StringBuilder builder, UnsafeStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -9045,9 +5296,7 @@ namespace CSharpier
             if (syntaxNode.UnsafeKeyword != default(SyntaxToken))
             {
                 var unsafeKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    unsafeKeywordBuilder,
-                    syntaxNode.UnsafeKeyword);
+                WriteSyntaxToken(unsafeKeywordBuilder, syntaxNode.UnsafeKeyword);
                 properties.Add($"\"unsafeKeyword\":{unsafeKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Block != default(BlockSyntax))
@@ -9058,47 +5307,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLockStatementSyntax(
-            StringBuilder builder,
-            LockStatementSyntax syntaxNode)
+        public static void WriteLockStatementSyntax(StringBuilder builder, LockStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -9114,9 +5341,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -9128,9 +5353,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -9141,47 +5364,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIfStatementSyntax(
-            StringBuilder builder,
-            IfStatementSyntax syntaxNode)
+        public static void WriteIfStatementSyntax(StringBuilder builder, IfStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -9197,9 +5398,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Condition != default(ExpressionSyntax))
@@ -9211,9 +5410,7 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Statement != default(StatementSyntax))
@@ -9230,40 +5427,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteElseClauseSyntax(
-            StringBuilder builder,
-            ElseClauseSyntax syntaxNode)
+        public static void WriteElseClauseSyntax(StringBuilder builder, ElseClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9283,47 +5458,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSwitchStatementSyntax(
-            StringBuilder builder,
-            SwitchStatementSyntax syntaxNode)
+        public static void WriteSwitchStatementSyntax(StringBuilder builder, SwitchStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -9333,17 +5486,13 @@ namespace CSharpier
             if (syntaxNode.SwitchKeyword != default(SyntaxToken))
             {
                 var switchKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    switchKeywordBuilder,
-                    syntaxNode.SwitchKeyword);
+                WriteSyntaxToken(switchKeywordBuilder, syntaxNode.SwitchKeyword);
                 properties.Add($"\"switchKeyword\":{switchKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -9355,21 +5504,17 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var sections = new List<string>();
-            foreach (var node in syntaxNode.Sections)
+            foreach(var node in syntaxNode.Sections)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSwitchSectionSyntax(innerBuilder, node);
@@ -9379,54 +5524,30 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSwitchSectionSyntax(
-            StringBuilder builder,
-            SwitchSectionSyntax syntaxNode)
+        public static void WriteSwitchSectionSyntax(StringBuilder builder, SwitchSectionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var labels = new List<string>();
-            foreach (var node in syntaxNode.Labels)
+            foreach(var node in syntaxNode.Labels)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -9434,7 +5555,7 @@ namespace CSharpier
             }
             properties.Add($"\"labels\":[{string.Join(",", labels)}]");
             var statements = new List<string>();
-            foreach (var node in syntaxNode.Statements)
+            foreach(var node in syntaxNode.Statements)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -9443,40 +5564,18 @@ namespace CSharpier
             properties.Add($"\"statements\":[{string.Join(",", statements)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCasePatternSwitchLabelSyntax(
-            StringBuilder builder,
-            CasePatternSwitchLabelSyntax syntaxNode)
+        public static void WriteCasePatternSwitchLabelSyntax(StringBuilder builder, CasePatternSwitchLabelSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9508,40 +5607,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCaseSwitchLabelSyntax(
-            StringBuilder builder,
-            CaseSwitchLabelSyntax syntaxNode)
+        public static void WriteCaseSwitchLabelSyntax(StringBuilder builder, CaseSwitchLabelSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9567,40 +5644,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDefaultSwitchLabelSyntax(
-            StringBuilder builder,
-            DefaultSwitchLabelSyntax syntaxNode)
+        public static void WriteDefaultSwitchLabelSyntax(StringBuilder builder, DefaultSwitchLabelSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9620,40 +5675,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSwitchExpressionSyntax(
-            StringBuilder builder,
-            SwitchExpressionSyntax syntaxNode)
+        public static void WriteSwitchExpressionSyntax(StringBuilder builder, SwitchExpressionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9662,29 +5695,23 @@ namespace CSharpier
             if (syntaxNode.GoverningExpression != default(ExpressionSyntax))
             {
                 var governingExpressionBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    governingExpressionBuilder,
-                    syntaxNode.GoverningExpression);
+                WriteSyntaxNode(governingExpressionBuilder, syntaxNode.GoverningExpression);
                 properties.Add($"\"governingExpression\":{governingExpressionBuilder.ToString()}");
             }
             if (syntaxNode.SwitchKeyword != default(SyntaxToken))
             {
                 var switchKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    switchKeywordBuilder,
-                    syntaxNode.SwitchKeyword);
+                WriteSyntaxToken(switchKeywordBuilder, syntaxNode.SwitchKeyword);
                 properties.Add($"\"switchKeyword\":{switchKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var arms = new List<string>();
-            foreach (var node in syntaxNode.Arms)
+            foreach(var node in syntaxNode.Arms)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSwitchExpressionArmSyntax(innerBuilder, node);
@@ -9694,47 +5721,23 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSwitchExpressionArmSyntax(
-            StringBuilder builder,
-            SwitchExpressionArmSyntax syntaxNode)
+        public static void WriteSwitchExpressionArmSyntax(StringBuilder builder, SwitchExpressionArmSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9755,9 +5758,7 @@ namespace CSharpier
             if (syntaxNode.EqualsGreaterThanToken != default(SyntaxToken))
             {
                 var equalsGreaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    equalsGreaterThanTokenBuilder,
-                    syntaxNode.EqualsGreaterThanToken);
+                WriteSyntaxToken(equalsGreaterThanTokenBuilder, syntaxNode.EqualsGreaterThanToken);
                 properties.Add($"\"equalsGreaterThanToken\":{equalsGreaterThanTokenBuilder.ToString()}");
             }
             if (syntaxNode.Expression != default(ExpressionSyntax))
@@ -9768,47 +5769,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTryStatementSyntax(
-            StringBuilder builder,
-            TryStatementSyntax syntaxNode)
+        public static void WriteTryStatementSyntax(StringBuilder builder, TryStatementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -9828,7 +5807,7 @@ namespace CSharpier
                 properties.Add($"\"block\":{blockBuilder.ToString()}");
             }
             var catches = new List<string>();
-            foreach (var node in syntaxNode.Catches)
+            foreach(var node in syntaxNode.Catches)
             {
                 var innerBuilder = new StringBuilder();
                 WriteCatchClauseSyntax(innerBuilder, node);
@@ -9843,40 +5822,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCatchClauseSyntax(
-            StringBuilder builder,
-            CatchClauseSyntax syntaxNode)
+        public static void WriteCatchClauseSyntax(StringBuilder builder, CatchClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9891,9 +5848,7 @@ namespace CSharpier
             if (syntaxNode.Declaration != default(CatchDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteCatchDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteCatchDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.Filter != default(CatchFilterClauseSyntax))
@@ -9910,40 +5865,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCatchDeclarationSyntax(
-            StringBuilder builder,
-            CatchDeclarationSyntax syntaxNode)
+        public static void WriteCatchDeclarationSyntax(StringBuilder builder, CatchDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -9952,9 +5885,7 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -9972,47 +5903,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCatchFilterClauseSyntax(
-            StringBuilder builder,
-            CatchFilterClauseSyntax syntaxNode)
+        public static void WriteCatchFilterClauseSyntax(StringBuilder builder, CatchFilterClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10027,63 +5934,35 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.FilterExpression != default(ExpressionSyntax))
             {
                 var filterExpressionBuilder = new StringBuilder();
-                WriteSyntaxNode(
-                    filterExpressionBuilder,
-                    syntaxNode.FilterExpression);
+                WriteSyntaxNode(filterExpressionBuilder, syntaxNode.FilterExpression);
                 properties.Add($"\"filterExpression\":{filterExpressionBuilder.ToString()}");
             }
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFinallyClauseSyntax(
-            StringBuilder builder,
-            FinallyClauseSyntax syntaxNode)
+        public static void WriteFinallyClauseSyntax(StringBuilder builder, FinallyClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10092,9 +5971,7 @@ namespace CSharpier
             if (syntaxNode.FinallyKeyword != default(SyntaxToken))
             {
                 var finallyKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    finallyKeywordBuilder,
-                    syntaxNode.FinallyKeyword);
+                WriteSyntaxToken(finallyKeywordBuilder, syntaxNode.FinallyKeyword);
                 properties.Add($"\"finallyKeyword\":{finallyKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Block != default(BlockSyntax))
@@ -10105,47 +5982,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCompilationUnitSyntax(
-            StringBuilder builder,
-            CompilationUnitSyntax syntaxNode)
+        public static void WriteCompilationUnitSyntax(StringBuilder builder, CompilationUnitSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var externs = new List<string>();
-            foreach (var node in syntaxNode.Externs)
+            foreach(var node in syntaxNode.Externs)
             {
                 var innerBuilder = new StringBuilder();
                 WriteExternAliasDirectiveSyntax(innerBuilder, node);
@@ -10153,7 +6008,7 @@ namespace CSharpier
             }
             properties.Add($"\"externs\":[{string.Join(",", externs)}]");
             var usings = new List<string>();
-            foreach (var node in syntaxNode.Usings)
+            foreach(var node in syntaxNode.Usings)
             {
                 var innerBuilder = new StringBuilder();
                 WriteUsingDirectiveSyntax(innerBuilder, node);
@@ -10161,7 +6016,7 @@ namespace CSharpier
             }
             properties.Add($"\"usings\":[{string.Join(",", usings)}]");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -10169,7 +6024,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -10179,47 +6034,23 @@ namespace CSharpier
             if (syntaxNode.EndOfFileToken != default(SyntaxToken))
             {
                 var endOfFileTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfFileTokenBuilder,
-                    syntaxNode.EndOfFileToken);
+                WriteSyntaxToken(endOfFileTokenBuilder, syntaxNode.EndOfFileToken);
                 properties.Add($"\"endOfFileToken\":{endOfFileTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteExternAliasDirectiveSyntax(
-            StringBuilder builder,
-            ExternAliasDirectiveSyntax syntaxNode)
+        public static void WriteExternAliasDirectiveSyntax(StringBuilder builder, ExternAliasDirectiveSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10228,9 +6059,7 @@ namespace CSharpier
             if (syntaxNode.ExternKeyword != default(SyntaxToken))
             {
                 var externKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    externKeywordBuilder,
-                    syntaxNode.ExternKeyword);
+                WriteSyntaxToken(externKeywordBuilder, syntaxNode.ExternKeyword);
                 properties.Add($"\"externKeyword\":{externKeywordBuilder.ToString()}");
             }
             if (syntaxNode.AliasKeyword != default(SyntaxToken))
@@ -10248,47 +6077,23 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteUsingDirectiveSyntax(
-            StringBuilder builder,
-            UsingDirectiveSyntax syntaxNode)
+        public static void WriteUsingDirectiveSyntax(StringBuilder builder, UsingDirectiveSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10303,9 +6108,7 @@ namespace CSharpier
             if (syntaxNode.StaticKeyword != default(SyntaxToken))
             {
                 var staticKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    staticKeywordBuilder,
-                    syntaxNode.StaticKeyword);
+                WriteSyntaxToken(staticKeywordBuilder, syntaxNode.StaticKeyword);
                 properties.Add($"\"staticKeyword\":{staticKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Alias != default(NameEqualsSyntax))
@@ -10323,54 +6126,30 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNamespaceDeclarationSyntax(
-            StringBuilder builder,
-            NamespaceDeclarationSyntax syntaxNode)
+        public static void WriteNamespaceDeclarationSyntax(StringBuilder builder, NamespaceDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -10378,7 +6157,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -10388,9 +6167,7 @@ namespace CSharpier
             if (syntaxNode.NamespaceKeyword != default(SyntaxToken))
             {
                 var namespaceKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    namespaceKeywordBuilder,
-                    syntaxNode.NamespaceKeyword);
+                WriteSyntaxToken(namespaceKeywordBuilder, syntaxNode.NamespaceKeyword);
                 properties.Add($"\"namespaceKeyword\":{namespaceKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(NameSyntax))
@@ -10402,13 +6179,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var externs = new List<string>();
-            foreach (var node in syntaxNode.Externs)
+            foreach(var node in syntaxNode.Externs)
             {
                 var innerBuilder = new StringBuilder();
                 WriteExternAliasDirectiveSyntax(innerBuilder, node);
@@ -10416,7 +6191,7 @@ namespace CSharpier
             }
             properties.Add($"\"externs\":[{string.Join(",", externs)}]");
             var usings = new List<string>();
-            foreach (var node in syntaxNode.Usings)
+            foreach(var node in syntaxNode.Usings)
             {
                 var innerBuilder = new StringBuilder();
                 WriteUsingDirectiveSyntax(innerBuilder, node);
@@ -10424,7 +6199,7 @@ namespace CSharpier
             }
             properties.Add($"\"usings\":[{string.Join(",", usings)}]");
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -10434,55 +6209,29 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAttributeListSyntax(
-            StringBuilder builder,
-            AttributeListSyntax syntaxNode)
+        public static void WriteAttributeListSyntax(StringBuilder builder, AttributeListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10491,21 +6240,17 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             if (syntaxNode.Target != default(AttributeTargetSpecifierSyntax))
             {
                 var targetBuilder = new StringBuilder();
-                WriteAttributeTargetSpecifierSyntax(
-                    targetBuilder,
-                    syntaxNode.Target);
+                WriteAttributeTargetSpecifierSyntax(targetBuilder, syntaxNode.Target);
                 properties.Add($"\"target\":{targetBuilder.ToString()}");
             }
             var attributes = new List<string>();
-            foreach (var node in syntaxNode.Attributes)
+            foreach(var node in syntaxNode.Attributes)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeSyntax(innerBuilder, node);
@@ -10515,47 +6260,23 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAttributeTargetSpecifierSyntax(
-            StringBuilder builder,
-            AttributeTargetSpecifierSyntax syntaxNode)
+        public static void WriteAttributeTargetSpecifierSyntax(StringBuilder builder, AttributeTargetSpecifierSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10575,40 +6296,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAttributeSyntax(
-            StringBuilder builder,
-            AttributeSyntax syntaxNode)
+        public static void WriteAttributeSyntax(StringBuilder builder, AttributeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10623,47 +6322,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(AttributeArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteAttributeArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteAttributeArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAttributeArgumentListSyntax(
-            StringBuilder builder,
-            AttributeArgumentListSyntax syntaxNode)
+        public static void WriteAttributeArgumentListSyntax(StringBuilder builder, AttributeArgumentListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10672,13 +6347,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var arguments = new List<string>();
-            foreach (var node in syntaxNode.Arguments)
+            foreach(var node in syntaxNode.Arguments)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeArgumentSyntax(innerBuilder, node);
@@ -10688,47 +6361,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAttributeArgumentSyntax(
-            StringBuilder builder,
-            AttributeArgumentSyntax syntaxNode)
+        public static void WriteAttributeArgumentSyntax(StringBuilder builder, AttributeArgumentSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10754,40 +6403,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNameEqualsSyntax(
-            StringBuilder builder,
-            NameEqualsSyntax syntaxNode)
+        public static void WriteNameEqualsSyntax(StringBuilder builder, NameEqualsSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10807,40 +6434,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeParameterListSyntax(
-            StringBuilder builder,
-            TypeParameterListSyntax syntaxNode)
+        public static void WriteTypeParameterListSyntax(StringBuilder builder, TypeParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -10849,13 +6454,11 @@ namespace CSharpier
             if (syntaxNode.LessThanToken != default(SyntaxToken))
             {
                 var lessThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanTokenBuilder,
-                    syntaxNode.LessThanToken);
+                WriteSyntaxToken(lessThanTokenBuilder, syntaxNode.LessThanToken);
                 properties.Add($"\"lessThanToken\":{lessThanTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterSyntax(innerBuilder, node);
@@ -10865,54 +6468,30 @@ namespace CSharpier
             if (syntaxNode.GreaterThanToken != default(SyntaxToken))
             {
                 var greaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    greaterThanTokenBuilder,
-                    syntaxNode.GreaterThanToken);
+                WriteSyntaxToken(greaterThanTokenBuilder, syntaxNode.GreaterThanToken);
                 properties.Add($"\"greaterThanToken\":{greaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeParameterSyntax(
-            StringBuilder builder,
-            TypeParameterSyntax syntaxNode)
+        public static void WriteTypeParameterSyntax(StringBuilder builder, TypeParameterSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -10922,9 +6501,7 @@ namespace CSharpier
             if (syntaxNode.VarianceKeyword != default(SyntaxToken))
             {
                 var varianceKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    varianceKeywordBuilder,
-                    syntaxNode.VarianceKeyword);
+                WriteSyntaxToken(varianceKeywordBuilder, syntaxNode.VarianceKeyword);
                 properties.Add($"\"varianceKeyword\":{varianceKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Identifier != default(SyntaxToken))
@@ -10935,47 +6512,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteClassDeclarationSyntax(
-            StringBuilder builder,
-            ClassDeclarationSyntax syntaxNode)
+        public static void WriteClassDeclarationSyntax(StringBuilder builder, ClassDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -10983,7 +6538,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11005,9 +6560,7 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.BaseList != default(BaseListSyntax))
@@ -11017,7 +6570,7 @@ namespace CSharpier
                 properties.Add($"\"baseList\":{baseListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -11027,13 +6580,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11043,63 +6594,37 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteStructDeclarationSyntax(
-            StringBuilder builder,
-            StructDeclarationSyntax syntaxNode)
+        public static void WriteStructDeclarationSyntax(StringBuilder builder, StructDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11107,7 +6632,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11129,9 +6654,7 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.BaseList != default(BaseListSyntax))
@@ -11141,7 +6664,7 @@ namespace CSharpier
                 properties.Add($"\"baseList\":{baseListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -11151,13 +6674,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11167,63 +6688,37 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteInterfaceDeclarationSyntax(
-            StringBuilder builder,
-            InterfaceDeclarationSyntax syntaxNode)
+        public static void WriteInterfaceDeclarationSyntax(StringBuilder builder, InterfaceDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11231,7 +6726,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11253,9 +6748,7 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.BaseList != default(BaseListSyntax))
@@ -11265,7 +6758,7 @@ namespace CSharpier
                 properties.Add($"\"baseList\":{baseListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -11275,13 +6768,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11291,63 +6782,37 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRecordDeclarationSyntax(
-            StringBuilder builder,
-            RecordDeclarationSyntax syntaxNode)
+        public static void WriteRecordDeclarationSyntax(StringBuilder builder, RecordDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11355,7 +6820,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11377,17 +6842,13 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.BaseList != default(BaseListSyntax))
@@ -11397,7 +6858,7 @@ namespace CSharpier
                 properties.Add($"\"baseList\":{baseListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -11407,13 +6868,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11423,63 +6882,37 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEnumDeclarationSyntax(
-            StringBuilder builder,
-            EnumDeclarationSyntax syntaxNode)
+        public static void WriteEnumDeclarationSyntax(StringBuilder builder, EnumDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11487,7 +6920,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11515,13 +6948,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var members = new List<string>();
-            foreach (var node in syntaxNode.Members)
+            foreach(var node in syntaxNode.Members)
             {
                 var innerBuilder = new StringBuilder();
                 WriteEnumMemberDeclarationSyntax(innerBuilder, node);
@@ -11531,62 +6962,36 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDelegateDeclarationSyntax(
-            StringBuilder builder,
-            DelegateDeclarationSyntax syntaxNode)
+        public static void WriteDelegateDeclarationSyntax(StringBuilder builder, DelegateDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11594,7 +6999,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11604,9 +7009,7 @@ namespace CSharpier
             if (syntaxNode.DelegateKeyword != default(SyntaxToken))
             {
                 var delegateKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    delegateKeywordBuilder,
-                    syntaxNode.DelegateKeyword);
+                WriteSyntaxToken(delegateKeywordBuilder, syntaxNode.DelegateKeyword);
                 properties.Add($"\"delegateKeyword\":{delegateKeywordBuilder.ToString()}");
             }
             if (syntaxNode.ReturnType != default(TypeSyntax))
@@ -11624,21 +7027,17 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -11648,55 +7047,31 @@ namespace CSharpier
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEnumMemberDeclarationSyntax(
-            StringBuilder builder,
-            EnumMemberDeclarationSyntax syntaxNode)
+        public static void WriteEnumMemberDeclarationSyntax(StringBuilder builder, EnumMemberDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -11704,7 +7079,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -11720,47 +7095,23 @@ namespace CSharpier
             if (syntaxNode.EqualsValue != default(EqualsValueClauseSyntax))
             {
                 var equalsValueBuilder = new StringBuilder();
-                WriteEqualsValueClauseSyntax(
-                    equalsValueBuilder,
-                    syntaxNode.EqualsValue);
+                WriteEqualsValueClauseSyntax(equalsValueBuilder, syntaxNode.EqualsValue);
                 properties.Add($"\"equalsValue\":{equalsValueBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBaseListSyntax(
-            StringBuilder builder,
-            BaseListSyntax syntaxNode)
+        public static void WriteBaseListSyntax(StringBuilder builder, BaseListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -11773,7 +7124,7 @@ namespace CSharpier
                 properties.Add($"\"colonToken\":{colonTokenBuilder.ToString()}");
             }
             var types = new List<string>();
-            foreach (var node in syntaxNode.Types)
+            foreach(var node in syntaxNode.Types)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11782,40 +7133,18 @@ namespace CSharpier
             properties.Add($"\"types\":[{string.Join(",", types)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSimpleBaseTypeSyntax(
-            StringBuilder builder,
-            SimpleBaseTypeSyntax syntaxNode)
+        public static void WriteSimpleBaseTypeSyntax(StringBuilder builder, SimpleBaseTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -11829,40 +7158,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePrimaryConstructorBaseTypeSyntax(
-            StringBuilder builder,
-            PrimaryConstructorBaseTypeSyntax syntaxNode)
+        public static void WritePrimaryConstructorBaseTypeSyntax(StringBuilder builder, PrimaryConstructorBaseTypeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -11877,47 +7184,23 @@ namespace CSharpier
             if (syntaxNode.ArgumentList != default(ArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeParameterConstraintClauseSyntax(
-            StringBuilder builder,
-            TypeParameterConstraintClauseSyntax syntaxNode)
+        public static void WriteTypeParameterConstraintClauseSyntax(StringBuilder builder, TypeParameterConstraintClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -11942,7 +7225,7 @@ namespace CSharpier
                 properties.Add($"\"colonToken\":{colonTokenBuilder.ToString()}");
             }
             var constraints = new List<string>();
-            foreach (var node in syntaxNode.Constraints)
+            foreach(var node in syntaxNode.Constraints)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -11951,40 +7234,18 @@ namespace CSharpier
             properties.Add($"\"constraints\":[{string.Join(",", constraints)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConstructorConstraintSyntax(
-            StringBuilder builder,
-            ConstructorConstraintSyntax syntaxNode)
+        public static void WriteConstructorConstraintSyntax(StringBuilder builder, ConstructorConstraintSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -11999,55 +7260,29 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteClassOrStructConstraintSyntax(
-            StringBuilder builder,
-            ClassOrStructConstraintSyntax syntaxNode)
+        public static void WriteClassOrStructConstraintSyntax(StringBuilder builder, ClassOrStructConstraintSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -12056,55 +7291,29 @@ namespace CSharpier
             if (syntaxNode.ClassOrStructKeyword != default(SyntaxToken))
             {
                 var classOrStructKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    classOrStructKeywordBuilder,
-                    syntaxNode.ClassOrStructKeyword);
+                WriteSyntaxToken(classOrStructKeywordBuilder, syntaxNode.ClassOrStructKeyword);
                 properties.Add($"\"classOrStructKeyword\":{classOrStructKeywordBuilder.ToString()}");
             }
             if (syntaxNode.QuestionToken != default(SyntaxToken))
             {
                 var questionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    questionTokenBuilder,
-                    syntaxNode.QuestionToken);
+                WriteSyntaxToken(questionTokenBuilder, syntaxNode.QuestionToken);
                 properties.Add($"\"questionToken\":{questionTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeConstraintSyntax(
-            StringBuilder builder,
-            TypeConstraintSyntax syntaxNode)
+        public static void WriteTypeConstraintSyntax(StringBuilder builder, TypeConstraintSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -12118,40 +7327,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDefaultConstraintSyntax(
-            StringBuilder builder,
-            DefaultConstraintSyntax syntaxNode)
+        public static void WriteDefaultConstraintSyntax(StringBuilder builder, DefaultConstraintSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -12160,54 +7347,30 @@ namespace CSharpier
             if (syntaxNode.DefaultKeyword != default(SyntaxToken))
             {
                 var defaultKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    defaultKeywordBuilder,
-                    syntaxNode.DefaultKeyword);
+                WriteSyntaxToken(defaultKeywordBuilder, syntaxNode.DefaultKeyword);
                 properties.Add($"\"defaultKeyword\":{defaultKeywordBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFieldDeclarationSyntax(
-            StringBuilder builder,
-            FieldDeclarationSyntax syntaxNode)
+        public static void WriteFieldDeclarationSyntax(StringBuilder builder, FieldDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12215,7 +7378,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12225,62 +7388,36 @@ namespace CSharpier
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEventFieldDeclarationSyntax(
-            StringBuilder builder,
-            EventFieldDeclarationSyntax syntaxNode)
+        public static void WriteEventFieldDeclarationSyntax(StringBuilder builder, EventFieldDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12288,7 +7425,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12304,55 +7441,29 @@ namespace CSharpier
             if (syntaxNode.Declaration != default(VariableDeclarationSyntax))
             {
                 var declarationBuilder = new StringBuilder();
-                WriteVariableDeclarationSyntax(
-                    declarationBuilder,
-                    syntaxNode.Declaration);
+                WriteVariableDeclarationSyntax(declarationBuilder, syntaxNode.Declaration);
                 properties.Add($"\"declaration\":{declarationBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteExplicitInterfaceSpecifierSyntax(
-            StringBuilder builder,
-            ExplicitInterfaceSpecifierSyntax syntaxNode)
+        public static void WriteExplicitInterfaceSpecifierSyntax(StringBuilder builder, ExplicitInterfaceSpecifierSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -12372,47 +7483,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteMethodDeclarationSyntax(
-            StringBuilder builder,
-            MethodDeclarationSyntax syntaxNode)
+        public static void WriteMethodDeclarationSyntax(StringBuilder builder, MethodDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12420,7 +7509,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12433,14 +7522,10 @@ namespace CSharpier
                 WriteSyntaxNode(returnTypeBuilder, syntaxNode.ReturnType);
                 properties.Add($"\"returnType\":{returnTypeBuilder.ToString()}");
             }
-            if (
-                syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax)
-            )
+            if (syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax))
             {
                 var explicitInterfaceSpecifierBuilder = new StringBuilder();
-                WriteExplicitInterfaceSpecifierSyntax(
-                    explicitInterfaceSpecifierBuilder,
-                    syntaxNode.ExplicitInterfaceSpecifier);
+                WriteExplicitInterfaceSpecifierSyntax(explicitInterfaceSpecifierBuilder, syntaxNode.ExplicitInterfaceSpecifier);
                 properties.Add($"\"explicitInterfaceSpecifier\":{explicitInterfaceSpecifierBuilder.ToString()}");
             }
             if (syntaxNode.Identifier != default(SyntaxToken))
@@ -12452,21 +7537,17 @@ namespace CSharpier
             if (syntaxNode.TypeParameterList != default(TypeParameterListSyntax))
             {
                 var typeParameterListBuilder = new StringBuilder();
-                WriteTypeParameterListSyntax(
-                    typeParameterListBuilder,
-                    syntaxNode.TypeParameterList);
+                WriteTypeParameterListSyntax(typeParameterListBuilder, syntaxNode.TypeParameterList);
                 properties.Add($"\"typeParameterList\":{typeParameterListBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             var constraintClauses = new List<string>();
-            foreach (var node in syntaxNode.ConstraintClauses)
+            foreach(var node in syntaxNode.ConstraintClauses)
             {
                 var innerBuilder = new StringBuilder();
                 WriteTypeParameterConstraintClauseSyntax(innerBuilder, node);
@@ -12482,63 +7563,37 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("arity", syntaxNode.Arity));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOperatorDeclarationSyntax(
-            StringBuilder builder,
-            OperatorDeclarationSyntax syntaxNode)
+        public static void WriteOperatorDeclarationSyntax(StringBuilder builder, OperatorDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12546,7 +7601,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12562,25 +7617,19 @@ namespace CSharpier
             if (syntaxNode.OperatorKeyword != default(SyntaxToken))
             {
                 var operatorKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorKeywordBuilder,
-                    syntaxNode.OperatorKeyword);
+                WriteSyntaxToken(operatorKeywordBuilder, syntaxNode.OperatorKeyword);
                 properties.Add($"\"operatorKeyword\":{operatorKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.Body != default(BlockSyntax))
@@ -12592,62 +7641,36 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConversionOperatorDeclarationSyntax(
-            StringBuilder builder,
-            ConversionOperatorDeclarationSyntax syntaxNode)
+        public static void WriteConversionOperatorDeclarationSyntax(StringBuilder builder, ConversionOperatorDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12655,7 +7678,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12665,17 +7688,13 @@ namespace CSharpier
             if (syntaxNode.ImplicitOrExplicitKeyword != default(SyntaxToken))
             {
                 var implicitOrExplicitKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    implicitOrExplicitKeywordBuilder,
-                    syntaxNode.ImplicitOrExplicitKeyword);
+                WriteSyntaxToken(implicitOrExplicitKeywordBuilder, syntaxNode.ImplicitOrExplicitKeyword);
                 properties.Add($"\"implicitOrExplicitKeyword\":{implicitOrExplicitKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OperatorKeyword != default(SyntaxToken))
             {
                 var operatorKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorKeywordBuilder,
-                    syntaxNode.OperatorKeyword);
+                WriteSyntaxToken(operatorKeywordBuilder, syntaxNode.OperatorKeyword);
                 properties.Add($"\"operatorKeyword\":{operatorKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -12687,9 +7706,7 @@ namespace CSharpier
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.Body != default(BlockSyntax))
@@ -12701,62 +7718,36 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConstructorDeclarationSyntax(
-            StringBuilder builder,
-            ConstructorDeclarationSyntax syntaxNode)
+        public static void WriteConstructorDeclarationSyntax(StringBuilder builder, ConstructorDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12764,7 +7755,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12780,17 +7771,13 @@ namespace CSharpier
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(ConstructorInitializerSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteConstructorInitializerSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteConstructorInitializerSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             if (syntaxNode.Body != default(BlockSyntax))
@@ -12802,55 +7789,29 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConstructorInitializerSyntax(
-            StringBuilder builder,
-            ConstructorInitializerSyntax syntaxNode)
+        public static void WriteConstructorInitializerSyntax(StringBuilder builder, ConstructorInitializerSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -12865,62 +7826,36 @@ namespace CSharpier
             if (syntaxNode.ThisOrBaseKeyword != default(SyntaxToken))
             {
                 var thisOrBaseKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    thisOrBaseKeywordBuilder,
-                    syntaxNode.ThisOrBaseKeyword);
+                WriteSyntaxToken(thisOrBaseKeywordBuilder, syntaxNode.ThisOrBaseKeyword);
                 properties.Add($"\"thisOrBaseKeyword\":{thisOrBaseKeywordBuilder.ToString()}");
             }
             if (syntaxNode.ArgumentList != default(ArgumentListSyntax))
             {
                 var argumentListBuilder = new StringBuilder();
-                WriteArgumentListSyntax(
-                    argumentListBuilder,
-                    syntaxNode.ArgumentList);
+                WriteArgumentListSyntax(argumentListBuilder, syntaxNode.ArgumentList);
                 properties.Add($"\"argumentList\":{argumentListBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDestructorDeclarationSyntax(
-            StringBuilder builder,
-            DestructorDeclarationSyntax syntaxNode)
+        public static void WriteDestructorDeclarationSyntax(StringBuilder builder, DestructorDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -12928,7 +7863,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -12950,9 +7885,7 @@ namespace CSharpier
             if (syntaxNode.ParameterList != default(ParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.Body != default(BlockSyntax))
@@ -12964,62 +7897,36 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePropertyDeclarationSyntax(
-            StringBuilder builder,
-            PropertyDeclarationSyntax syntaxNode)
+        public static void WritePropertyDeclarationSyntax(StringBuilder builder, PropertyDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13027,7 +7934,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13040,14 +7947,10 @@ namespace CSharpier
                 WriteSyntaxNode(typeBuilder, syntaxNode.Type);
                 properties.Add($"\"type\":{typeBuilder.ToString()}");
             }
-            if (
-                syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax)
-            )
+            if (syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax))
             {
                 var explicitInterfaceSpecifierBuilder = new StringBuilder();
-                WriteExplicitInterfaceSpecifierSyntax(
-                    explicitInterfaceSpecifierBuilder,
-                    syntaxNode.ExplicitInterfaceSpecifier);
+                WriteExplicitInterfaceSpecifierSyntax(explicitInterfaceSpecifierBuilder, syntaxNode.ExplicitInterfaceSpecifier);
                 properties.Add($"\"explicitInterfaceSpecifier\":{explicitInterfaceSpecifierBuilder.ToString()}");
             }
             if (syntaxNode.Identifier != default(SyntaxToken))
@@ -13059,71 +7962,41 @@ namespace CSharpier
             if (syntaxNode.AccessorList != default(AccessorListSyntax))
             {
                 var accessorListBuilder = new StringBuilder();
-                WriteAccessorListSyntax(
-                    accessorListBuilder,
-                    syntaxNode.AccessorList);
+                WriteAccessorListSyntax(accessorListBuilder, syntaxNode.AccessorList);
                 properties.Add($"\"accessorList\":{accessorListBuilder.ToString()}");
             }
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.Initializer != default(EqualsValueClauseSyntax))
             {
                 var initializerBuilder = new StringBuilder();
-                WriteEqualsValueClauseSyntax(
-                    initializerBuilder,
-                    syntaxNode.Initializer);
+                WriteEqualsValueClauseSyntax(initializerBuilder, syntaxNode.Initializer);
                 properties.Add($"\"initializer\":{initializerBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteArrowExpressionClauseSyntax(
-            StringBuilder builder,
-            ArrowExpressionClauseSyntax syntaxNode)
+        public static void WriteArrowExpressionClauseSyntax(StringBuilder builder, ArrowExpressionClauseSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -13143,47 +8016,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEventDeclarationSyntax(
-            StringBuilder builder,
-            EventDeclarationSyntax syntaxNode)
+        public static void WriteEventDeclarationSyntax(StringBuilder builder, EventDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13191,7 +8042,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13210,14 +8061,10 @@ namespace CSharpier
                 WriteSyntaxNode(typeBuilder, syntaxNode.Type);
                 properties.Add($"\"type\":{typeBuilder.ToString()}");
             }
-            if (
-                syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax)
-            )
+            if (syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax))
             {
                 var explicitInterfaceSpecifierBuilder = new StringBuilder();
-                WriteExplicitInterfaceSpecifierSyntax(
-                    explicitInterfaceSpecifierBuilder,
-                    syntaxNode.ExplicitInterfaceSpecifier);
+                WriteExplicitInterfaceSpecifierSyntax(explicitInterfaceSpecifierBuilder, syntaxNode.ExplicitInterfaceSpecifier);
                 properties.Add($"\"explicitInterfaceSpecifier\":{explicitInterfaceSpecifierBuilder.ToString()}");
             }
             if (syntaxNode.Identifier != default(SyntaxToken))
@@ -13229,62 +8076,36 @@ namespace CSharpier
             if (syntaxNode.AccessorList != default(AccessorListSyntax))
             {
                 var accessorListBuilder = new StringBuilder();
-                WriteAccessorListSyntax(
-                    accessorListBuilder,
-                    syntaxNode.AccessorList);
+                WriteAccessorListSyntax(accessorListBuilder, syntaxNode.AccessorList);
                 properties.Add($"\"accessorList\":{accessorListBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIndexerDeclarationSyntax(
-            StringBuilder builder,
-            IndexerDeclarationSyntax syntaxNode)
+        public static void WriteIndexerDeclarationSyntax(StringBuilder builder, IndexerDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13292,7 +8113,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13305,14 +8126,10 @@ namespace CSharpier
                 WriteSyntaxNode(typeBuilder, syntaxNode.Type);
                 properties.Add($"\"type\":{typeBuilder.ToString()}");
             }
-            if (
-                syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax)
-            )
+            if (syntaxNode.ExplicitInterfaceSpecifier != default(ExplicitInterfaceSpecifierSyntax))
             {
                 var explicitInterfaceSpecifierBuilder = new StringBuilder();
-                WriteExplicitInterfaceSpecifierSyntax(
-                    explicitInterfaceSpecifierBuilder,
-                    syntaxNode.ExplicitInterfaceSpecifier);
+                WriteExplicitInterfaceSpecifierSyntax(explicitInterfaceSpecifierBuilder, syntaxNode.ExplicitInterfaceSpecifier);
                 properties.Add($"\"explicitInterfaceSpecifier\":{explicitInterfaceSpecifierBuilder.ToString()}");
             }
             if (syntaxNode.ThisKeyword != default(SyntaxToken))
@@ -13324,71 +8141,41 @@ namespace CSharpier
             if (syntaxNode.ParameterList != default(BracketedParameterListSyntax))
             {
                 var parameterListBuilder = new StringBuilder();
-                WriteBracketedParameterListSyntax(
-                    parameterListBuilder,
-                    syntaxNode.ParameterList);
+                WriteBracketedParameterListSyntax(parameterListBuilder, syntaxNode.ParameterList);
                 properties.Add($"\"parameterList\":{parameterListBuilder.ToString()}");
             }
             if (syntaxNode.AccessorList != default(AccessorListSyntax))
             {
                 var accessorListBuilder = new StringBuilder();
-                WriteAccessorListSyntax(
-                    accessorListBuilder,
-                    syntaxNode.AccessorList);
+                WriteAccessorListSyntax(accessorListBuilder, syntaxNode.AccessorList);
                 properties.Add($"\"accessorList\":{accessorListBuilder.ToString()}");
             }
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAccessorListSyntax(
-            StringBuilder builder,
-            AccessorListSyntax syntaxNode)
+        public static void WriteAccessorListSyntax(StringBuilder builder, AccessorListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -13397,13 +8184,11 @@ namespace CSharpier
             if (syntaxNode.OpenBraceToken != default(SyntaxToken))
             {
                 var openBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBraceTokenBuilder,
-                    syntaxNode.OpenBraceToken);
+                WriteSyntaxToken(openBraceTokenBuilder, syntaxNode.OpenBraceToken);
                 properties.Add($"\"openBraceToken\":{openBraceTokenBuilder.ToString()}");
             }
             var accessors = new List<string>();
-            foreach (var node in syntaxNode.Accessors)
+            foreach(var node in syntaxNode.Accessors)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAccessorDeclarationSyntax(innerBuilder, node);
@@ -13413,54 +8198,30 @@ namespace CSharpier
             if (syntaxNode.CloseBraceToken != default(SyntaxToken))
             {
                 var closeBraceTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBraceTokenBuilder,
-                    syntaxNode.CloseBraceToken);
+                WriteSyntaxToken(closeBraceTokenBuilder, syntaxNode.CloseBraceToken);
                 properties.Add($"\"closeBraceToken\":{closeBraceTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteAccessorDeclarationSyntax(
-            StringBuilder builder,
-            AccessorDeclarationSyntax syntaxNode)
+        public static void WriteAccessorDeclarationSyntax(StringBuilder builder, AccessorDeclarationSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13468,7 +8229,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13490,55 +8251,29 @@ namespace CSharpier
             if (syntaxNode.ExpressionBody != default(ArrowExpressionClauseSyntax))
             {
                 var expressionBodyBuilder = new StringBuilder();
-                WriteArrowExpressionClauseSyntax(
-                    expressionBodyBuilder,
-                    syntaxNode.ExpressionBody);
+                WriteArrowExpressionClauseSyntax(expressionBodyBuilder, syntaxNode.ExpressionBody);
                 properties.Add($"\"expressionBody\":{expressionBodyBuilder.ToString()}");
             }
             if (syntaxNode.SemicolonToken != default(SyntaxToken))
             {
                 var semicolonTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    semicolonTokenBuilder,
-                    syntaxNode.SemicolonToken);
+                WriteSyntaxToken(semicolonTokenBuilder, syntaxNode.SemicolonToken);
                 properties.Add($"\"semicolonToken\":{semicolonTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParameterListSyntax(
-            StringBuilder builder,
-            ParameterListSyntax syntaxNode)
+        public static void WriteParameterListSyntax(StringBuilder builder, ParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -13547,13 +8282,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteParameterSyntax(innerBuilder, node);
@@ -13563,47 +8296,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBracketedParameterListSyntax(
-            StringBuilder builder,
-            BracketedParameterListSyntax syntaxNode)
+        public static void WriteBracketedParameterListSyntax(StringBuilder builder, BracketedParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -13612,13 +8321,11 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteParameterSyntax(innerBuilder, node);
@@ -13628,54 +8335,30 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteParameterSyntax(
-            StringBuilder builder,
-            ParameterSyntax syntaxNode)
+        public static void WriteParameterSyntax(StringBuilder builder, ParameterSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13683,7 +8366,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13705,54 +8388,30 @@ namespace CSharpier
             if (syntaxNode.Default != default(EqualsValueClauseSyntax))
             {
                 var defaultBuilder = new StringBuilder();
-                WriteEqualsValueClauseSyntax(
-                    defaultBuilder,
-                    syntaxNode.Default);
+                WriteEqualsValueClauseSyntax(defaultBuilder, syntaxNode.Default);
                 properties.Add($"\"default\":{defaultBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteFunctionPointerParameterSyntax(
-            StringBuilder builder,
-            FunctionPointerParameterSyntax syntaxNode)
+        public static void WriteFunctionPointerParameterSyntax(StringBuilder builder, FunctionPointerParameterSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13760,7 +8419,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13775,47 +8434,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIncompleteMemberSyntax(
-            StringBuilder builder,
-            IncompleteMemberSyntax syntaxNode)
+        public static void WriteIncompleteMemberSyntax(StringBuilder builder, IncompleteMemberSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var attributeLists = new List<string>();
-            foreach (var node in syntaxNode.AttributeLists)
+            foreach(var node in syntaxNode.AttributeLists)
             {
                 var innerBuilder = new StringBuilder();
                 WriteAttributeListSyntax(innerBuilder, node);
@@ -13823,7 +8460,7 @@ namespace CSharpier
             }
             properties.Add($"\"attributeLists\":[{string.Join(",", attributeLists)}]");
             var modifiers = new List<string>();
-            foreach (var node in syntaxNode.Modifiers)
+            foreach(var node in syntaxNode.Modifiers)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13838,47 +8475,25 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSkippedTokensTriviaSyntax(
-            StringBuilder builder,
-            SkippedTokensTriviaSyntax syntaxNode)
+        public static void WriteSkippedTokensTriviaSyntax(StringBuilder builder, SkippedTokensTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var tokens = new List<string>();
-            foreach (var node in syntaxNode.Tokens)
+            foreach(var node in syntaxNode.Tokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -13887,47 +8502,25 @@ namespace CSharpier
             properties.Add($"\"tokens\":[{string.Join(",", tokens)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDocumentationCommentTriviaSyntax(
-            StringBuilder builder,
-            DocumentationCommentTriviaSyntax syntaxNode)
+        public static void WriteDocumentationCommentTriviaSyntax(StringBuilder builder, DocumentationCommentTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var content = new List<string>();
-            foreach (var node in syntaxNode.Content)
+            foreach(var node in syntaxNode.Content)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -13942,40 +8535,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteTypeCrefSyntax(
-            StringBuilder builder,
-            TypeCrefSyntax syntaxNode)
+        public static void WriteTypeCrefSyntax(StringBuilder builder, TypeCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -13989,40 +8560,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteQualifiedCrefSyntax(
-            StringBuilder builder,
-            QualifiedCrefSyntax syntaxNode)
+        public static void WriteQualifiedCrefSyntax(StringBuilder builder, QualifiedCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14048,40 +8597,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNameMemberCrefSyntax(
-            StringBuilder builder,
-            NameMemberCrefSyntax syntaxNode)
+        public static void WriteNameMemberCrefSyntax(StringBuilder builder, NameMemberCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14096,47 +8623,23 @@ namespace CSharpier
             if (syntaxNode.Parameters != default(CrefParameterListSyntax))
             {
                 var parametersBuilder = new StringBuilder();
-                WriteCrefParameterListSyntax(
-                    parametersBuilder,
-                    syntaxNode.Parameters);
+                WriteCrefParameterListSyntax(parametersBuilder, syntaxNode.Parameters);
                 properties.Add($"\"parameters\":{parametersBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIndexerMemberCrefSyntax(
-            StringBuilder builder,
-            IndexerMemberCrefSyntax syntaxNode)
+        public static void WriteIndexerMemberCrefSyntax(StringBuilder builder, IndexerMemberCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14148,52 +8651,26 @@ namespace CSharpier
                 WriteSyntaxToken(thisKeywordBuilder, syntaxNode.ThisKeyword);
                 properties.Add($"\"thisKeyword\":{thisKeywordBuilder.ToString()}");
             }
-            if (
-                syntaxNode.Parameters != default(CrefBracketedParameterListSyntax)
-            )
+            if (syntaxNode.Parameters != default(CrefBracketedParameterListSyntax))
             {
                 var parametersBuilder = new StringBuilder();
-                WriteCrefBracketedParameterListSyntax(
-                    parametersBuilder,
-                    syntaxNode.Parameters);
+                WriteCrefBracketedParameterListSyntax(parametersBuilder, syntaxNode.Parameters);
                 properties.Add($"\"parameters\":{parametersBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteOperatorMemberCrefSyntax(
-            StringBuilder builder,
-            OperatorMemberCrefSyntax syntaxNode)
+        public static void WriteOperatorMemberCrefSyntax(StringBuilder builder, OperatorMemberCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14202,63 +8679,35 @@ namespace CSharpier
             if (syntaxNode.OperatorKeyword != default(SyntaxToken))
             {
                 var operatorKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorKeywordBuilder,
-                    syntaxNode.OperatorKeyword);
+                WriteSyntaxToken(operatorKeywordBuilder, syntaxNode.OperatorKeyword);
                 properties.Add($"\"operatorKeyword\":{operatorKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OperatorToken != default(SyntaxToken))
             {
                 var operatorTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorTokenBuilder,
-                    syntaxNode.OperatorToken);
+                WriteSyntaxToken(operatorTokenBuilder, syntaxNode.OperatorToken);
                 properties.Add($"\"operatorToken\":{operatorTokenBuilder.ToString()}");
             }
             if (syntaxNode.Parameters != default(CrefParameterListSyntax))
             {
                 var parametersBuilder = new StringBuilder();
-                WriteCrefParameterListSyntax(
-                    parametersBuilder,
-                    syntaxNode.Parameters);
+                WriteCrefParameterListSyntax(parametersBuilder, syntaxNode.Parameters);
                 properties.Add($"\"parameters\":{parametersBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteConversionOperatorMemberCrefSyntax(
-            StringBuilder builder,
-            ConversionOperatorMemberCrefSyntax syntaxNode)
+        public static void WriteConversionOperatorMemberCrefSyntax(StringBuilder builder, ConversionOperatorMemberCrefSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14267,17 +8716,13 @@ namespace CSharpier
             if (syntaxNode.ImplicitOrExplicitKeyword != default(SyntaxToken))
             {
                 var implicitOrExplicitKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    implicitOrExplicitKeywordBuilder,
-                    syntaxNode.ImplicitOrExplicitKeyword);
+                WriteSyntaxToken(implicitOrExplicitKeywordBuilder, syntaxNode.ImplicitOrExplicitKeyword);
                 properties.Add($"\"implicitOrExplicitKeyword\":{implicitOrExplicitKeywordBuilder.ToString()}");
             }
             if (syntaxNode.OperatorKeyword != default(SyntaxToken))
             {
                 var operatorKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    operatorKeywordBuilder,
-                    syntaxNode.OperatorKeyword);
+                WriteSyntaxToken(operatorKeywordBuilder, syntaxNode.OperatorKeyword);
                 properties.Add($"\"operatorKeyword\":{operatorKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -14289,47 +8734,23 @@ namespace CSharpier
             if (syntaxNode.Parameters != default(CrefParameterListSyntax))
             {
                 var parametersBuilder = new StringBuilder();
-                WriteCrefParameterListSyntax(
-                    parametersBuilder,
-                    syntaxNode.Parameters);
+                WriteCrefParameterListSyntax(parametersBuilder, syntaxNode.Parameters);
                 properties.Add($"\"parameters\":{parametersBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCrefParameterListSyntax(
-            StringBuilder builder,
-            CrefParameterListSyntax syntaxNode)
+        public static void WriteCrefParameterListSyntax(StringBuilder builder, CrefParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14338,13 +8759,11 @@ namespace CSharpier
             if (syntaxNode.OpenParenToken != default(SyntaxToken))
             {
                 var openParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openParenTokenBuilder,
-                    syntaxNode.OpenParenToken);
+                WriteSyntaxToken(openParenTokenBuilder, syntaxNode.OpenParenToken);
                 properties.Add($"\"openParenToken\":{openParenTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteCrefParameterSyntax(innerBuilder, node);
@@ -14354,47 +8773,23 @@ namespace CSharpier
             if (syntaxNode.CloseParenToken != default(SyntaxToken))
             {
                 var closeParenTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeParenTokenBuilder,
-                    syntaxNode.CloseParenToken);
+                WriteSyntaxToken(closeParenTokenBuilder, syntaxNode.CloseParenToken);
                 properties.Add($"\"closeParenToken\":{closeParenTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCrefBracketedParameterListSyntax(
-            StringBuilder builder,
-            CrefBracketedParameterListSyntax syntaxNode)
+        public static void WriteCrefBracketedParameterListSyntax(StringBuilder builder, CrefBracketedParameterListSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14403,13 +8798,11 @@ namespace CSharpier
             if (syntaxNode.OpenBracketToken != default(SyntaxToken))
             {
                 var openBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    openBracketTokenBuilder,
-                    syntaxNode.OpenBracketToken);
+                WriteSyntaxToken(openBracketTokenBuilder, syntaxNode.OpenBracketToken);
                 properties.Add($"\"openBracketToken\":{openBracketTokenBuilder.ToString()}");
             }
             var parameters = new List<string>();
-            foreach (var node in syntaxNode.Parameters)
+            foreach(var node in syntaxNode.Parameters)
             {
                 var innerBuilder = new StringBuilder();
                 WriteCrefParameterSyntax(innerBuilder, node);
@@ -14419,47 +8812,23 @@ namespace CSharpier
             if (syntaxNode.CloseBracketToken != default(SyntaxToken))
             {
                 var closeBracketTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    closeBracketTokenBuilder,
-                    syntaxNode.CloseBracketToken);
+                WriteSyntaxToken(closeBracketTokenBuilder, syntaxNode.CloseBracketToken);
                 properties.Add($"\"closeBracketToken\":{closeBracketTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteCrefParameterSyntax(
-            StringBuilder builder,
-            CrefParameterSyntax syntaxNode)
+        public static void WriteCrefParameterSyntax(StringBuilder builder, CrefParameterSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14468,9 +8837,7 @@ namespace CSharpier
             if (syntaxNode.RefKindKeyword != default(SyntaxToken))
             {
                 var refKindKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    refKindKeywordBuilder,
-                    syntaxNode.RefKindKeyword);
+                WriteSyntaxToken(refKindKeywordBuilder, syntaxNode.RefKindKeyword);
                 properties.Add($"\"refKindKeyword\":{refKindKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Type != default(TypeSyntax))
@@ -14482,47 +8849,23 @@ namespace CSharpier
             if (syntaxNode.RefOrOutKeyword != default(SyntaxToken))
             {
                 var refOrOutKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    refOrOutKeywordBuilder,
-                    syntaxNode.RefOrOutKeyword);
+                WriteSyntaxToken(refOrOutKeywordBuilder, syntaxNode.RefOrOutKeyword);
                 properties.Add($"\"refOrOutKeyword\":{refOrOutKeywordBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlElementSyntax(
-            StringBuilder builder,
-            XmlElementSyntax syntaxNode)
+        public static void WriteXmlElementSyntax(StringBuilder builder, XmlElementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14531,13 +8874,11 @@ namespace CSharpier
             if (syntaxNode.StartTag != default(XmlElementStartTagSyntax))
             {
                 var startTagBuilder = new StringBuilder();
-                WriteXmlElementStartTagSyntax(
-                    startTagBuilder,
-                    syntaxNode.StartTag);
+                WriteXmlElementStartTagSyntax(startTagBuilder, syntaxNode.StartTag);
                 properties.Add($"\"startTag\":{startTagBuilder.ToString()}");
             }
             var content = new List<string>();
-            foreach (var node in syntaxNode.Content)
+            foreach(var node in syntaxNode.Content)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -14552,40 +8893,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlElementStartTagSyntax(
-            StringBuilder builder,
-            XmlElementStartTagSyntax syntaxNode)
+        public static void WriteXmlElementStartTagSyntax(StringBuilder builder, XmlElementStartTagSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14594,9 +8913,7 @@ namespace CSharpier
             if (syntaxNode.LessThanToken != default(SyntaxToken))
             {
                 var lessThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanTokenBuilder,
-                    syntaxNode.LessThanToken);
+                WriteSyntaxToken(lessThanTokenBuilder, syntaxNode.LessThanToken);
                 properties.Add($"\"lessThanToken\":{lessThanTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(XmlNameSyntax))
@@ -14606,7 +8923,7 @@ namespace CSharpier
                 properties.Add($"\"name\":{nameBuilder.ToString()}");
             }
             var attributes = new List<string>();
-            foreach (var node in syntaxNode.Attributes)
+            foreach(var node in syntaxNode.Attributes)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -14616,47 +8933,23 @@ namespace CSharpier
             if (syntaxNode.GreaterThanToken != default(SyntaxToken))
             {
                 var greaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    greaterThanTokenBuilder,
-                    syntaxNode.GreaterThanToken);
+                WriteSyntaxToken(greaterThanTokenBuilder, syntaxNode.GreaterThanToken);
                 properties.Add($"\"greaterThanToken\":{greaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlElementEndTagSyntax(
-            StringBuilder builder,
-            XmlElementEndTagSyntax syntaxNode)
+        public static void WriteXmlElementEndTagSyntax(StringBuilder builder, XmlElementEndTagSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14665,9 +8958,7 @@ namespace CSharpier
             if (syntaxNode.LessThanSlashToken != default(SyntaxToken))
             {
                 var lessThanSlashTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanSlashTokenBuilder,
-                    syntaxNode.LessThanSlashToken);
+                WriteSyntaxToken(lessThanSlashTokenBuilder, syntaxNode.LessThanSlashToken);
                 properties.Add($"\"lessThanSlashToken\":{lessThanSlashTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(XmlNameSyntax))
@@ -14679,47 +8970,23 @@ namespace CSharpier
             if (syntaxNode.GreaterThanToken != default(SyntaxToken))
             {
                 var greaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    greaterThanTokenBuilder,
-                    syntaxNode.GreaterThanToken);
+                WriteSyntaxToken(greaterThanTokenBuilder, syntaxNode.GreaterThanToken);
                 properties.Add($"\"greaterThanToken\":{greaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlEmptyElementSyntax(
-            StringBuilder builder,
-            XmlEmptyElementSyntax syntaxNode)
+        public static void WriteXmlEmptyElementSyntax(StringBuilder builder, XmlEmptyElementSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14728,9 +8995,7 @@ namespace CSharpier
             if (syntaxNode.LessThanToken != default(SyntaxToken))
             {
                 var lessThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanTokenBuilder,
-                    syntaxNode.LessThanToken);
+                WriteSyntaxToken(lessThanTokenBuilder, syntaxNode.LessThanToken);
                 properties.Add($"\"lessThanToken\":{lessThanTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(XmlNameSyntax))
@@ -14740,7 +9005,7 @@ namespace CSharpier
                 properties.Add($"\"name\":{nameBuilder.ToString()}");
             }
             var attributes = new List<string>();
-            foreach (var node in syntaxNode.Attributes)
+            foreach(var node in syntaxNode.Attributes)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -14750,47 +9015,23 @@ namespace CSharpier
             if (syntaxNode.SlashGreaterThanToken != default(SyntaxToken))
             {
                 var slashGreaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    slashGreaterThanTokenBuilder,
-                    syntaxNode.SlashGreaterThanToken);
+                WriteSyntaxToken(slashGreaterThanTokenBuilder, syntaxNode.SlashGreaterThanToken);
                 properties.Add($"\"slashGreaterThanToken\":{slashGreaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlNameSyntax(
-            StringBuilder builder,
-            XmlNameSyntax syntaxNode)
+        public static void WriteXmlNameSyntax(StringBuilder builder, XmlNameSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14810,40 +9051,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlPrefixSyntax(
-            StringBuilder builder,
-            XmlPrefixSyntax syntaxNode)
+        public static void WriteXmlPrefixSyntax(StringBuilder builder, XmlPrefixSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14863,40 +9082,18 @@ namespace CSharpier
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlTextAttributeSyntax(
-            StringBuilder builder,
-            XmlTextAttributeSyntax syntaxNode)
+        public static void WriteXmlTextAttributeSyntax(StringBuilder builder, XmlTextAttributeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14917,13 +9114,11 @@ namespace CSharpier
             if (syntaxNode.StartQuoteToken != default(SyntaxToken))
             {
                 var startQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    startQuoteTokenBuilder,
-                    syntaxNode.StartQuoteToken);
+                WriteSyntaxToken(startQuoteTokenBuilder, syntaxNode.StartQuoteToken);
                 properties.Add($"\"startQuoteToken\":{startQuoteTokenBuilder.ToString()}");
             }
             var textTokens = new List<string>();
-            foreach (var node in syntaxNode.TextTokens)
+            foreach(var node in syntaxNode.TextTokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -14933,47 +9128,23 @@ namespace CSharpier
             if (syntaxNode.EndQuoteToken != default(SyntaxToken))
             {
                 var endQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endQuoteTokenBuilder,
-                    syntaxNode.EndQuoteToken);
+                WriteSyntaxToken(endQuoteTokenBuilder, syntaxNode.EndQuoteToken);
                 properties.Add($"\"endQuoteToken\":{endQuoteTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlCrefAttributeSyntax(
-            StringBuilder builder,
-            XmlCrefAttributeSyntax syntaxNode)
+        public static void WriteXmlCrefAttributeSyntax(StringBuilder builder, XmlCrefAttributeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -14994,9 +9165,7 @@ namespace CSharpier
             if (syntaxNode.StartQuoteToken != default(SyntaxToken))
             {
                 var startQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    startQuoteTokenBuilder,
-                    syntaxNode.StartQuoteToken);
+                WriteSyntaxToken(startQuoteTokenBuilder, syntaxNode.StartQuoteToken);
                 properties.Add($"\"startQuoteToken\":{startQuoteTokenBuilder.ToString()}");
             }
             if (syntaxNode.Cref != default(CrefSyntax))
@@ -15008,47 +9177,23 @@ namespace CSharpier
             if (syntaxNode.EndQuoteToken != default(SyntaxToken))
             {
                 var endQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endQuoteTokenBuilder,
-                    syntaxNode.EndQuoteToken);
+                WriteSyntaxToken(endQuoteTokenBuilder, syntaxNode.EndQuoteToken);
                 properties.Add($"\"endQuoteToken\":{endQuoteTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlNameAttributeSyntax(
-            StringBuilder builder,
-            XmlNameAttributeSyntax syntaxNode)
+        public static void WriteXmlNameAttributeSyntax(StringBuilder builder, XmlNameAttributeSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15069,70 +9214,42 @@ namespace CSharpier
             if (syntaxNode.StartQuoteToken != default(SyntaxToken))
             {
                 var startQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    startQuoteTokenBuilder,
-                    syntaxNode.StartQuoteToken);
+                WriteSyntaxToken(startQuoteTokenBuilder, syntaxNode.StartQuoteToken);
                 properties.Add($"\"startQuoteToken\":{startQuoteTokenBuilder.ToString()}");
             }
             if (syntaxNode.Identifier != default(IdentifierNameSyntax))
             {
                 var identifierBuilder = new StringBuilder();
-                WriteIdentifierNameSyntax(
-                    identifierBuilder,
-                    syntaxNode.Identifier);
+                WriteIdentifierNameSyntax(identifierBuilder, syntaxNode.Identifier);
                 properties.Add($"\"identifier\":{identifierBuilder.ToString()}");
             }
             if (syntaxNode.EndQuoteToken != default(SyntaxToken))
             {
                 var endQuoteTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endQuoteTokenBuilder,
-                    syntaxNode.EndQuoteToken);
+                WriteSyntaxToken(endQuoteTokenBuilder, syntaxNode.EndQuoteToken);
                 properties.Add($"\"endQuoteToken\":{endQuoteTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlTextSyntax(
-            StringBuilder builder,
-            XmlTextSyntax syntaxNode)
+        public static void WriteXmlTextSyntax(StringBuilder builder, XmlTextSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             var textTokens = new List<string>();
-            foreach (var node in syntaxNode.TextTokens)
+            foreach(var node in syntaxNode.TextTokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -15141,40 +9258,18 @@ namespace CSharpier
             properties.Add($"\"textTokens\":[{string.Join(",", textTokens)}]");
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlCDataSectionSyntax(
-            StringBuilder builder,
-            XmlCDataSectionSyntax syntaxNode)
+        public static void WriteXmlCDataSectionSyntax(StringBuilder builder, XmlCDataSectionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15183,13 +9278,11 @@ namespace CSharpier
             if (syntaxNode.StartCDataToken != default(SyntaxToken))
             {
                 var startCDataTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    startCDataTokenBuilder,
-                    syntaxNode.StartCDataToken);
+                WriteSyntaxToken(startCDataTokenBuilder, syntaxNode.StartCDataToken);
                 properties.Add($"\"startCDataToken\":{startCDataTokenBuilder.ToString()}");
             }
             var textTokens = new List<string>();
-            foreach (var node in syntaxNode.TextTokens)
+            foreach(var node in syntaxNode.TextTokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -15199,60 +9292,32 @@ namespace CSharpier
             if (syntaxNode.EndCDataToken != default(SyntaxToken))
             {
                 var endCDataTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endCDataTokenBuilder,
-                    syntaxNode.EndCDataToken);
+                WriteSyntaxToken(endCDataTokenBuilder, syntaxNode.EndCDataToken);
                 properties.Add($"\"endCDataToken\":{endCDataTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlProcessingInstructionSyntax(
-            StringBuilder builder,
-            XmlProcessingInstructionSyntax syntaxNode)
+        public static void WriteXmlProcessingInstructionSyntax(StringBuilder builder, XmlProcessingInstructionSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
-            if (
-                syntaxNode.StartProcessingInstructionToken != default(SyntaxToken)
-            )
+            if (syntaxNode.StartProcessingInstructionToken != default(SyntaxToken))
             {
                 var startProcessingInstructionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    startProcessingInstructionTokenBuilder,
-                    syntaxNode.StartProcessingInstructionToken);
+                WriteSyntaxToken(startProcessingInstructionTokenBuilder, syntaxNode.StartProcessingInstructionToken);
                 properties.Add($"\"startProcessingInstructionToken\":{startProcessingInstructionTokenBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(XmlNameSyntax))
@@ -15262,7 +9327,7 @@ namespace CSharpier
                 properties.Add($"\"name\":{nameBuilder.ToString()}");
             }
             var textTokens = new List<string>();
-            foreach (var node in syntaxNode.TextTokens)
+            foreach(var node in syntaxNode.TextTokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -15272,64 +9337,36 @@ namespace CSharpier
             if (syntaxNode.EndProcessingInstructionToken != default(SyntaxToken))
             {
                 var endProcessingInstructionTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endProcessingInstructionTokenBuilder,
-                    syntaxNode.EndProcessingInstructionToken);
+                WriteSyntaxToken(endProcessingInstructionTokenBuilder, syntaxNode.EndProcessingInstructionToken);
                 properties.Add($"\"endProcessingInstructionToken\":{endProcessingInstructionTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteXmlCommentSyntax(
-            StringBuilder builder,
-            XmlCommentSyntax syntaxNode)
+        public static void WriteXmlCommentSyntax(StringBuilder builder, XmlCommentSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
             properties.Add($"\"nodeType\":\"{GetNodeType(syntaxNode.GetType())}\"");
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
-            if (
-                syntaxNode.LessThanExclamationMinusMinusToken != default(SyntaxToken)
-            )
+            if (syntaxNode.LessThanExclamationMinusMinusToken != default(SyntaxToken))
             {
                 var lessThanExclamationMinusMinusTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    lessThanExclamationMinusMinusTokenBuilder,
-                    syntaxNode.LessThanExclamationMinusMinusToken);
+                WriteSyntaxToken(lessThanExclamationMinusMinusTokenBuilder, syntaxNode.LessThanExclamationMinusMinusToken);
                 properties.Add($"\"lessThanExclamationMinusMinusToken\":{lessThanExclamationMinusMinusTokenBuilder.ToString()}");
             }
             var textTokens = new List<string>();
-            foreach (var node in syntaxNode.TextTokens)
+            foreach(var node in syntaxNode.TextTokens)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxToken(innerBuilder, node);
@@ -15339,47 +9376,23 @@ namespace CSharpier
             if (syntaxNode.MinusMinusGreaterThanToken != default(SyntaxToken))
             {
                 var minusMinusGreaterThanTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    minusMinusGreaterThanTokenBuilder,
-                    syntaxNode.MinusMinusGreaterThanToken);
+                WriteSyntaxToken(minusMinusGreaterThanTokenBuilder, syntaxNode.MinusMinusGreaterThanToken);
                 properties.Add($"\"minusMinusGreaterThanToken\":{minusMinusGreaterThanTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteIfDirectiveTriviaSyntax(
-            StringBuilder builder,
-            IfDirectiveTriviaSyntax syntaxNode)
+        public static void WriteIfDirectiveTriviaSyntax(StringBuilder builder, IfDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15406,59 +9419,32 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             properties.Add(WriteBoolean("branchTaken", syntaxNode.BranchTaken));
-            properties.Add(
-                WriteBoolean("conditionValue", syntaxNode.ConditionValue));
+            properties.Add(WriteBoolean("conditionValue", syntaxNode.ConditionValue));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteElifDirectiveTriviaSyntax(
-            StringBuilder builder,
-            ElifDirectiveTriviaSyntax syntaxNode)
+        public static void WriteElifDirectiveTriviaSyntax(StringBuilder builder, ElifDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15485,59 +9471,32 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             properties.Add(WriteBoolean("branchTaken", syntaxNode.BranchTaken));
-            properties.Add(
-                WriteBoolean("conditionValue", syntaxNode.ConditionValue));
+            properties.Add(WriteBoolean("conditionValue", syntaxNode.ConditionValue));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteElseDirectiveTriviaSyntax(
-            StringBuilder builder,
-            ElseDirectiveTriviaSyntax syntaxNode)
+        public static void WriteElseDirectiveTriviaSyntax(StringBuilder builder, ElseDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15558,9 +9517,7 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
@@ -15568,47 +9525,23 @@ namespace CSharpier
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEndIfDirectiveTriviaSyntax(
-            StringBuilder builder,
-            EndIfDirectiveTriviaSyntax syntaxNode)
+        public static void WriteEndIfDirectiveTriviaSyntax(StringBuilder builder, EndIfDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15629,56 +9562,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteRegionDirectiveTriviaSyntax(
-            StringBuilder builder,
-            RegionDirectiveTriviaSyntax syntaxNode)
+        public static void WriteRegionDirectiveTriviaSyntax(StringBuilder builder, RegionDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15693,64 +9600,36 @@ namespace CSharpier
             if (syntaxNode.RegionKeyword != default(SyntaxToken))
             {
                 var regionKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    regionKeywordBuilder,
-                    syntaxNode.RegionKeyword);
+                WriteSyntaxToken(regionKeywordBuilder, syntaxNode.RegionKeyword);
                 properties.Add($"\"regionKeyword\":{regionKeywordBuilder.ToString()}");
             }
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteEndRegionDirectiveTriviaSyntax(
-            StringBuilder builder,
-            EndRegionDirectiveTriviaSyntax syntaxNode)
+        public static void WriteEndRegionDirectiveTriviaSyntax(StringBuilder builder, EndRegionDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15765,64 +9644,36 @@ namespace CSharpier
             if (syntaxNode.EndRegionKeyword != default(SyntaxToken))
             {
                 var endRegionKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endRegionKeywordBuilder,
-                    syntaxNode.EndRegionKeyword);
+                WriteSyntaxToken(endRegionKeywordBuilder, syntaxNode.EndRegionKeyword);
                 properties.Add($"\"endRegionKeyword\":{endRegionKeywordBuilder.ToString()}");
             }
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteErrorDirectiveTriviaSyntax(
-            StringBuilder builder,
-            ErrorDirectiveTriviaSyntax syntaxNode)
+        public static void WriteErrorDirectiveTriviaSyntax(StringBuilder builder, ErrorDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15843,56 +9694,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteWarningDirectiveTriviaSyntax(
-            StringBuilder builder,
-            WarningDirectiveTriviaSyntax syntaxNode)
+        public static void WriteWarningDirectiveTriviaSyntax(StringBuilder builder, WarningDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15907,64 +9732,36 @@ namespace CSharpier
             if (syntaxNode.WarningKeyword != default(SyntaxToken))
             {
                 var warningKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    warningKeywordBuilder,
-                    syntaxNode.WarningKeyword);
+                WriteSyntaxToken(warningKeywordBuilder, syntaxNode.WarningKeyword);
                 properties.Add($"\"warningKeyword\":{warningKeywordBuilder.ToString()}");
             }
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteBadDirectiveTriviaSyntax(
-            StringBuilder builder,
-            BadDirectiveTriviaSyntax syntaxNode)
+        public static void WriteBadDirectiveTriviaSyntax(StringBuilder builder, BadDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -15985,56 +9782,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteDefineDirectiveTriviaSyntax(
-            StringBuilder builder,
-            DefineDirectiveTriviaSyntax syntaxNode)
+        public static void WriteDefineDirectiveTriviaSyntax(StringBuilder builder, DefineDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16049,9 +9820,7 @@ namespace CSharpier
             if (syntaxNode.DefineKeyword != default(SyntaxToken))
             {
                 var defineKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    defineKeywordBuilder,
-                    syntaxNode.DefineKeyword);
+                WriteSyntaxToken(defineKeywordBuilder, syntaxNode.DefineKeyword);
                 properties.Add($"\"defineKeyword\":{defineKeywordBuilder.ToString()}");
             }
             if (syntaxNode.Name != default(SyntaxToken))
@@ -16063,56 +9832,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteUndefDirectiveTriviaSyntax(
-            StringBuilder builder,
-            UndefDirectiveTriviaSyntax syntaxNode)
+        public static void WriteUndefDirectiveTriviaSyntax(StringBuilder builder, UndefDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16139,56 +9882,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLineDirectiveTriviaSyntax(
-            StringBuilder builder,
-            LineDirectiveTriviaSyntax syntaxNode)
+        public static void WriteLineDirectiveTriviaSyntax(StringBuilder builder, LineDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16221,56 +9938,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePragmaWarningDirectiveTriviaSyntax(
-            StringBuilder builder,
-            PragmaWarningDirectiveTriviaSyntax syntaxNode)
+        public static void WritePragmaWarningDirectiveTriviaSyntax(StringBuilder builder, PragmaWarningDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16285,29 +9976,23 @@ namespace CSharpier
             if (syntaxNode.PragmaKeyword != default(SyntaxToken))
             {
                 var pragmaKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    pragmaKeywordBuilder,
-                    syntaxNode.PragmaKeyword);
+                WriteSyntaxToken(pragmaKeywordBuilder, syntaxNode.PragmaKeyword);
                 properties.Add($"\"pragmaKeyword\":{pragmaKeywordBuilder.ToString()}");
             }
             if (syntaxNode.WarningKeyword != default(SyntaxToken))
             {
                 var warningKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    warningKeywordBuilder,
-                    syntaxNode.WarningKeyword);
+                WriteSyntaxToken(warningKeywordBuilder, syntaxNode.WarningKeyword);
                 properties.Add($"\"warningKeyword\":{warningKeywordBuilder.ToString()}");
             }
             if (syntaxNode.DisableOrRestoreKeyword != default(SyntaxToken))
             {
                 var disableOrRestoreKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    disableOrRestoreKeywordBuilder,
-                    syntaxNode.DisableOrRestoreKeyword);
+                WriteSyntaxToken(disableOrRestoreKeywordBuilder, syntaxNode.DisableOrRestoreKeyword);
                 properties.Add($"\"disableOrRestoreKeyword\":{disableOrRestoreKeywordBuilder.ToString()}");
             }
             var errorCodes = new List<string>();
-            foreach (var node in syntaxNode.ErrorCodes)
+            foreach(var node in syntaxNode.ErrorCodes)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxNode(innerBuilder, node);
@@ -16317,56 +10002,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WritePragmaChecksumDirectiveTriviaSyntax(
-            StringBuilder builder,
-            PragmaChecksumDirectiveTriviaSyntax syntaxNode)
+        public static void WritePragmaChecksumDirectiveTriviaSyntax(StringBuilder builder, PragmaChecksumDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16381,17 +10040,13 @@ namespace CSharpier
             if (syntaxNode.PragmaKeyword != default(SyntaxToken))
             {
                 var pragmaKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    pragmaKeywordBuilder,
-                    syntaxNode.PragmaKeyword);
+                WriteSyntaxToken(pragmaKeywordBuilder, syntaxNode.PragmaKeyword);
                 properties.Add($"\"pragmaKeyword\":{pragmaKeywordBuilder.ToString()}");
             }
             if (syntaxNode.ChecksumKeyword != default(SyntaxToken))
             {
                 var checksumKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    checksumKeywordBuilder,
-                    syntaxNode.ChecksumKeyword);
+                WriteSyntaxToken(checksumKeywordBuilder, syntaxNode.ChecksumKeyword);
                 properties.Add($"\"checksumKeyword\":{checksumKeywordBuilder.ToString()}");
             }
             if (syntaxNode.File != default(SyntaxToken))
@@ -16415,56 +10070,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteReferenceDirectiveTriviaSyntax(
-            StringBuilder builder,
-            ReferenceDirectiveTriviaSyntax syntaxNode)
+        public static void WriteReferenceDirectiveTriviaSyntax(StringBuilder builder, ReferenceDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16479,9 +10108,7 @@ namespace CSharpier
             if (syntaxNode.ReferenceKeyword != default(SyntaxToken))
             {
                 var referenceKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    referenceKeywordBuilder,
-                    syntaxNode.ReferenceKeyword);
+                WriteSyntaxToken(referenceKeywordBuilder, syntaxNode.ReferenceKeyword);
                 properties.Add($"\"referenceKeyword\":{referenceKeywordBuilder.ToString()}");
             }
             if (syntaxNode.File != default(SyntaxToken))
@@ -16493,56 +10120,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteLoadDirectiveTriviaSyntax(
-            StringBuilder builder,
-            LoadDirectiveTriviaSyntax syntaxNode)
+        public static void WriteLoadDirectiveTriviaSyntax(StringBuilder builder, LoadDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16569,56 +10170,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteShebangDirectiveTriviaSyntax(
-            StringBuilder builder,
-            ShebangDirectiveTriviaSyntax syntaxNode)
+        public static void WriteShebangDirectiveTriviaSyntax(StringBuilder builder, ShebangDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16633,64 +10208,36 @@ namespace CSharpier
             if (syntaxNode.ExclamationToken != default(SyntaxToken))
             {
                 var exclamationTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    exclamationTokenBuilder,
-                    syntaxNode.ExclamationToken);
+                WriteSyntaxToken(exclamationTokenBuilder, syntaxNode.ExclamationToken);
                 properties.Add($"\"exclamationToken\":{exclamationTokenBuilder.ToString()}");
             }
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteNullableDirectiveTriviaSyntax(
-            StringBuilder builder,
-            NullableDirectiveTriviaSyntax syntaxNode)
+        public static void WriteNullableDirectiveTriviaSyntax(StringBuilder builder, NullableDirectiveTriviaSyntax syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16705,9 +10252,7 @@ namespace CSharpier
             if (syntaxNode.NullableKeyword != default(SyntaxToken))
             {
                 var nullableKeywordBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    nullableKeywordBuilder,
-                    syntaxNode.NullableKeyword);
+                WriteSyntaxToken(nullableKeywordBuilder, syntaxNode.NullableKeyword);
                 properties.Add($"\"nullableKeyword\":{nullableKeywordBuilder.ToString()}");
             }
             if (syntaxNode.SettingToken != default(SyntaxToken))
@@ -16725,56 +10270,30 @@ namespace CSharpier
             if (syntaxNode.EndOfDirectiveToken != default(SyntaxToken))
             {
                 var endOfDirectiveTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    endOfDirectiveTokenBuilder,
-                    syntaxNode.EndOfDirectiveToken);
+                WriteSyntaxToken(endOfDirectiveTokenBuilder, syntaxNode.EndOfDirectiveToken);
                 properties.Add($"\"endOfDirectiveToken\":{endOfDirectiveTokenBuilder.ToString()}");
             }
             properties.Add(WriteBoolean("isActive", syntaxNode.IsActive));
             if (syntaxNode.DirectiveNameToken != default(SyntaxToken))
             {
                 var directiveNameTokenBuilder = new StringBuilder();
-                WriteSyntaxToken(
-                    directiveNameTokenBuilder,
-                    syntaxNode.DirectiveNameToken);
+                WriteSyntaxToken(directiveNameTokenBuilder, syntaxNode.DirectiveNameToken);
                 properties.Add($"\"directiveNameToken\":{directiveNameTokenBuilder.ToString()}");
             }
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
-            properties.Add(
-                WriteBoolean(
-                    "isStructuredTrivia",
-                    syntaxNode.IsStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsSkippedText",
-                    syntaxNode.ContainsSkippedText));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("isStructuredTrivia", syntaxNode.IsStructuredTrivia));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsSkippedText", syntaxNode.ContainsSkippedText));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSyntaxToken(
-            StringBuilder builder,
-            SyntaxToken syntaxNode)
+        public static void WriteSyntaxToken(StringBuilder builder, SyntaxToken syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16783,28 +10302,14 @@ namespace CSharpier
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
             properties.Add(WriteBoolean("isMissing", syntaxNode.IsMissing));
             properties.Add(WriteString("text", syntaxNode.Text));
-            properties.Add(
-                WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
-            properties.Add(
-                WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean(
-                    "containsDirectives",
-                    syntaxNode.ContainsDirectives));
-            properties.Add(
-                WriteBoolean(
-                    "hasStructuredTrivia",
-                    syntaxNode.HasStructuredTrivia));
-            properties.Add(
-                WriteBoolean(
-                    "containsAnnotations",
-                    syntaxNode.ContainsAnnotations));
+            properties.Add(WriteBoolean("hasLeadingTrivia", syntaxNode.HasLeadingTrivia));
+            properties.Add(WriteBoolean("hasTrailingTrivia", syntaxNode.HasTrailingTrivia));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("containsDirectives", syntaxNode.ContainsDirectives));
+            properties.Add(WriteBoolean("hasStructuredTrivia", syntaxNode.HasStructuredTrivia));
+            properties.Add(WriteBoolean("containsAnnotations", syntaxNode.ContainsAnnotations));
             var leadingTrivia = new List<string>();
-            foreach (var node in syntaxNode.LeadingTrivia)
+            foreach(var node in syntaxNode.LeadingTrivia)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxTrivia(innerBuilder, node);
@@ -16812,7 +10317,7 @@ namespace CSharpier
             }
             properties.Add($"\"leadingTrivia\":[{string.Join(",", leadingTrivia)}]");
             var trailingTrivia = new List<string>();
-            foreach (var node in syntaxNode.TrailingTrivia)
+            foreach(var node in syntaxNode.TrailingTrivia)
             {
                 var innerBuilder = new StringBuilder();
                 WriteSyntaxTrivia(innerBuilder, node);
@@ -16822,9 +10327,7 @@ namespace CSharpier
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");
         }
-        public static void WriteSyntaxTrivia(
-            StringBuilder builder,
-            SyntaxTrivia syntaxNode)
+        public static void WriteSyntaxTrivia(StringBuilder builder, SyntaxTrivia syntaxNode)
         {
             builder.Append("{");
             var properties = new List<string>();
@@ -16832,12 +10335,8 @@ namespace CSharpier
             properties.Add($"\"kind\":\"{syntaxNode.Kind().ToString()}\"");
             properties.Add(WriteString("text", syntaxNode.ToString()));
             properties.Add(WriteInt("rawKind", syntaxNode.RawKind));
-            properties.Add(
-                WriteBoolean(
-                    "containsDiagnostics",
-                    syntaxNode.ContainsDiagnostics));
-            properties.Add(
-                WriteBoolean("hasStructure", syntaxNode.HasStructure));
+            properties.Add(WriteBoolean("containsDiagnostics", syntaxNode.ContainsDiagnostics));
+            properties.Add(WriteBoolean("hasStructure", syntaxNode.HasStructure));
             properties.Add(WriteBoolean("isDirective", syntaxNode.IsDirective));
             builder.Append(string.Join(",", properties.Where(o => o != null)));
             builder.Append("}");

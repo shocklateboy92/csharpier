@@ -104,7 +104,7 @@
                   {
                     "nodeType": "SyntaxTrivia",
                     "kind": "EndOfLineTrivia",
-                    "text": "\r\n",
+                    "text": "\n",
                     "rawKind": 8539
                   }
                 ]
@@ -139,7 +139,7 @@
           {
             "nodeType": "SyntaxTrivia",
             "kind": "EndOfLineTrivia",
-            "text": "\r\n",
+            "text": "\n",
             "rawKind": 8539
           }
         ]
@@ -215,7 +215,7 @@
                     {
                       "nodeType": "SyntaxTrivia",
                       "kind": "EndOfLineTrivia",
-                      "text": "\r\n",
+                      "text": "\n",
                       "rawKind": 8539
                     }
                   ]
@@ -239,7 +239,7 @@
                       {
                         "nodeType": "SyntaxTrivia",
                         "kind": "EndOfLineTrivia",
-                        "text": "\r\n",
+                        "text": "\n",
                         "rawKind": 8539
                       },
                       {
@@ -284,7 +284,7 @@
                       {
                         "nodeType": "SyntaxTrivia",
                         "kind": "EndOfLineTrivia",
-                        "text": "\r\n",
+                        "text": "\n",
                         "rawKind": 8539
                       }
                     ]
@@ -501,7 +501,7 @@
                   {
                     "nodeType": "SyntaxTrivia",
                     "kind": "EndOfLineTrivia",
-                    "text": "\r\n",
+                    "text": "\n",
                     "rawKind": 8539
                   }
                 ]
@@ -671,7 +671,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 }
               ]
@@ -705,7 +705,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 },
                 {
@@ -859,7 +859,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 }
               ]
@@ -893,7 +893,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 },
                 {
@@ -982,7 +982,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 }
               ]
@@ -1014,7 +1014,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 }
               ]
@@ -1098,7 +1098,7 @@
                     {
                       "nodeType": "SyntaxTrivia",
                       "kind": "EndOfLineTrivia",
-                      "text": "\r\n",
+                      "text": "\n",
                       "rawKind": 8539
                     }
                   ]
@@ -1125,7 +1125,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 },
                 {
@@ -1139,7 +1139,7 @@
                 {
                   "nodeType": "SyntaxTrivia",
                   "kind": "EndOfLineTrivia",
-                  "text": "\r\n",
+                  "text": "\n",
                   "rawKind": 8539
                 }
               ]
