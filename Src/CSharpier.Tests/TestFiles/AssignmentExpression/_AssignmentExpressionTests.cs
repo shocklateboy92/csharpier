@@ -18,5 +18,10 @@ namespace CSharpier.Tests.TestFiles
         {
             this.RunTest("AssignmentExpression", "BasicAssignmentExpression");
         }
+        [Test]
+        public void AssignmentExpressionWraps()
+        {
+            this.RunTest("AssignmentExpression", "AssignmentExpressionWraps");
+        }
     }
 }

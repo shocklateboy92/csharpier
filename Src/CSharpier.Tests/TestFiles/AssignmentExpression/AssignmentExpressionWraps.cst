@@ -1,0 +1,9 @@
+class ClassName
+{
+    void MethodName()
+    {
+        var someLongVariableName =
+            SomeFunction(withArgs, thatAre, just, shortEnough, to, notWrap);
+    }
+}
+
